@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Lentera Jiwa - Ruang Aman Anti-Perundungan",
   description:
     "Ruang aman untuk edukasi, pencegahan, dan penanganan perundungan (anti-bullying) dari Lentera Jiwa.",
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
             <rect width="100%" height="100%" filter="url(#noise)" />
           </svg>
         </div>
-        
+
         {children}
         <Analytics />
       </body>

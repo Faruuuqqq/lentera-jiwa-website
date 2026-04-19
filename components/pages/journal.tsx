@@ -8,6 +8,8 @@ import {
   Trash2,
   TrendingUp,
   Activity,
+  Feather,
+  Filter,
 } from "lucide-react";
 import AnimatedSection from "@/components/ui/animated-section";
 import { db, auth } from "@/lib/firebase";
@@ -42,11 +44,51 @@ const moodScores: Record<string, number> = {
 };
 
 const moods = [
-  { label: "Senang", emoji: "😊", score: 5 },
-  { label: "Biasa", emoji: "🙂", score: 4 },
-  { label: "Lelah", emoji: "😮‍💨", score: 3 },
-  { label: "Sedih", emoji: "😔", score: 2 },
-  { label: "Cemas", emoji: "😰", score: 1 },
+  {
+    label: "Senang",
+    emoji: "😊",
+    score: 5,
+    colors: {
+      active: "bg-orange-500 text-white border-orange-500 shadow-orange-500/30",
+      idle: "bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100",
+    },
+  },
+  {
+    label: "Biasa",
+    emoji: "🙂",
+    score: 4,
+    colors: {
+      active: "bg-slate-500 text-white border-slate-500 shadow-slate-500/30",
+      idle: "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100",
+    },
+  },
+  {
+    label: "Lelah",
+    emoji: "😮‍💨",
+    score: 3,
+    colors: {
+      active: "bg-amber-500 text-white border-amber-500 shadow-amber-500/30",
+      idle: "bg-amber-50 text-amber-600 border-amber-200 hover:bg-amber-100",
+    },
+  },
+  {
+    label: "Sedih",
+    emoji: "😔",
+    score: 2,
+    colors: {
+      active: "bg-blue-500 text-white border-blue-500 shadow-blue-500/30",
+      idle: "bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100",
+    },
+  },
+  {
+    label: "Cemas",
+    emoji: "😰",
+    score: 1,
+    colors: {
+      active: "bg-rose-500 text-white border-rose-500 shadow-rose-500/30",
+      idle: "bg-rose-50 text-rose-600 border-rose-200 hover:bg-rose-100",
+    },
+  },
 ];
 
 const triggersList = [
@@ -70,6 +112,8 @@ interface JournalEntry {
   date: string;
 }
 
+type FilterType = "Semua" | "Minggu Ini" | "Mood Negatif";
+
 interface JournalProps {
   setCurrentPage: (page: string) => void;
 }
@@ -83,6 +127,7 @@ export default function Journal({ setCurrentPage }: JournalProps) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState<FilterType>("Semua");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -210,13 +255,37 @@ export default function Journal({ setCurrentPage }: JournalProps) {
       "",
     );
 
+    // Empathic Narrative Builder
+    let narrative = `Kamu telah mencatat ${entries.length} momen di jurnal ini. Setiap langkah kecil itu berharga.`;
+    if (negativeEntries.length > 2 && topTrigger) {
+      narrative = `Kamu tampak merasa kurang baik belakangan ini, dan tampaknya isu '${topTrigger}' sering membebanimu. Tidak apa-apa untuk merasa lelah. Ingatlah untuk mengambil jeda dan menghargai dirimu.`;
+    } else if (negativeEntries.length > 0 && topTrigger) {
+      narrative = `Beberapa kerisauanmu bersumber dari '${topTrigger}'. Jangan ragu untuk melepaskannya perlahan di sini.`;
+    } else if (entries.length > 3) {
+      narrative = `Kamu menjaga kestabilanmu dengan baik akhir-akhir ini! Teruslah memetakan terang dan redup emosimu bersama kami.`;
+    }
+
     return {
       chartData,
       topTrigger,
       negativeCount: negativeEntries.length,
       totalCount: entries.length,
+      narrative,
     };
   }, [entries]);
+
+  // Filtering Logic
+  const filteredEntries = useMemo(() => {
+    if (activeFilter === "Menurut Negatif" || activeFilter === "Mood Negatif") {
+      return entries.filter(e => ["Cemas", "Sedih", "Lelah"].includes(e.mood));
+    }
+    if (activeFilter === "Minggu Ini") {
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+      return entries.filter(e => new Date(e.date) >= sevenDaysAgo);
+    }
+    return entries; // "Semua"
+  }, [entries, activeFilter]);
 
   return (
     <>
@@ -247,28 +316,35 @@ export default function Journal({ setCurrentPage }: JournalProps) {
                   ✍️ Catat Hari Ini
                 </h3>
 
-                {/* Mood */}
+                {/* Mood - REVISED: Dynamic Colored Buttons */}
                 <div className="mb-8">
                   <label className="text-xs font-bold text-slate-400 uppercase mb-4 block">
                     Perasaanmu?
                   </label>
                   <div className="grid grid-cols-5 gap-2">
-                    {moods.map((mood) => (
-                      <button
-                        key={mood.label}
-                        onClick={() => setSelectedMood(mood.label)}
-                        className={`flex flex-col items-center gap-1 p-2 rounded-xl transition ${
-                          selectedMood === mood.label
-                            ? "bg-nara-orange text-white shadow-soft-lg scale-105"
-                            : "bg-slate-50 border border-slate-100 text-slate-500 hover:bg-slate-100"
-                        }`}
-                      >
-                        <span className="text-2xl mt-1">{mood.emoji}</span>
-                        <span className={`text-[10px] font-bold ${selectedMood === mood.label ? "text-white" : "text-slate-500"}`}>
-                          {mood.label}
-                        </span>
-                      </button>
-                    ))}
+                    {moods.map((mood) => {
+                      const isActive = selectedMood === mood.label;
+                      return (
+                        <button
+                          key={mood.label}
+                          onClick={() => setSelectedMood(mood.label)}
+                          className={`flex flex-col items-center gap-1.5 py-3 px-1 rounded-xl border transition-all duration-300 transform ${
+                            isActive
+                              ? `scale-105 shadow-md ${mood.colors.active}`
+                              : `scale-100 ${mood.colors.idle}`
+                          }`}
+                        >
+                          <span className={`text-2xl mt-1 transition-transform ${isActive ? "scale-110" : ""}`}>{mood.emoji}</span>
+                          <span
+                            className={`text-[9px] sm:text-[10px] font-bold ${
+                              isActive ? "text-white" : "text-slate-500"
+                            }`}
+                          >
+                            {mood.label}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -282,10 +358,10 @@ export default function Journal({ setCurrentPage }: JournalProps) {
                       <button
                         key={trigger}
                         onClick={() => handleToggleTrigger(trigger)}
-                        className={`px-4 py-2 rounded-full border text-xs font-medium transition ${
+                        className={`px-4 py-2 rounded-full border text-xs font-medium transition-all duration-300 ${
                           selectedTriggers.includes(trigger)
-                            ? "bg-nara-charcoal text-white border-nara-charcoal shadow-sm"
-                            : "bg-white text-slate-600 border-slate-200 hover:border-nara-orange"
+                            ? "bg-nara-charcoal text-white border-nara-charcoal shadow-sm scale-105"
+                            : "bg-white text-slate-600 border-slate-200 hover:border-nara-orange hover:text-nara-orange"
                         }`}
                       >
                         {trigger}
@@ -304,7 +380,7 @@ export default function Journal({ setCurrentPage }: JournalProps) {
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
                     rows={4}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-nara-orange outline-none text-sm resize-none bg-slate-50 transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-nara-orange focus:ring-2 focus:ring-nara-orange/20 outline-none text-sm resize-none bg-slate-50 transition-all"
                     placeholder="Tumpahkan semua yang kamu rasakan tanpa filter..."
                   ></textarea>
                 </div>
@@ -312,9 +388,9 @@ export default function Journal({ setCurrentPage }: JournalProps) {
                 <button
                   onClick={handleSave}
                   disabled={!selectedMood}
-                  className="w-full h-[48px] bg-nara-orange hover:bg-[#D47125] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition shadow-soft flex items-center justify-center gap-2"
+                  className="w-full h-[52px] font-serif text-lg bg-nara-orange hover:bg-[#D47125] disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl transition-all duration-300 shadow-[0_8px_20px_rgba(242,153,74,0.3)] hover:-translate-y-0.5 flex items-center justify-center gap-2"
                 >
-                  <Save className="w-4 h-4" />
+                  <Save className="w-5 h-5" />
                   Simpan Jurnal
                 </button>
               </div>
@@ -323,6 +399,41 @@ export default function Journal({ setCurrentPage }: JournalProps) {
             {/* Insight & History Section */}
             <AnimatedSection delay={0.4} className="lg:col-span-2 space-y-6">
               
+              {/* SMART INSIGHT CARD (Narrative Upgrade) */}
+              <div className="bg-nara-charcoal rounded-3xl p-8 md:p-10 text-white relative overflow-hidden shadow-soft-lg group cursor-default">
+                <div className="absolute right-0 top-0 w-80 h-80 bg-nara-orange/20 rounded-full blur-[80px] transform translate-x-1/3 -translate-y-1/3 group-hover:scale-110 transition-transform duration-1000"></div>
+                <div className="relative z-10">
+                  <h3 className="font-serif text-3xl font-medium mb-6 flex items-center gap-3">
+                    <Sparkles className="w-6 h-6 text-nara-orange" />
+                    Bincang Batin Lentera
+                  </h3>
+
+                  {insights ? (
+                    <div className="space-y-6">
+                      <p className="text-slate-200 text-lg md:text-xl font-serif italic leading-[1.7] border-l-2 border-nara-orange pl-6 my-6">
+                        "{insights.narrative}"
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-3 pt-2">
+                        <div className="inline-flex items-center gap-2 text-xs font-bold text-nara-orange bg-white/10 backdrop-blur-sm px-4 py-2.5 rounded-xl border border-white/10 uppercase tracking-wider">
+                          <Activity className="w-4 h-4" />
+                          Mood Tren: <span className="text-white">{insights.chartData.length > 0 ? insights.chartData[insights.chartData.length - 1].mood : "Belum Ada"}</span>
+                        </div>
+                        {insights.topTrigger && (
+                           <div className="inline-flex items-center gap-2 text-xs font-bold text-slate-300 bg-white/5 backdrop-blur-sm px-4 py-2.5 rounded-xl border border-white/5 uppercase tracking-wider">
+                              Dominan: <span className="text-nara-orange">{insights.topTrigger}</span>
+                           </div>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-slate-300 text-lg leading-[1.7] italic mb-4">
+                      Kami menantimu menulis cerita pertamamu di sisi kiri layar. Jangan sungkan.
+                    </p>
+                  )}
+                </div>
+              </div>
+
               {/* GRAPH CARD */}
               {insights && insights.chartData.length > 1 && (
                 <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-soft">
@@ -399,124 +510,122 @@ export default function Journal({ setCurrentPage }: JournalProps) {
                 </div>
               )}
 
-              {/* SMART INSIGHT CARD */}
-              <div className="bg-nara-charcoal rounded-2xl p-8 text-white relative overflow-hidden shadow-soft-lg transform hover:scale-[1.01] transition-transform">
-                <div className="absolute right-0 top-0 w-64 h-64 bg-nara-orange/20 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
-                <div className="relative z-10">
-                  <h3 className="font-serif text-2xl font-medium mb-4 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-nara-orange" />
-                    Analisis Lentera
-                  </h3>
-
-                  {insights ? (
-                    <div className="space-y-4">
-                      <p className="text-slate-300 text-base leading-[1.7]">
-                        Kamu telah mencatat{" "}
-                        <strong className="text-white">
-                          {insights.totalCount} entri
-                        </strong>
-                        .
-                        {insights.topTrigger && (
-                          <span>
-                            {" "}
-                            Berdasarkan pola ini, tampak bahwa{" "}
-                            <strong className="text-nara-charcoal bg-nara-orange px-2 py-0.5 rounded-md font-bold mx-1">
-                              {insights.topTrigger}
-                            </strong>{" "}
-                            sering menjadi pemicu beban emosionalmu.
-                          </span>
-                        )}
-                      </p>
-                      {insights.chartData.length > 0 && (
-                        <div className="inline-flex items-center gap-2 text-xs font-bold text-nara-orange bg-nara-orange/10 px-4 py-2 rounded-lg border border-nara-orange/20 tracking-wider">
-                          <Activity className="w-4 h-4" />
-                          MOOD TERAKHIR:{" "}
-                          <span className="text-white">{insights.chartData[insights.chartData.length - 1].mood}</span>
-                        </div>
-                      )}
+              {/* History List Header & Filters */}
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden flex flex-col">
+                <div className="p-6 md:p-8 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <h3 className="font-serif text-2xl font-medium text-nara-charcoal">Riwayat Catatan</h3>
+                  
+                  {/* Filter Tabs */}
+                  {entries.length > 0 && (
+                    <div className="flex bg-slate-50 p-1 rounded-xl border border-slate-100">
+                      {(["Semua", "Minggu Ini", "Mood Negatif"] as FilterType[]).map((tab) => (
+                        <button
+                          key={tab}
+                          onClick={() => setActiveFilter(tab)}
+                          className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${
+                            activeFilter === tab 
+                            ? "bg-white text-nara-orange shadow-sm" 
+                            : "text-slate-500 hover:text-nara-charcoal"
+                          }`}
+                        >
+                          {tab}
+                        </button>
+                      ))}
                     </div>
-                  ) : (
-                    <p className="text-slate-300 leading-[1.7]">
-                      Belum cukup data untuk membaca pola emosimu. Teruslah mencatat untuk memetakan pikiranmu!
-                    </p>
                   )}
                 </div>
-              </div>
 
-              {/* History List */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
-                <div className="p-8 border-b border-slate-100">
-                  <h3 className="font-serif text-2xl font-medium text-nara-charcoal">Riwayat Catatan</h3>
-                </div>
-
-                <div className="p-4 space-y-3 max-h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200 pr-2">
+                {/* List Container with Staggered Entries */}
+                <div className="p-6 md:p-8 space-y-4 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200">
                   {isLoading ? (
-                    <p className="text-center text-slate-400 text-sm py-10 font-medium">
-                      Mengambil data pribadimu...
-                    </p>
-                  ) : entries.length === 0 ? (
-                    <div className="text-center py-12 text-slate-400 border-2 border-dashed border-slate-100 rounded-xl m-4">
-                      <p className="font-medium">Belum ada goresan jurnal.</p>
-                      <p className="text-xs mt-1">Satu kalimat pun sudah cukup untuk memulai.</p>
+                    <div className="animate-pulse flex flex-col gap-4">
+                       <div className="h-24 bg-slate-50 rounded-xl w-full"></div>
+                       <div className="h-24 bg-slate-50 rounded-xl w-full"></div>
+                    </div>
+                  ) : filteredEntries.length === 0 ? (
+                     /* EMPTY STATE AESTHETIC */
+                    <div className="text-center py-16 flex flex-col items-center justify-center animate-fade-up">
+                      <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center text-nara-orange mb-6 shadow-inner">
+                        <Feather className="w-10 h-10" />
+                      </div>
+                      <h4 className="font-serif text-2xl text-nara-charcoal mb-2">Halaman Masih Kosong</h4>
+                      <p className="text-slate-500 text-sm max-w-xs mx-auto leading-relaxed">
+                        {activeFilter !== "Semua" 
+                         ? `Tidak ada jurnal yang sesuai dengan filter "${activeFilter}".`
+                         : "Ini adalah buku harian digital milik privasimu. Jangan ragu mencurahkan sedikit beban pikiranmu hari ini."}
+                      </p>
                     </div>
                   ) : (
-                    entries.map((entry) => (
-                      <div
-                        key={entry.id}
-                        className="p-5 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-nara-orange hover:shadow-md transition-all group relative"
-                      >
-                        <div className="flex justify-between items-start mb-3">
-                          <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-slate-50 flex items-center justify-center rounded-xl border border-slate-100 shadow-sm text-2xl">
-                              {moods.find((m) => m.label === entry.mood)?.emoji}
+                    filteredEntries.map((entry, index) => {
+                      const moodConf = moods.find((m) => m.label === entry.mood);
+                      return (
+                        <div
+                          key={entry.id}
+                          className="animate-fade-up p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all group relative overflow-hidden"
+                          style={{ animationDelay: `${index * 50}ms` }}
+                        >
+                          {/* Accent Color Strip left side */}
+                          <div className={`absolute top-0 left-0 bottom-0 w-1.5 ${moodConf ? moodConf.colors.active.split(' ')[0] : 'bg-slate-200'}`}></div>
+
+                          <div className="flex justify-between items-start mb-3 pl-3">
+                            <div className="flex items-center gap-4">
+                              <div className={`w-12 h-12 flex items-center justify-center rounded-xl text-2xl ${moodConf ? moodConf.colors.idle.split('hover')[0] : 'bg-slate-50'}`}>
+                                {moodConf?.emoji}
+                              </div>
+                              <div>
+                                <p className="font-bold text-nara-charcoal text-base">
+                                  {entry.mood}
+                                </p>
+                                <p className="text-xs font-semibold text-slate-400 mt-1 uppercase tracking-wider">
+                                  {new Date(entry.date).toLocaleDateString(
+                                    "id-ID",
+                                    {
+                                      weekday: "long",
+                                      day: "numeric",
+                                      month: "short",
+                                      hour: "2-digit",
+                                      minute: "2-digit"
+                                    },
+                                  )}
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <p className="font-bold text-nara-charcoal text-base">
-                                {entry.mood}
-                              </p>
-                              <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-1">
-                                {new Date(entry.date).toLocaleDateString(
-                                  "id-ID",
-                                  {
-                                    weekday: "long",
-                                    day: "numeric",
-                                    month: "long",
-                                  },
-                                )}
-                              </p>
-                            </div>
+                            <button
+                              onClick={() =>
+                                entry.id && handleDeleteEntry(entry.id)
+                              }
+                              className="p-2 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg opacity-0 group-hover:opacity-100 transition-all focus:opacity-100"
+                              title="Hapus catatan ini"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
                           </div>
-                          <button
-                            onClick={() =>
-                              entry.id && handleDeleteEntry(entry.id)
-                            }
-                            className="p-2 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg opacity-0 group-hover:opacity-100 transition-all"
-                            title="Hapus catatan ini"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+
+                          <div className="pl-[4.5rem]">
+                            {entry.triggers.length > 0 && (
+                              <div className="flex flex-wrap gap-2 mb-3">
+                                {entry.triggers.map((trigger) => (
+                                  <span
+                                    key={trigger}
+                                    className="px-2.5 py-1 bg-slate-50 border border-slate-200 text-slate-600 text-[10px] rounded-md font-bold uppercase tracking-wider"
+                                  >
+                                    {trigger}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            {entry.note && (
+                              <div className="bg-slate-50/50 p-4 rounded-xl border border-slate-100/50 mt-2">
+                                <p className="text-sm text-slate-600 leading-[1.7] italic">
+                                  "{entry.note}"
+                                </p>
+                              </div>
+                            )}
+                          </div>
                         </div>
-
-                        {entry.triggers.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mb-3 pl-[4rem]">
-                            {entry.triggers.map((trigger) => (
-                              <span
-                                key={trigger}
-                                className="px-2 py-1 bg-slate-100 border border-slate-200 text-slate-600 text-[10px] rounded-md font-bold uppercase tracking-wider"
-                              >
-                                {trigger}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-
-                        {entry.note && (
-                          <p className="text-sm text-slate-600 leading-[1.6] pl-[4rem] border-l-2 border-nara-orange/20 ml-6 py-1">
-                            "{entry.note}"
-                          </p>
-                        )}
-                      </div>
-                    ))
+                      );
+                    })
                   )}
                 </div>
               </div>
@@ -527,17 +636,16 @@ export default function Journal({ setCurrentPage }: JournalProps) {
 
       {/* Bridge Modal (Tetap Sama, UI Disesuaikan) */}
       {showBridgeModal && (
-        <div className="fixed inset-0 bg-slate-900/40 flex items-center justify-center z-50 backdrop-blur-sm px-4">
-          <div className="bg-white rounded-3xl p-8 md:p-10 max-w-sm w-full text-center shadow-2xl animate-in zoom-in-95">
-            <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Sparkles className="w-8 h-8 text-nara-orange" />
+        <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-50 backdrop-blur-sm px-4 transition-all">
+          <div className="bg-white rounded-3xl p-8 md:p-10 max-w-sm w-full text-center shadow-2xl animate-fade-up">
+            <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+              <Sparkles className="w-10 h-10 text-nara-orange" />
             </div>
             <h3 className="font-serif text-3xl font-medium text-nara-charcoal mb-4">
               Harimu Tampak Berat?
             </h3>
             <p className="text-slate-600 mb-8 leading-[1.7]">
-              Kami menyadari kamu sedang merasa kurang baik. Tidak apa-apa. Jika
-              butuh teman cerita, Relawan kami siap mendengarkan tanpa menghakimi.
+              Kami menyadari akhir-akhir ini kamu merasa kurang baik. Tidak apa-apa untuk kelelahan. Jika kamu butuh tempat cerita yang aman, Relawan kami selalu ada untuk mendengarkan tanpa menghakimi.
             </p>
             <div className="flex flex-col gap-3">
               <button
@@ -545,13 +653,13 @@ export default function Journal({ setCurrentPage }: JournalProps) {
                   setShowBridgeModal(false);
                   setCurrentPage("cerita");
                 }}
-                className="w-full h-[48px] rounded-xl text-white bg-nara-orange hover:bg-[#D47125] font-bold transition shadow-soft flex items-center justify-center"
+                className="w-full h-[52px] rounded-xl text-white bg-nara-orange hover:bg-[#D47125] font-bold transition-all shadow-[0_8px_20px_rgba(242,153,74,0.3)] hover:-translate-y-0.5 flex items-center justify-center"
               >
-                Ya, Aku Butuh Teman Cerita
+                Cari Bantuan / Teman Cerita
               </button>
               <button
                 onClick={() => setShowBridgeModal(false)}
-                className="w-full h-[48px] rounded-xl text-slate-500 hover:bg-slate-100 font-medium transition"
+                className="w-full h-[52px] rounded-xl text-slate-500 hover:bg-slate-100 hover:text-nara-charcoal font-bold transition-colors"
               >
                 Nanti Saja
               </button>
