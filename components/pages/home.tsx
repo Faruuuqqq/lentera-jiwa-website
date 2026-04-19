@@ -1,350 +1,297 @@
-"use client";
-
-import { useState } from "react";
-import {
-  ArrowRight,
-  Heart,
-  BookOpen,
-  Wind,
-  ChevronDown,
-  Ear,
-  AlertCircle,
-  FileText,
-  Users,
-  Phone,
-  X,
-} from "lucide-react";
+import React from "react";
+import { MessageCircle, HeartHandshake, Shield, Sparkles, BookOpen, Quote, ChevronRight } from "lucide-react";
 import AnimatedSection from "@/components/ui/animated-section";
-import HowItWorks from "@/components/how-it-works";
 
-interface HomeProps {
+interface HomePageProps {
   setCurrentPage: (page: string) => void;
 }
 
-// DATA PROGRAM (Dipindahkan dari pages/programs.tsx)
-const programsData = [
-  {
-    icon: Ear,
-    title: "Active Listening",
-    shortDesc:
-      "Layanan curhat di mana kamu didengarkan sepenuhnya tanpa dihakimi.",
-    longDesc:
-      "Di sini, kamu bisa mencurahkan segala perasaan dan pikiranmu kepada seorang teman sebaya yang terlatih untuk mendengarkan secara aktif. Tujuannya adalah memberikan ruang aman bagimu untuk didengar dan divalidasi, bukan untuk dihakimi atau diberi solusi instan yang menggurui.",
-  },
-  {
-    icon: Heart,
-    title: "Psychological First Aid",
-    shortDesc:
-      "Pertolongan pertama untuk mendukung mahasiswa dalam situasi krisis.",
-    longDesc:
-      "PFA adalah serangkaian tindakan suportif yang diberikan kepada seseorang yang baru saja mengalami peristiwa stres yang signifikan. Ini bukan konseling, melainkan bantuan praktis untuk menenangkan, mengurangi tingkat stres, dan menghubungkan dengan bantuan lebih lanjut.",
-  },
-  {
-    icon: AlertCircle,
-    title: "Deteksi Dini",
-    shortDesc:
-      "Mengidentifikasi tanda-tanda stres, cemas, atau burnout sejak awal.",
-    longDesc:
-      "Melalui kuesioner mandiri dan edukasi, kami membantu mahasiswa untuk lebih peka terhadap perubahan kondisi mental mereka. Mengenali gejala lebih awal dapat mencegah masalah menjadi lebih serius dan mempercepat proses pemulihan.",
-  },
-  {
-    icon: FileText,
-    title: "Pendampingan Holistik",
-    shortDesc: "Dukungan emosional menyeluruh yang disesuaikan kebutuhan.",
-    longDesc:
-      "Kami melihat setiap individu secara utuh. Pendampingan ini mencakup dukungan emosional, bantuan dalam manajemen waktu, hingga diskusi tentang gaya hidup sehat yang semuanya berpengaruh pada kesehatan mental.",
-  },
-  {
-    icon: Users,
-    title: "Peer Community",
-    shortDesc:
-      "Membangun komunitas saling dukung antar mahasiswa yang inklusif.",
-    longDesc:
-      "Lentera Jiwa membangun komunitas inklusif. Kami mengadakan sesi diskusi kelompok dan workshop untuk memperkuat ikatan sosial dan mengurangi rasa isolasi bagi korban maupun saksi perundungan.",
-  },
-  {
-    icon: Phone,
-    title: "Rujukan Profesional",
-    shortDesc: "Koneksi langsung dengan layanan psikolog P2K2 jika diperlukan.",
-    longDesc:
-      "Jika relawan kami merasa bahwa kamu membutuhkan bantuan lebih dari yang bisa kami tawarkan, kami akan dengan hati-hati dan suportif membantumu terhubung dengan psikolog profesional di P2K2 Unpad.",
-  },
-];
-
-const featuredArticles = [
-  {
-    title: "Perbedaan Stres Akademik vs Burnout",
-    category: "Artikel",
-    summary:
-      "Kenali perbedaan antara tekanan studi yang normal dan kelelahan emosional yang serius.",
-  },
-  {
-    title: "Teknik Grounding 5-4-3-2-1",
-    category: "Tips",
-    summary:
-      "Sebuah metode sederhana untuk mengatasi cemas dengan kembali ke saat ini.",
-  },
-  {
-    title: "Cara Menjadi Pendengar Aktif",
-    category: "Panduan",
-    summary:
-      "Belajar bagaimana memberikan dukungan yang berarti bagi teman yang sedang bercerita.",
-  },
-];
-
-export default function Home({ setCurrentPage }: HomeProps) {
-  const [selectedProgram, setSelectedProgram] = useState<any>(null);
-
+export default function HomePage({ setCurrentPage }: HomePageProps) {
   return (
-    <>
-      {/* --- HERO SECTION --- */}
-      <section className="relative py-20 lg:py-32 overflow-hidden min-h-[90vh] flex flex-col justify-center">
-        <div className="absolute inset-0 animated-gradient-bg -z-10"></div>
-        <div className="glow-orb orb-1 -z-10"></div>
-        <div className="glow-orb orb-2 -z-10"></div>
-        <div className="glow-orb orb-3 -z-10"></div>
+    <div className="bg-white text-nara-charcoal w-full pb-20">
 
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <AnimatedSection delay={0.1}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-[#E6EFF2] shadow-sm text-[#2E5063] text-sm font-semibold mb-8">
-              <span className="w-2 h-2 rounded-full bg-[#F2994A] animate-pulse"></span>
-              Ruang Aman Anti-Perundungan
-            </div>
-          </AnimatedSection>
+      {/* --- HERO SECTION (Aesthetic Edition) --- */}
+      <section className="relative py-24 lg:py-32 overflow-hidden min-h-[95vh] flex items-center bg-gradient-to-br from-nara-paper via-white to-orange-50">
+        {/* Organic Paper Texture Base (via Body) + Mesh Blobs */}
+        <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-nara-blue-light/50 rounded-full blur-[120px] pointer-events-none mesh-blob-1 hidden md:block"></div>
+        <div className="absolute bottom-10 left-10 w-72 h-72 bg-nara-orange/10 rounded-full blur-[100px] pointer-events-none mesh-blob-2 hidden md:block" style={{ right: '10%', top: '40%' }}></div>
 
-          <AnimatedSection delay={0.2}>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-slate-900 mb-8 tracking-tight leading-[1.1]">
-              Dari Asa <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#F6C453] to-[#F2994A]">
-                Menjadi Makna.
-              </span>
-            </h1>
-          </AnimatedSection>
+        <div className="max-w-7xl mx-auto px-4 w-full relative z-10 -mt-10">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
 
-          <AnimatedSection delay={0.3}>
-            <p className="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Kami di sini bukan untuk menghakimi, tapi untuk menemani. Gerakan
-              kolektif kesehatan mental untuk mencegah, mendidik, dan menangani perundungan.
-            </p>
-          </AnimatedSection>
+            {/* Left Staggered Column */}
+            <div className="lg:col-span-7 flex flex-col justify-center text-left">
+              <div className="animate-fade-up stagger-1 w-fit">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-[#F2994A]/20 text-[#2c3e50] font-sans text-xs sm:text-sm font-bold tracking-wider uppercase mb-8 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-[#F2994A] animate-pulse"></span>
+                  Ruang Aman Bersama
+                </div>
+              </div>
 
-          <AnimatedSection delay={0.4}>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <button
-                onClick={() => setCurrentPage("cerita")}
-                className="w-full sm:w-auto px-8 py-4 text-base font-bold text-slate-800 bg-[#F6C453] rounded-full hover:bg-[#F2994A] shadow-xl shadow-[#F6C453]/30 transition-all duration-300 flex items-center justify-center gap-2 transform hover:-translate-y-1"
-              >
-                <Heart className="w-5 h-5 text-white" />
-                Cerita ke Lentera
-              </button>
-              <button
-                onClick={() => setCurrentPage("tentang")}
-                className="w-full sm:w-auto px-8 py-4 text-base font-bold text-[#F2994A] bg-white/50 backdrop-blur-sm border border-slate-200 rounded-full hover:bg-white hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                Kenali Lentera Jiwa
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </AnimatedSection>
-        </div>
+              <div className="animate-fade-up stagger-2">
+                <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium mb-6 text-nara-charcoal leading-[1.15]">
+                  Kamu Tidak Sendiri <br />
+                  <span className="italic text-nara-orange">Menghadapi Perundungan.</span>
+                </h1>
+              </div>
 
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center animate-bounce opacity-50">
-          <ChevronDown className="w-6 h-6 text-[#2E5063]" />
-        </div>
-      </section>
-
-      {/* --- STATS STRIP --- */}
-      <section className="bg-white py-10 relative z-10 -mt-16 sm:-mt-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 rounded-2xl shadow-xl border border-slate-100">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-slate-100">
-          <div className="px-4">
-            <h3 className="text-3xl font-extrabold text-[#F2994A]">500+</h3>
-            <p className="text-sm font-medium text-slate-500 mt-1">Cerita Dibaca</p>
-          </div>
-          <div className="px-4">
-            <h3 className="text-3xl font-extrabold text-[#F2994A]">120+</h3>
-            <p className="text-sm font-medium text-slate-500 mt-1">Sesi Konseling</p>
-          </div>
-          <div className="px-4">
-            <h3 className="text-3xl font-extrabold text-[#F2994A]">4</h3>
-            <p className="text-sm font-medium text-slate-500 mt-1">Cabang Kampus</p>
-          </div>
-          <div className="px-4">
-            <h3 className="text-3xl font-extrabold text-[#F2994A]">24/7</h3>
-            <p className="text-sm font-medium text-slate-500 mt-1">Dukungan</p>
-          </div>
-        </div>
-      </section>
-
-      {/* --- PROGRAM & LAYANAN (Pengganti Services) --- */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative z-10 rounded-t-[3rem] -mt-10 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
-        <div className="max-w-7xl mx-auto">
-          <AnimatedSection>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#2E5063] mb-4">
-                Program & Pendampingan
-              </h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Pendekatan komprehensif kami dalam menjaga kesehatan mentalmu.
-                Klik kartu untuk detail.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {programsData.map((program, idx) => {
-              const Icon = program.icon;
-              return (
-                <AnimatedSection key={idx} delay={idx * 0.1}>
-                  <button
-                    onClick={() => setSelectedProgram(program)}
-                    className="w-full bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-[#C7913B]/50 hover:shadow-lg transition-all duration-300 group text-left h-full flex flex-col"
-                  >
-                    <div className="w-14 h-14 bg-[#FFF8EC] rounded-2xl flex items-center justify-center text-[#F2994A] mb-6 group-hover:bg-[#F2994A] group-hover:text-white transition-colors duration-300">
-                      <Icon className="w-7 h-7" />
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#2E5063]">
-                      {program.title}
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed text-sm flex-grow">
-                      {program.shortDesc}
-                    </p>
-                    <div className="mt-6 text-[#C7913B] text-sm font-bold flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                      Baca Detail <ArrowRight className="w-4 h-4" />
-                    </div>
-                  </button>
-                </AnimatedSection>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* --- CARA KERJA (HOW IT WORKS) - NEW UI --- */}
-      <AnimatedSection>
-        <HowItWorks />
-      </AnimatedSection>
-
-      {/* --- FEATURED ARTICLES --- */}
-      <AnimatedSection>
-        <section className="bg-[#E6EFF2] py-20 border-t border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-end mb-12">
-              <div>
-                <h2 className="text-3xl font-bold text-[#2E5063]">
-                  Bacaan Pilihan
-                </h2>
-                <p className="text-slate-500 mt-2">
-                  Insight singkat untuk bekal hari-harimu.
+              <div className="animate-fade-up stagger-3">
+                <p className="font-sans text-lg md:text-xl text-slate-600 mb-10 max-w-xl leading-[1.7]">
+                  Lentera Jiwa adalah ruang aman untuk berbagi cerita, memahami perundungan, dan menemukan dukungan bersama.
                 </p>
               </div>
-              <button
-                onClick={() => setCurrentPage("kenali-perundungan")}
-                className="hidden md:flex items-center gap-2 text-[#F2994A] font-bold hover:underline"
-              >
-                Lihat Semua <ArrowRight className="w-4 h-4" />
-              </button>
+
+              <div className="animate-fade-up stagger-4 flex flex-col sm:flex-row gap-4">
+                <button
+                  onClick={() => setCurrentPage('cerita')}
+                  className="h-[48px] px-8 bg-nara-orange text-white font-bold rounded-xl hover:bg-[#D47125] transition-all transform hover:-translate-y-0.5 shadow-[0_8px_20px_rgba(242,153,74,0.3)] flex items-center justify-center gap-2 w-full sm:w-auto"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  Cerita ke Lentera
+                </button>
+                <button
+                  onClick={() => setCurrentPage('kenali-perundungan')}
+                  className="h-[48px] px-8 bg-white border-2 border-slate-200 text-nara-charcoal font-bold rounded-xl hover:border-nara-charcoal hover:bg-slate-50 transition-all flex items-center justify-center w-full sm:w-auto"
+                >
+                  Pelajari Perundungan
+                </button>
+              </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredArticles.map((article, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 p-6 flex flex-col h-full cursor-pointer hover:-translate-y-1"
-                  onClick={() => setCurrentPage("kenali-perundungan")}
-                >
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 rounded-full bg-[#FDF3E3] flex items-center justify-center text-[#C7913B] mr-3">
-                      <BookOpen className="w-5 h-5" />
+            {/* Right Column (Abstract/Illustration Block) */}
+            <div className="lg:col-span-5 relative hidden lg:block animate-fade-up stagger-5">
+              <div className="relative w-full aspect-square max-w-[400px] mx-auto">
+                <div className="absolute inset-0 bg-nara-orange/20 rounded-full blur-3xl animate-pulse"></div>
+                
+                <div className="absolute top-10 -left-12 bg-white/90 backdrop-blur-md border border-slate-100 p-4 rounded-2xl shadow-soft-lg transform -rotate-6 z-20 hover:rotate-0 transition-transform cursor-default">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-nara-orange">
+                      <HeartHandshake className="w-5 h-5" />
                     </div>
-                    <span className="text-xs font-bold text-[#C7913B] uppercase tracking-wider bg-[#FDF3E3] px-2 py-1 rounded-md">
-                      {article.category}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-[#2E5063] mb-3 leading-tight">
-                    {article.title}
-                  </h3>
-                  <p className="text-slate-500 mb-6 text-sm leading-relaxed flex-grow">
-                    {article.summary}
-                  </p>
-                  <div className="pt-4 border-t border-slate-50 text-[#2E5063] text-sm font-bold flex items-center gap-2 group">
-                    Baca Selengkapnya
-                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                    <div>
+                      <p className="text-xs font-bold text-nara-charcoal uppercase tracking-wider">Dukungan</p>
+                      <p className="text-[10px] text-slate-500 font-medium">100% Anonim</p>
+                    </div>
                   </div>
                 </div>
-              ))}
+
+                <div className="relative w-full h-full bg-nara-charcoal rounded-[2.5rem] p-10 overflow-hidden z-10 border border-slate-800 shadow-2xl flex flex-col justify-end">
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-nara-blue-light/10 rounded-full blur-2xl"></div>
+                  <div className="absolute -left-10 bottom-20 w-40 h-40 bg-nara-orange/20 rounded-full blur-3xl"></div>
+                  
+                  <div className="space-y-4 mb-4 relative z-10">
+                     <div className="h-3 w-1/3 bg-white/20 rounded-full"></div>
+                     <div className="h-3 w-2/3 bg-white/20 rounded-full"></div>
+                     <div className="h-3 w-1/2 bg-white/20 rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-10 -right-8 bg-white/90 backdrop-blur-md border border-slate-100 p-4 rounded-2xl shadow-soft-lg transform rotate-3 z-20 hover:rotate-0 transition-transform cursor-default">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-slate-600">
+                      <Shield className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-nara-charcoal uppercase tracking-wider">Keamanan</p>
+                      <p className="text-[10px] text-slate-500 font-medium">Ruang Aman</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="mt-8 md:hidden text-center">
-              <button
-                onClick={() => setCurrentPage("kenali-perundungan")}
-                className="px-6 py-3 bg-white border border-slate-200 rounded-full text-[#F2994A] font-bold shadow-sm"
-              >
-                Lihat Semua Artikel
-              </button>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* --- FINAL CTA (CALM ZONE) --- */}
-      <AnimatedSection>
-        <section className="py-20 bg-gradient-to-br from-[#F6C453] to-[#F2994A] text-center relative overflow-hidden">
-          <div
-            className="absolute top-0 left-0 w-full h-full opacity-10"
-            style={{
-              backgroundImage: "radial-gradient(#C7913B 1px, transparent 1px)",
-              backgroundSize: "30px 30px",
-            }}
-          ></div>
-          <div className="max-w-3xl mx-auto px-4 relative z-10">
-            <Wind className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Sedang Merasa Cemas atau Panik?
-            </h2>
-            <p className="text-white/90 mb-8 text-lg">
-              Kunjungi Ruang Tenang kami untuk panduan napas dan suara alam yang
-              menenangkan.
-            </p>
-            <button
-              onClick={() => setCurrentPage("calmzone")}
-              className="px-8 py-4 bg-white hover:bg-slate-50 text-[#F2994A] font-bold rounded-full transition shadow-xl transform hover:scale-105"
-            >
-              Masuk Ruang Tenang
-            </button>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* MODAL DETAIL PROGRAM */}
-      {selectedProgram && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in">
-          <div className="bg-white rounded-3xl p-8 max-w-lg w-full relative shadow-2xl animate-in zoom-in-95">
-            <button
-              onClick={() => setSelectedProgram(null)}
-              className="absolute top-4 right-4 p-2 bg-slate-100 rounded-full text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition"
-            >
-              <X className="w-5 h-5" />
-            </button>
-            <div className="w-16 h-16 bg-[#2E5063] rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-[#2E5063]/20">
-              <selectedProgram.icon className="w-8 h-8" />
-            </div>
-            <h2 className="text-2xl font-bold text-[#2E5063] mb-4">
-              {selectedProgram.title}
-            </h2>
-            <div className="prose prose-slate text-slate-600 leading-relaxed">
-              <p>{selectedProgram.longDesc}</p>
-            </div>
-            <div className="mt-8 pt-6 border-t border-slate-100">
-              <button
-                onClick={() => setSelectedProgram(null)}
-                className="w-full py-3 bg-[#2E5063] text-white font-bold rounded-xl hover:bg-[#1D3442] transition"
-              >
-                Mengerti
-              </button>
-            </div>
           </div>
         </div>
-      )}
-    </>
+      </section>
+
+      {/* 2. STATISTIK */}
+      <section className="max-w-7xl mx-auto px-4 -mt-24 relative z-20">
+        <AnimatedSection delay={0.2}>
+          <div className="bg-nara-charcoal rounded-2xl p-10 shadow-soft-lg border border-transparent overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-nara-orange/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
+
+            <div className="text-center mb-10">
+              <h2 className="font-serif text-3xl md:text-4xl font-medium text-white mb-3">Tahukah Kamu?</h2>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-white/10 relative z-10">
+              <div className="px-2">
+                <p className="text-4xl lg:text-5xl font-bold text-nara-orange mb-2">28%</p>
+                <p className="text-sm text-slate-300">Anak mengalami perundungan</p>
+              </div>
+              <div className="px-2">
+                <p className="text-4xl lg:text-5xl font-bold text-nara-orange mb-2">40%</p>
+                <p className="text-sm text-slate-300">Yang berani melapor</p>
+              </div>
+              <div className="px-2">
+                <p className="text-4xl lg:text-5xl font-bold text-nara-orange mb-2">30%</p>
+                <p className="text-sm text-slate-300">Pernah terlibat (pelaku)</p>
+              </div>
+              <div className="px-2">
+                <p className="text-4xl lg:text-5xl font-bold text-nara-orange mb-2">70%</p>
+                <p className="text-sm text-slate-300">Pernah menyaksikan perundungan</p>
+              </div>
+            </div>
+
+            <div className="mt-10 pt-8 border-t border-white/10 text-center relative z-10">
+              <p className="text-slate-300 italic">"Perundungan itu nyata, dan dampaknya bisa besar. Tapi kita bisa menghadapinya bersama."</p>
+            </div>
+          </div>
+        </AnimatedSection>
+      </section>
+
+      {/* 3. POSISI USER (NEW DIRECTIVE) */}
+      <section className="py-24 bg-white relative">
+        <div className="max-w-6xl mx-auto px-4">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <h2 className="font-serif text-4xl font-medium text-nara-charcoal mb-4">Kamu di Posisi Mana?</h2>
+              <p className="text-slate-500 max-w-xl mx-auto">Kami mengerti tidak semua orang berada di posisi yang sama. Pilih opsi yang paling menggambarkan kondisimu saat ini.</p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <AnimatedSection delay={0.1}>
+              <div className="bg-nara-paper p-8 md:p-12 rounded-2xl border border-nara-orange/20 hover:border-nara-orange group transition-colors cursor-pointer h-full flex flex-col relative overflow-hidden">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-nara-orange mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                  <Shield className="w-8 h-8" />
+                </div>
+                <h3 className="font-serif text-3xl font-medium text-nara-charcoal mb-4">Aku Mengalami Perundungan</h3>
+                <p className="text-slate-600 leading-[1.7] mb-8 flex-grow">
+                  Kamu berhak mendapatkan bantuan dan didengar. Semua perasaanmu valid dan kamu tidak harus menanggung ini sendirian.
+                </p>
+                <button
+                  onClick={() => setCurrentPage("action-guide")}
+                  className="flex items-center gap-2 text-nara-orange font-bold hover:gap-3 transition-all"
+                >
+                  Cari Bantuan Sekarang <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <div className="bg-slate-50 p-8 md:p-12 rounded-2xl border border-slate-200 hover:border-nara-charcoal group transition-colors cursor-pointer h-full flex flex-col relative overflow-hidden">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-nara-charcoal mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                  <HeartHandshake className="w-8 h-8" />
+                </div>
+                <h3 className="font-serif text-3xl font-medium text-nara-charcoal mb-4">Aku Melihat Perundungan</h3>
+                <p className="text-slate-600 leading-[1.7] mb-8 flex-grow">
+                  Sebagai saksi (bystander), kamu memiliki kekuatan untuk memutus rantai perundungan. Kamu bisa menjadi orang yang membantu menghentikan ini.
+                </p>
+                <button
+                  onClick={() => setCurrentPage("action-guide")}
+                  className="flex items-center gap-2 text-nara-charcoal font-bold hover:gap-3 transition-all"
+                >
+                  Pelajari Cara Membantu <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. KENALI PERUNDUNGAN (PREVIEW) */}
+      <section className="py-24 bg-nara-paper relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <AnimatedSection>
+            <h2 className="font-serif text-4xl font-medium text-nara-charcoal mb-6">Kenali Bentuk Perundungan</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-[1.7]">
+              Perundungan tidak selalu terlihat jelas. Terkadang berupa ejekan, pengucilan, atau serangan di dunia maya. Memahaminya adalah langkah pertama untuk menghentikannya.
+            </p>
+            <button
+              onClick={() => setCurrentPage("kenali-perundungan")}
+              className="h-[48px] px-8 bg-white text-nara-charcoal border border-slate-200 font-medium rounded-xl hover:bg-slate-50 hover:border-nara-charcoal transition-all inline-flex items-center justify-center gap-2"
+            >
+              Mulai Belajar Sekarang <ChevronRight className="w-4 h-4" />
+            </button>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* 5. PREVIEW KOMUNITAS & BIBLIOTERAPI */}
+      <section className="py-24 px-4 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Biblioterapi */}
+          <AnimatedSection>
+            <div className="pr-0 md:pr-12">
+              <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-nara-orange mb-6">
+                <BookOpen className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-3xl font-medium text-nara-charcoal mb-4">Bacaan untuk Menguatkan Dirimu</h3>
+              <p className="text-slate-600 leading-[1.7] mb-8">
+                Kumpulan bacaan kurasi (Biblioterapi) yang bisa membantu kamu memahami perasaan, membangun keberanian, dan menghadapi situasi sulit dari perspektif yang lebih positif.
+              </p>
+              <div className="bg-slate-50 border border-slate-100 rounded-xl p-5 mb-8 flex gap-4">
+                <div className="w-16 h-20 bg-slate-200 rounded object-cover shrink-0 overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=200&q=80" alt="Book cover" className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <p className="font-bold text-nara-charcoal">The Boy, the Mole, the Fox and the Horse</p>
+                  <p className="text-xs text-nara-orange uppercase font-bold tracking-wider mt-1">Menguatkan Diri</p>
+                </div>
+              </div>
+              <button onClick={() => setCurrentPage("bibliotherapy")} className="text-nara-charcoal font-bold hover:text-nara-orange flex items-center gap-1">Lihat semua bacaan <ChevronRight className="w-4 h-4" /></button>
+            </div>
+          </AnimatedSection>
+
+          {/* Komunitas */}
+          <AnimatedSection delay={0.2}>
+            <div className="pl-0 md:pl-12 border-t md:border-t-0 md:border-l border-slate-100 pt-12 md:pt-0">
+              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-slate-600 mb-6">
+                <HeartHandshake className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-3xl font-medium text-nara-charcoal mb-4">Bersama Komunitas</h3>
+              <p className="text-slate-600 leading-[1.7] mb-8">
+                Kami bekerja sama dengan berbagai entitas dan komunitas untuk menciptakan lingkungan yang lebih inklusif dan aman bagi semua. Upaya melawan perundungan adalah tugas kolektif.
+              </p>
+              <div className="flex flex-wrap gap-3 mb-8">
+                <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm font-medium text-slate-600">P2K2 Unpad</div>
+                <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm font-medium text-slate-600">BEM Kema</div>
+                <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm font-medium text-slate-600">Komunitas Peer Konselor</div>
+              </div>
+              <button onClick={() => setCurrentPage("komunitas")} className="text-nara-charcoal font-bold hover:text-nara-orange flex items-center gap-1">Lihat mitra kami <ChevronRight className="w-4 h-4" /></button>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* 6. TESTIMONI */}
+      <section className="py-24 bg-nara-charcoal text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-nara-orange/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <AnimatedSection>
+            <Quote className="w-12 h-12 text-nara-orange/50 mx-auto mb-6" />
+            <h2 className="font-serif text-3xl font-medium mb-10">Cerita Bersama Lentera</h2>
+            <p className="font-serif text-2xl md:text-3xl leading-[1.6] text-slate-200 mb-8 italic">
+              “Aku merasa sangat takut untuk bercerita pada awalnya, namun setelah mengakses ruang aman ini, aku merasa jauh lebih lega. Ternyata aku nggak sendiri.”
+            </p>
+            <p className="text-nara-orange font-medium uppercase tracking-widest text-sm">— anonim, mahasiswa</p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* 7. CTA AKHIR */}
+      <section className="py-24 px-4">
+        <AnimatedSection>
+          <div className="max-w-4xl mx-auto bg-white rounded-3xl p-10 md:p-16 border border-slate-200 shadow-soft-lg text-center flex flex-col items-center">
+            <h2 className="font-serif text-4xl md:text-5xl font-medium text-nara-charcoal mb-4">
+              Ceritakan Pengalamanmu
+            </h2>
+            <h3 className="font-serif text-2xl text-slate-500 mb-8 italic">Bersama Lentera Jiwa.</h3>
+
+            <p className="text-slate-600 mb-10 max-w-lg mx-auto">Kami siap mendengarkan tanpa menghakimi. Jaga anonimitasmu atau temui Konselor kami. Kamu berhak atas kedamaian batin.</p>
+
+            <button
+              onClick={() => setCurrentPage("cerita")}
+              className="h-[56px] px-10 bg-nara-orange text-white font-medium rounded-xl hover:bg-[#D47125] transition-all transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(242,153,74,0.3)] flex items-center justify-center gap-2 text-lg"
+            >
+              <MessageCircle className="w-6 h-6" />
+              Cerita ke Lentera
+            </button>
+          </div>
+        </AnimatedSection>
+      </section>
+
+    </div>
   );
 }

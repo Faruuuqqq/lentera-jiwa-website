@@ -6,60 +6,58 @@ export default function HowItWorks() {
   const steps = [
     {
       number: "01",
-      title: "Rasakan & Sadari",
+      title: "Sadari Perundungan",
       description:
-        "Saat kamu merasa beban akademik atau emosional mulai berat, sadari bahwa itu valid. Kamu tidak perlu memendamnya sendiri.",
+        "Kamu atau teman mengalami perundungan? Sadari bahwa ini bukan salahmu. Itu perlu ditangani dan laporkan secara anonim kepada kami.",
       icon: "😔",
-      color: "from-orange-100 to-orange-50",
-      textColor: "text-orange-800",
+      color: "from-nara-yellow/40 to-nara-yellow/10",
+      textColor: "text-amber-800",
     },
     {
       number: "02",
-      title: "Hubungi Lentera Jiwa",
+      title: "Datang ke Lentera",
       description:
-        "Pilih cara yang paling nyaman: kirim tiket anonim lewat 'Kotak Cerita' atau chat langsung dengan Peer Supporter.",
+        "Hubungi kami via form 'Cerita ke Lentera' atau chat langsung dengan volunteer kami yang telah terlatih untuk kasus perundungan.",
       icon: "💌",
-      color: "from-teal-100 to-teal-50",
-      textColor: "text-teal-800",
+      color: "from-nara-orange/30 to-nara-orange/5",
+      textColor: "text-orange-900",
     },
     {
       number: "03",
-      title: "Sesi Bercerita",
+      title: "Cerita & Didengarkan",
       description:
-        "Ceritakan apa pun. Relawan kami akan mendengarkan dengan teknik 'Active Listening' tanpa menghakimi sedikit pun.",
+        "Ceritakan pengalaman kamu. Volunteer kami siap mendengarkan dengan teknik 'Active Listening' tanpa menghakimi sedikitpun.",
       icon: "🗣️",
-      color: "from-blue-100 to-blue-50",
-      textColor: "text-blue-800",
+      color: "from-nara-blue-light to-blue-50",
+      textColor: "text-[#2c3e50]",
     },
     {
       number: "04",
-      title: "Dukungan & Solusi",
+      title: "Dukungan & Aksi",
       description:
-        "Dapatkan kelegaan, perspektif baru, atau rujukan ke psikolog profesional (P2K2) jika masalah terasa terlalu berat.",
+        "Dapatkan support emosional, edukasi, dan kami bisa membantumu untuk mengambil langkah nyata selanjutnya (termasuk komunitas mitra).",
       icon: "🤝",
-      color: "from-purple-100 to-purple-50",
-      textColor: "text-purple-800",
+      color: "from-slate-200 to-slate-50",
+      textColor: "text-slate-800",
     },
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white mt-12">
       {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full bg-white -z-20"></div>
-      <div className="absolute right-0 top-0 w-1/3 h-full bg-[#E6EFF2]/50 -z-10 skew-x-12 transform origin-top-right"></div>
+      <div className="absolute right-0 top-0 w-1/3 h-full bg-nara-yellow/10 -z-10 skew-x-12 transform origin-top-right rounded-bl-[5rem]"></div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto z-10 relative">
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#2E5063] mb-4">
-            Alur Bantuan <span className="text-[#C7913B]">Sederhana.</span>
+          <h2 className="font-sans text-3xl sm:text-4xl font-medium text-nara-charcoal mb-4">
+            Alur Bantuan <span className="text-nara-orange">Sederhana.</span>
           </h2>
-          <p className="text-lg text-slate-600">
-            Tidak perlu birokrasi rumit. Kesehatan mentalmu adalah prioritas
-            yang harus segera ditangani.
+          <p className="text-base text-slate-600">
+            Tidak perlu birokrasi rumit atau takut dihakimi. Kebebasanmu dari perundungan dimulai dari langkah pertama.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
             <div key={index} className="relative group">
               {/* Connector Line (Desktop Only) */}
@@ -72,21 +70,21 @@ export default function HowItWorks() {
               )}
 
               <div
-                className={`h-full bg-gradient-to-br ${step.color} p-8 rounded-3xl border border-white shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden`}
+                className={`h-full bg-nara-paper p-8 rounded-xl border border-slate-200 shadow-sm hover:shadow-soft transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden`}
               >
                 {/* Big Number Background */}
-                <span className="absolute -right-4 -bottom-8 text-9xl font-bold text-white opacity-40 select-none pointer-events-none">
+                <span className="absolute -right-4 -bottom-4 font-sans text-9xl font-medium text-white opacity-40 select-none pointer-events-none group-hover:scale-110 transition-transform">
                   {step.number}
                 </span>
 
                 <div className="relative z-10">
-                  <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm">
+                  <div className="w-14 h-14 bg-white rounded-lg flex items-center justify-center text-3xl mb-6 shadow-sm border border-slate-100 group-hover:rotate-6 transition-transform">
                     {step.icon}
                   </div>
-                  <h3 className={`text-xl font-bold mb-3 ${step.textColor}`}>
+                  <h3 className={`text-xl font-medium mb-3 ${step.textColor}`}>
                     {step.title}
                   </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className={`text-sm leading-[1.6] ${step.textColor} opacity-80 font-normal`}>
                     {step.description}
                   </p>
                 </div>

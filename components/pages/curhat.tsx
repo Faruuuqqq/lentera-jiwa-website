@@ -32,6 +32,8 @@ interface CurhatEntry {
   reply?: string;
   ticketId: string;
   isAnonymous: boolean;
+  category: string;
+  isUrgent: boolean;
 }
 
 export default function Curhat() {
@@ -50,6 +52,8 @@ export default function Curhat() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [category, setCategory] = useState("");
+  const [isUrgent, setIsUrgent] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -78,7 +82,7 @@ export default function Curhat() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!topic || !message || !currentUserId) return;
+    if (!topic || !message || !category || !currentUserId) return;
 
     setIsSubmitting(true);
     try {
@@ -91,6 +95,8 @@ export default function Curhat() {
         timestamp: new Date().toISOString(),
         ticketId: newTicketId,
         isAnonymous,
+        category,
+        isUrgent,
       };
 
       // Simpan dengan Custom ID sebagai Document ID
@@ -100,6 +106,8 @@ export default function Curhat() {
       setSubmitted(true);
       setTopic("");
       setMessage("");
+      setCategory("");
+      setIsUrgent(false);
     } catch (error) {
       console.error("Error submitting curhat:", error);
     } finally {
@@ -137,17 +145,17 @@ export default function Curhat() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-nara-blue-light py-24 px-4 sm:px-6 lg:px-8">
       <AnimatedSection>
         <div className="max-w-2xl mx-auto text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FDF3E3] border border-[#C7913B]/20 text-[#C7913B] text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
-            <Lock className="w-3 h-3" /> Ruang Aman & Anonim
-          </div>
-          <h2 className="text-4xl font-bold text-[#F2994A] mb-4">
+          <h2 className="text-4xl font-medium text-nara-charcoal mb-4">
             Cerita ke Lentera
           </h2>
-          <p className="text-slate-600 text-lg">
-            Tempatmu bercerita tentang perundungan secara aman dan tanpa takut dihakimi. Pesanmu akan dibaca oleh Relawan Lentera secara rahasia.
+          <p className="text-nara-charcoal text-lg font-medium mb-2">
+            Ruang Aman Untuk Menceritakan Pengalamanmu
+          </p>
+          <p className="text-nara-muted text-base italic">
+            Ceritamu akan dijaga. Kami di sini untuk mendengarkan, bukan menghakimi.
           </p>
         </div>
       </AnimatedSection>
@@ -182,14 +190,22 @@ export default function Curhat() {
         </div>
       </AnimatedSection>
 
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-[600px] mx-auto">
+        <AnimatedSection delay={0.1}>
+          <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm border-l-4 border-nara-orange p-3 rounded-r-lg shadow-sm mb-6">
+            <Lock className="w-4 h-4 text-nara-orange" />
+            <p className="text-sm text-nara-charcoal font-medium">
+              Semua cerita diterima secara anonim dan dijaga kerahasiaannya.
+            </p>
+          </div>
+        </AnimatedSection>
+
         {/* WRITE MODE */}
         {tab === "write" && (
           <AnimatedSection delay={0.2}>
             {!submitted ? (
-              <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
-                <div className="h-2 bg-gradient-to-r from-[#2E5063] to-[#C7913B]"></div>
-                <div className="p-8 md:p-10">
+              <div className="bg-white rounded-xl shadow-soft border border-slate-200 overflow-hidden">
+                <div className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label className="block text-sm font-bold text-[#2E5063] mb-2">
@@ -214,28 +230,61 @@ export default function Curhat() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-bold text-[#2E5063] mb-2">
-                        Tumpahkan Semuanya di Sini
+                      <label className="block text-sm font-medium text-nara-charcoal mb-2">
+                        Kategori Peran Kamu
+                      </label>
+                      <div className="flex flex-col gap-3">
+                        {["Saya korban perundungan", "Saya melihat teman di-bully", "Saya pelaku & ingin berubah", "Saya ingin belajar lebih"].map((cat) => (
+                          <label key={cat} className="flex items-center gap-3 cursor-pointer group">
+                            <input 
+                              type="radio" 
+                              name="kategori" 
+                              value={cat}
+                              checked={category === cat}
+                              onChange={() => setCategory(cat)}
+                              className="w-4 h-4 text-nara-orange border-slate-300 focus:ring-nara-orange bg-slate-50"
+                            />
+                            <span className={`text-base transition-colors ${category === cat ? "text-nara-charcoal font-medium" : "text-slate-600 group-hover:text-nara-charcoal"}`}>
+                              {cat}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-nara-charcoal mb-2">
+                        Apa yang Kamu Alami?
                       </label>
                       <textarea
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        rows={8}
-                        className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#2E5063] focus:ring-2 focus:ring-[#2E5063]/10 outline-none transition text-slate-700 resize-none placeholder:text-slate-400 leading-relaxed"
-                        placeholder="Halo Lentera, aku ingin berbagi cerita tentang..."
+                        rows={6}
+                        className="w-full p-3 rounded-lg bg-white border border-slate-200 focus:border-nara-orange focus:ring-1 focus:ring-nara-orange outline-none transition text-nara-charcoal resize-none placeholder:text-slate-400 text-base"
+                        placeholder="Ceritakan pengalamanmu... (minimal 50 kata)"
                       ></textarea>
-                      <div className="flex justify-between items-center mt-3">
+                      <div className="flex flex-col gap-3 mt-4">
                         <label className="flex items-center gap-2 text-sm text-slate-600 font-medium cursor-pointer">
                           <input type="checkbox" checked={isAnonymous} onChange={(e) => setIsAnonymous(e.target.checked)} className="w-4 h-4 text-[#F2994A] rounded border-slate-300 focus:ring-[#F2994A]" />
                           Kirim tanpa mengidentifikasi profil (Anonim)
                         </label>
+
+                        <div className="bg-[#FFF8EC] p-4 rounded-xl border border-[#F6C453]/30">
+                          <label className="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" checked={isUrgent} onChange={(e) => setIsUrgent(e.target.checked)} className="w-5 h-5 mt-0.5 text-red-500 rounded border-slate-300 focus:ring-red-500" />
+                            <div>
+                               <span className="block text-sm font-bold text-red-600">SEVERITY CHECK: Ini adalah Situasi Darurat!</span>
+                               <span className="block text-xs text-slate-500 mt-1">Gunakan opsi ini hanya jika kamu/temanmu berada dalam ancaman fisik atau dalam keadaan kritis. Tim P2K2 akan memprioritaskan tiketmu dan jika diperlukan mengarahkanmu ke Crisis Line.</span>
+                            </div>
+                          </label>
+                        </div>
                       </div>
                     </div>
 
                     <button
                       type="submit"
-                      disabled={!topic || !message || isSubmitting}
-                      className="w-full py-4 bg-[#F6C453] hover:bg-[#F2994A] disabled:opacity-50 disabled:cursor-not-allowed text-slate-800 font-bold rounded-xl transition shadow-lg shadow-[#F6C453]/30 flex items-center justify-center gap-2 text-lg transform active:scale-95 duration-200"
+                      disabled={!topic || !message || !category || isSubmitting}
+                      className="w-full h-[48px] bg-nara-orange hover:bg-[#E08A44] disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2 text-base"
                     >
                       {isSubmitting ? (
                         <span className="animate-pulse">Mengirim...</span>
@@ -250,18 +299,15 @@ export default function Curhat() {
               </div>
             ) : (
               // SUCCESS STATE - TICKET VIEW
-              <div className="bg-[#2E5063] rounded-3xl shadow-2xl p-8 md:p-12 text-center text-white relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-
+              <div className="bg-white rounded-xl shadow-soft border border-slate-200 p-8 md:p-12 text-center text-nara-charcoal relative overflow-hidden">
                 <div className="relative z-10">
-                  <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-6 animate-in zoom-in duration-500">
-                    <Check className="w-10 h-10 text-[#C7913B]" />
+                  <div className="w-16 h-16 bg-nara-blue-light rounded-full flex items-center justify-center mx-auto mb-6 animate-in zoom-in duration-500">
+                    <Check className="w-8 h-8 text-nara-orange" />
                   </div>
 
-                  <h3 className="text-3xl font-bold mb-3">Cerita Terkirim!</h3>
-                  <p className="text-slate-200 mb-8 max-w-md mx-auto">
-                    Terima kasih sudah berani bercerita. Relawan kami akan
-                    membaca dan membalas pesanmu segera.
+                  <h3 className="text-2xl font-bold mb-3">Terima kasih atas kepercayaanmu!</h3>
+                  <p className="text-slate-600 mb-8 max-w-sm mx-auto text-base">
+                    Ceritamu telah diterima. Volunteer kami akan merespons dalam 24-48 jam. Kamu tidak sendirian.
                   </p>
 
                   {/* TICKET CARD */}
@@ -298,7 +344,7 @@ export default function Curhat() {
 
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-8 text-white/80 hover:text-white text-sm font-medium underline underline-offset-4"
+                    className="mt-8 text-slate-500 hover:text-nara-orange text-sm font-medium underline underline-offset-4"
                   >
                     Kirim cerita lain
                   </button>

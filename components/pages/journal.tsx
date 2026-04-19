@@ -23,7 +23,6 @@ import {
   limit,
 } from "firebase/firestore";
 import { signInAnonymously, onAuthStateChanged, User } from "firebase/auth";
-// Import Recharts untuk Visualisasi
 import {
   Area,
   AreaChart,
@@ -34,7 +33,6 @@ import {
   YAxis,
 } from "recharts";
 
-// Skor Mood untuk Grafik (1-5)
 const moodScores: Record<string, number> = {
   Cemas: 1,
   Sedih: 2,
@@ -86,7 +84,6 @@ export default function Journal({ setCurrentPage }: JournalProps) {
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Auth & Fetch Data
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -113,7 +110,7 @@ export default function Journal({ setCurrentPage }: JournalProps) {
             collection(db, "journalEntries"),
             where("userId", "==", currentUserId),
             orderBy("date", "desc"),
-            limit(30), // Ambil 30 hari terakhir untuk data chart yang lebih kaya
+            limit(30),
           );
           const querySnapshot = await getDocs(q);
           const fetchedEntries: JournalEntry[] = [];
@@ -139,7 +136,6 @@ export default function Journal({ setCurrentPage }: JournalProps) {
     );
   };
 
-  // Fungsi Hapus Item Spesifik
   const handleDeleteEntry = async (entryId: string) => {
     if (!confirm("Hapus catatan ini?")) return;
     try {
@@ -172,11 +168,10 @@ export default function Journal({ setCurrentPage }: JournalProps) {
       setSelectedTriggers([]);
       setNote("");
 
-      // Bridge Logic dengan Cooldown
       if (["Lelah", "Sedih", "Cemas"].includes(newEntry.mood)) {
         const lastShown = localStorage.getItem("bridgeModalLastShown");
         const now = new Date().getTime();
-        const COOLDOWN = 12 * 60 * 60 * 1000; // 12 Jam
+        const COOLDOWN = 12 * 60 * 60 * 1000;
 
         if (!lastShown || now - parseInt(lastShown) > COOLDOWN) {
           setShowBridgeModal(true);
@@ -188,11 +183,9 @@ export default function Journal({ setCurrentPage }: JournalProps) {
     }
   };
 
-  // --- SMART INSIGHT LOGIC ---
   const insights = useMemo(() => {
     if (entries.length === 0) return null;
 
-    // 1. Chart Data (Reverse agar urut dari tanggal lama ke baru)
     const chartData = [...entries].reverse().map((e) => ({
       date: new Date(e.date).toLocaleDateString("id-ID", {
         day: "2-digit",
@@ -202,7 +195,6 @@ export default function Journal({ setCurrentPage }: JournalProps) {
       mood: e.mood,
     }));
 
-    // 2. Trigger Analysis
     const negativeEntries = entries.filter((e) =>
       ["Cemas", "Sedih", "Lelah"].includes(e.mood),
     );
@@ -213,7 +205,6 @@ export default function Journal({ setCurrentPage }: JournalProps) {
       });
     });
 
-    // Cari trigger terbanyak
     const topTrigger = Object.keys(triggerCounts).reduce(
       (a, b) => (triggerCounts[a] > triggerCounts[b] ? a : b),
       "",
@@ -229,335 +220,338 @@ export default function Journal({ setCurrentPage }: JournalProps) {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <AnimatedSection>
-          <div className="text-center mb-10">
-            <span className="text-[#C7913B] font-bold tracking-wider text-sm uppercase bg-[#FDF3E3] px-3 py-1 rounded-full">
-              Refleksi Diri
-            </span>
-            <h2 className="text-4xl font-bold text-[#2E5063] mt-4">
-              Jurnal Rasa
-            </h2>
-            <p className="text-slate-500 mt-2">
-              Kenali pola emosimu. Data ini <strong>100% Privat</strong>{" "}
-              milikmu.
-            </p>
-          </div>
-        </AnimatedSection>
-
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Input Section */}
-          <AnimatedSection delay={0.2} className="lg:col-span-1">
-            <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xl shadow-[#2E5063]/5 h-full relative overflow-hidden sticky top-24">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2E5063] to-[#C7913B]"></div>
-
-              <h3 className="font-bold text-slate-800 mb-6 flex items-center gap-2 text-lg">
-                ✍️ Catat Hari Ini
-              </h3>
-
-              {/* Mood */}
-              <div className="mb-6">
-                <label className="text-xs font-bold text-slate-400 uppercase mb-3 block">
-                  Perasaanmu?
-                </label>
-                <div className="grid grid-cols-5 gap-2">
-                  {moods.map((mood) => (
-                    <button
-                      key={mood.label}
-                      onClick={() => setSelectedMood(mood.label)}
-                      className={`flex flex-col items-center gap-1 p-2 rounded-xl border-2 transition ${
-                        selectedMood === mood.label
-                          ? "border-[#C7913B] bg-[#FDF3E3]"
-                          : "border-slate-100 bg-slate-50 hover:bg-slate-100"
-                      }`}
-                    >
-                      <span className="text-2xl">{mood.emoji}</span>
-                      <span className="text-[10px] font-medium text-slate-600">
-                        {mood.label}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Triggers */}
-              <div className="mb-6">
-                <label className="text-xs font-bold text-slate-400 uppercase mb-3 block">
-                  Faktor Pemicu?
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {triggersList.map((trigger) => (
-                    <button
-                      key={trigger}
-                      onClick={() => handleToggleTrigger(trigger)}
-                      className={`px-3 py-1.5 rounded-full border text-xs font-medium transition ${
-                        selectedTriggers.includes(trigger)
-                          ? "bg-[#2E5063] text-white border-[#2E5063]"
-                          : "bg-white text-slate-500 border-slate-200 hover:border-slate-300"
-                      }`}
-                    >
-                      {trigger}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Note */}
-              <div className="mb-6">
-                <label className="text-xs font-bold text-slate-400 uppercase mb-3 flex justify-between items-center">
-                  <span>Catatan (Opsional)</span>
-                  <Lock className="w-3 h-3 text-[#C7913B]" />
-                </label>
-                <textarea
-                  value={note}
-                  onChange={(e) => setNote(e.target.value)}
-                  rows={3}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#2E5063] focus:ring-1 focus:ring-[#2E5063] outline-none text-sm resize-none bg-slate-50"
-                  placeholder="Ceritakan sedikit tentang harimu..."
-                ></textarea>
-              </div>
-
-              <button
-                onClick={handleSave}
-                disabled={!selectedMood}
-                className="w-full py-3 bg-[#2E5063] hover:bg-[#1D3442] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition shadow-lg shadow-[#2E5063]/20 flex items-center justify-center gap-2"
-              >
-                <Save className="w-4 h-4" />
-                Simpan Jurnal
-              </button>
+      <div className="bg-nara-paper min-h-screen pt-24 pb-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <span className="inline-flex items-center gap-2 text-nara-orange font-bold tracking-wider text-xs uppercase bg-white border border-slate-200 shadow-sm px-4 py-2 rounded-full mb-6">
+                <Lock className="w-3 h-3" />
+                Refleksi Diri Privat
+              </span>
+              <h2 className="font-serif text-5xl md:text-6xl font-medium text-nara-charcoal mt-2 mb-4 leading-tight">
+                Jurnal <span className="italic text-nara-orange">Rasa.</span>
+              </h2>
+              <p className="text-slate-600 mt-2 max-w-xl mx-auto leading-[1.7]">
+                Kenali pola emosimu. Data ini <strong>100% Privat</strong> dan milikmu seutuhnya. Tidak ada yang bisa membacanya melainkan dirimu sendiri.
+              </p>
             </div>
           </AnimatedSection>
 
-          {/* Insight & History Section */}
-          <AnimatedSection delay={0.4} className="lg:col-span-2 space-y-6">
-            {/* GRAPH CARD (NEW) */}
-            {insights && insights.chartData.length > 1 && (
-              <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-bold text-[#2E5063] flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-[#C7913B]" />
-                    Grafik Mood Mingguan
-                  </h3>
-                  <span className="text-xs text-slate-400 bg-slate-100 px-3 py-1 rounded-full">
-                    7 Hari Terakhir
-                  </span>
-                </div>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Input Section */}
+            <AnimatedSection delay={0.2} className="lg:col-span-1">
+              <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-soft h-full relative overflow-hidden sticky top-28 hover:border-nara-orange hover:shadow-soft-lg transition-all">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-nara-orange to-orange-200"></div>
 
-                <div className="h-[200px] w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={insights.chartData.slice(-7)}>
-                      <defs>
-                        <linearGradient
-                          id="colorMood"
-                          x1="0"
-                          y1="0"
-                          x2="0"
-                          y2="1"
-                        >
-                          <stop
-                            offset="5%"
-                            stopColor="#C7913B"
-                            stopOpacity={0.3}
-                          />
-                          <stop
-                            offset="95%"
-                            stopColor="#C7913B"
-                            stopOpacity={0}
-                          />
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid
-                        strokeDasharray="3 3"
-                        vertical={false}
-                        stroke="#f0f0f0"
-                      />
-                      <XAxis
-                        dataKey="date"
-                        axisLine={false}
-                        tickLine={false}
-                        tick={{ fontSize: 10, fill: "#94a3b8" }}
-                        dy={10}
-                      />
-                      <YAxis hide domain={[0, 6]} />
-                      <Tooltip
-                        contentStyle={{
-                          borderRadius: "12px",
-                          border: "none",
-                          boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)",
-                        }}
-                        cursor={{
-                          stroke: "#C7913B",
-                          strokeWidth: 1,
-                          strokeDasharray: "4 4",
-                        }}
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="score"
-                        stroke="#C7913B"
-                        strokeWidth={3}
-                        fillOpacity={1}
-                        fill="url(#colorMood)"
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-            )}
-
-            {/* SMART INSIGHT CARD (UPDATED) */}
-            <div className="bg-gradient-to-br from-[#2E5063] to-[#1D3442] rounded-3xl p-6 text-white relative overflow-hidden shadow-lg">
-              <div className="relative z-10">
-                <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-[#C7913B]" />
-                  Analisis Lentera
+                <h3 className="font-serif text-2xl font-medium text-nara-charcoal mb-8 text-center flex items-center justify-center gap-2">
+                  ✍️ Catat Hari Ini
                 </h3>
 
-                {insights ? (
-                  <div className="space-y-2">
-                    <p className="text-slate-200 text-sm leading-relaxed">
-                      Kamu telah mencatat{" "}
-                      <strong className="text-white">
-                        {insights.totalCount} entri
-                      </strong>
-                      .
-                      {insights.topTrigger && (
-                        <span>
-                          {" "}
-                          Sepertinya{" "}
-                          <strong className="text-[#C7913B] bg-white/10 px-2 py-0.5 rounded">
-                            {insights.topTrigger}
-                          </strong>{" "}
-                          sering menjadi pemicu mood kamu belakangan ini.
+                {/* Mood */}
+                <div className="mb-8">
+                  <label className="text-xs font-bold text-slate-400 uppercase mb-4 block">
+                    Perasaanmu?
+                  </label>
+                  <div className="grid grid-cols-5 gap-2">
+                    {moods.map((mood) => (
+                      <button
+                        key={mood.label}
+                        onClick={() => setSelectedMood(mood.label)}
+                        className={`flex flex-col items-center gap-1 p-2 rounded-xl transition ${
+                          selectedMood === mood.label
+                            ? "bg-nara-orange text-white shadow-soft-lg scale-105"
+                            : "bg-slate-50 border border-slate-100 text-slate-500 hover:bg-slate-100"
+                        }`}
+                      >
+                        <span className="text-2xl mt-1">{mood.emoji}</span>
+                        <span className={`text-[10px] font-bold ${selectedMood === mood.label ? "text-white" : "text-slate-500"}`}>
+                          {mood.label}
                         </span>
-                      )}
-                    </p>
-                    {insights.chartData.length > 0 && (
-                      <div className="mt-4 inline-flex items-center gap-2 text-xs font-mono bg-black/20 px-3 py-1.5 rounded-lg border border-white/10">
-                        <Activity className="w-3 h-3 text-[#C7913B]" />
-                        Mood Terakhir:{" "}
-                        {insights.chartData[insights.chartData.length - 1].mood}
-                      </div>
-                    )}
+                      </button>
+                    ))}
                   </div>
-                ) : (
-                  <p className="text-slate-300 text-sm">
-                    Belum cukup data untuk memberikan analisis. Mulailah
-                    mencatat hari ini!
-                  </p>
-                )}
+                </div>
+
+                {/* Triggers */}
+                <div className="mb-8">
+                  <label className="text-xs font-bold text-slate-400 uppercase mb-4 block">
+                    Faktor Kondisi?
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {triggersList.map((trigger) => (
+                      <button
+                        key={trigger}
+                        onClick={() => handleToggleTrigger(trigger)}
+                        className={`px-4 py-2 rounded-full border text-xs font-medium transition ${
+                          selectedTriggers.includes(trigger)
+                            ? "bg-nara-charcoal text-white border-nara-charcoal shadow-sm"
+                            : "bg-white text-slate-600 border-slate-200 hover:border-nara-orange"
+                        }`}
+                      >
+                        {trigger}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Note */}
+                <div className="mb-8">
+                  <label className="text-xs font-bold text-slate-400 uppercase mb-3 flex justify-between items-center">
+                    <span>Catatan (Bebas)</span>
+                    <Lock className="w-3 h-3 text-slate-300" />
+                  </label>
+                  <textarea
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-nara-orange outline-none text-sm resize-none bg-slate-50 transition-colors"
+                    placeholder="Tumpahkan semua yang kamu rasakan tanpa filter..."
+                  ></textarea>
+                </div>
+
+                <button
+                  onClick={handleSave}
+                  disabled={!selectedMood}
+                  className="w-full h-[48px] bg-nara-orange hover:bg-[#D47125] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition shadow-soft flex items-center justify-center gap-2"
+                >
+                  <Save className="w-4 h-4" />
+                  Simpan Jurnal
+                </button>
               </div>
+            </AnimatedSection>
 
-              {/* Decorative Blob */}
-              <div className="absolute right-0 top-0 w-48 h-48 bg-[#C7913B] opacity-10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
-            </div>
-
-            {/* History List */}
-            <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
-              <h3 className="font-bold text-[#2E5063] mb-4">Riwayat Catatan</h3>
-
-              <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200">
-                {isLoading ? (
-                  <p className="text-center text-slate-400 text-sm py-4">
-                    Memuat data...
-                  </p>
-                ) : entries.length === 0 ? (
-                  <div className="text-center py-8 text-slate-400 border-2 border-dashed border-slate-100 rounded-xl">
-                    <p className="text-sm">Belum ada catatan.</p>
+            {/* Insight & History Section */}
+            <AnimatedSection delay={0.4} className="lg:col-span-2 space-y-6">
+              
+              {/* GRAPH CARD */}
+              {insights && insights.chartData.length > 1 && (
+                <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-soft">
+                  <div className="flex items-center justify-between mb-8">
+                    <h3 className="font-serif text-2xl font-medium text-nara-charcoal flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-nara-orange" />
+                      Kurva Emosi
+                    </h3>
+                    <span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full uppercase tracking-wider">
+                      Seminggu Terakhir
+                    </span>
                   </div>
-                ) : (
-                  entries.map((entry) => (
-                    <div
-                      key={entry.id}
-                      className="p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-[#C7913B]/30 transition group relative"
-                    >
-                      <div className="flex justify-between items-start mb-2">
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl bg-white p-2 rounded-xl shadow-sm border border-slate-100">
-                            {moods.find((m) => m.label === entry.mood)?.emoji}
+
+                  <div className="h-[240px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <AreaChart data={insights.chartData.slice(-7)}>
+                        <defs>
+                          <linearGradient
+                            id="colorMood"
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="5%"
+                              stopColor="#F2994A"
+                              stopOpacity={0.4}
+                            />
+                            <stop
+                              offset="95%"
+                              stopColor="#F2994A"
+                              stopOpacity={0}
+                            />
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid
+                          strokeDasharray="3 3"
+                          vertical={false}
+                          stroke="#f1f5f9"
+                        />
+                        <XAxis
+                          dataKey="date"
+                          axisLine={false}
+                          tickLine={false}
+                          tick={{ fontSize: 11, fill: "#94a3b8", fontWeight: 600 }}
+                          dy={10}
+                        />
+                        <YAxis hide domain={[0, 6]} />
+                        <Tooltip
+                          contentStyle={{
+                            borderRadius: "12px",
+                            border: "none",
+                            boxShadow: "0 10px 25px -5px rgba(0,0,0,0.1)",
+                            fontWeight: 600
+                          }}
+                          cursor={{
+                            stroke: "#F2994A",
+                            strokeWidth: 1,
+                            strokeDasharray: "4 4",
+                          }}
+                        />
+                        <Area
+                          type="monotone"
+                          dataKey="score"
+                          stroke="#F2994A"
+                          strokeWidth={3}
+                          fillOpacity={1}
+                          fill="url(#colorMood)"
+                        />
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              )}
+
+              {/* SMART INSIGHT CARD */}
+              <div className="bg-nara-charcoal rounded-2xl p-8 text-white relative overflow-hidden shadow-soft-lg transform hover:scale-[1.01] transition-transform">
+                <div className="absolute right-0 top-0 w-64 h-64 bg-nara-orange/20 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
+                <div className="relative z-10">
+                  <h3 className="font-serif text-2xl font-medium mb-4 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-nara-orange" />
+                    Analisis Lentera
+                  </h3>
+
+                  {insights ? (
+                    <div className="space-y-4">
+                      <p className="text-slate-300 text-base leading-[1.7]">
+                        Kamu telah mencatat{" "}
+                        <strong className="text-white">
+                          {insights.totalCount} entri
+                        </strong>
+                        .
+                        {insights.topTrigger && (
+                          <span>
+                            {" "}
+                            Berdasarkan pola ini, tampak bahwa{" "}
+                            <strong className="text-nara-charcoal bg-nara-orange px-2 py-0.5 rounded-md font-bold mx-1">
+                              {insights.topTrigger}
+                            </strong>{" "}
+                            sering menjadi pemicu beban emosionalmu.
                           </span>
-                          <div>
-                            <p className="font-bold text-slate-700 text-sm">
-                              {entry.mood}
-                            </p>
-                            <p className="text-xs text-slate-400">
-                              {new Date(entry.date).toLocaleDateString(
-                                "id-ID",
-                                {
-                                  weekday: "long",
-                                  day: "numeric",
-                                  month: "long",
-                                },
-                              )}
-                            </p>
-                          </div>
+                        )}
+                      </p>
+                      {insights.chartData.length > 0 && (
+                        <div className="inline-flex items-center gap-2 text-xs font-bold text-nara-orange bg-nara-orange/10 px-4 py-2 rounded-lg border border-nara-orange/20 tracking-wider">
+                          <Activity className="w-4 h-4" />
+                          MOOD TERAKHIR:{" "}
+                          <span className="text-white">{insights.chartData[insights.chartData.length - 1].mood}</span>
                         </div>
-                        {/* Tombol Hapus per Item */}
-                        <button
-                          onClick={() =>
-                            entry.id && handleDeleteEntry(entry.id)
-                          }
-                          className="p-2 text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition"
-                          title="Hapus catatan ini"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-
-                      {entry.triggers.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mb-2 pl-[3.25rem]">
-                          {entry.triggers.map((trigger) => (
-                            <span
-                              key={trigger}
-                              className="px-2 py-0.5 bg-slate-200 text-slate-600 text-[10px] rounded-md font-medium"
-                            >
-                              {trigger}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
-                      {entry.note && (
-                        <p className="text-xs text-slate-600 italic pl-[3.25rem] border-l-2 border-[#C7913B]/20 ml-1 py-1">
-                          "{entry.note}"
-                        </p>
                       )}
                     </div>
-                  ))
-                )}
+                  ) : (
+                    <p className="text-slate-300 leading-[1.7]">
+                      Belum cukup data untuk membaca pola emosimu. Teruslah mencatat untuk memetakan pikiranmu!
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
-          </AnimatedSection>
+
+              {/* History List */}
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+                <div className="p-8 border-b border-slate-100">
+                  <h3 className="font-serif text-2xl font-medium text-nara-charcoal">Riwayat Catatan</h3>
+                </div>
+
+                <div className="p-4 space-y-3 max-h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200 pr-2">
+                  {isLoading ? (
+                    <p className="text-center text-slate-400 text-sm py-10 font-medium">
+                      Mengambil data pribadimu...
+                    </p>
+                  ) : entries.length === 0 ? (
+                    <div className="text-center py-12 text-slate-400 border-2 border-dashed border-slate-100 rounded-xl m-4">
+                      <p className="font-medium">Belum ada goresan jurnal.</p>
+                      <p className="text-xs mt-1">Satu kalimat pun sudah cukup untuk memulai.</p>
+                    </div>
+                  ) : (
+                    entries.map((entry) => (
+                      <div
+                        key={entry.id}
+                        className="p-5 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-nara-orange hover:shadow-md transition-all group relative"
+                      >
+                        <div className="flex justify-between items-start mb-3">
+                          <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-slate-50 flex items-center justify-center rounded-xl border border-slate-100 shadow-sm text-2xl">
+                              {moods.find((m) => m.label === entry.mood)?.emoji}
+                            </div>
+                            <div>
+                              <p className="font-bold text-nara-charcoal text-base">
+                                {entry.mood}
+                              </p>
+                              <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-1">
+                                {new Date(entry.date).toLocaleDateString(
+                                  "id-ID",
+                                  {
+                                    weekday: "long",
+                                    day: "numeric",
+                                    month: "long",
+                                  },
+                                )}
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            onClick={() =>
+                              entry.id && handleDeleteEntry(entry.id)
+                            }
+                            className="p-2 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg opacity-0 group-hover:opacity-100 transition-all"
+                            title="Hapus catatan ini"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+
+                        {entry.triggers.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mb-3 pl-[4rem]">
+                            {entry.triggers.map((trigger) => (
+                              <span
+                                key={trigger}
+                                className="px-2 py-1 bg-slate-100 border border-slate-200 text-slate-600 text-[10px] rounded-md font-bold uppercase tracking-wider"
+                              >
+                                {trigger}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
+                        {entry.note && (
+                          <p className="text-sm text-slate-600 leading-[1.6] pl-[4rem] border-l-2 border-nara-orange/20 ml-6 py-1">
+                            "{entry.note}"
+                          </p>
+                        )}
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </div>
 
-      {/* Bridge Modal (Tetap Sama) */}
+      {/* Bridge Modal (Tetap Sama, UI Disesuaikan) */}
       {showBridgeModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm px-4">
-          <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl animate-in zoom-in-95">
-            <div className="w-16 h-16 bg-[#FDF3E3] rounded-full flex items-center justify-center mx-auto mb-4">
-              <Sparkles className="w-8 h-8 text-[#C7913B]" />
+        <div className="fixed inset-0 bg-slate-900/40 flex items-center justify-center z-50 backdrop-blur-sm px-4">
+          <div className="bg-white rounded-3xl p-8 md:p-10 max-w-sm w-full text-center shadow-2xl animate-in zoom-in-95">
+            <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Sparkles className="w-8 h-8 text-nara-orange" />
             </div>
-            <h3 className="text-2xl font-bold text-[#2E5063] mb-2">
+            <h3 className="font-serif text-3xl font-medium text-nara-charcoal mb-4">
               Harimu Tampak Berat?
             </h3>
-            <p className="text-slate-600 mb-6 text-sm leading-relaxed">
+            <p className="text-slate-600 mb-8 leading-[1.7]">
               Kami menyadari kamu sedang merasa kurang baik. Tidak apa-apa. Jika
-              butuh teman cerita, Relawan kami siap mendengarkan secara anonim.
+              butuh teman cerita, Relawan kami siap mendengarkan tanpa menghakimi.
             </p>
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => {
                   setShowBridgeModal(false);
-                  setCurrentPage("curhat");
+                  setCurrentPage("cerita");
                 }}
-                className="w-full py-3 rounded-xl text-white bg-[#2E5063] hover:bg-[#1D3442] font-bold transition shadow-lg shadow-[#2E5063]/20"
+                className="w-full h-[48px] rounded-xl text-white bg-nara-orange hover:bg-[#D47125] font-bold transition shadow-soft flex items-center justify-center"
               >
-                Ya, Aku Mau Cerita
+                Ya, Aku Butuh Teman Cerita
               </button>
               <button
                 onClick={() => setShowBridgeModal(false)}
-                className="w-full py-3 rounded-xl text-slate-500 hover:bg-slate-100 font-medium transition"
+                className="w-full h-[48px] rounded-xl text-slate-500 hover:bg-slate-100 font-medium transition"
               >
                 Nanti Saja
               </button>

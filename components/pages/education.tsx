@@ -1,86 +1,269 @@
-import React from "react";
-import { BookOpen, ArrowRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import {
+  MessageSquareOff,
+  ShieldAlert,
+  UserMinus,
+  MonitorOff,
+  HeartHandshake,
+  AlertCircle,
+  PhoneCall,
+  ChevronRight,
+  CheckCircle2
+} from "lucide-react";
 import AnimatedSection from "@/components/ui/animated-section";
-import { articles } from "@/lib/articles";
-import Image from "next/image";
 
 interface EducationPageProps {
   setCurrentPage: (page: string) => void;
   setSelectedArticleSlug: (slug: string) => void;
 }
 
-const EducationPage = ({
-  setCurrentPage,
-  setSelectedArticleSlug,
-}: EducationPageProps) => {
+export default function EducationPage({ setCurrentPage }: EducationPageProps) {
+  const [activeSection, setActiveSection] = useState("apa-itu");
+
+  const sections = [
+    { id: "apa-itu", label: "Apa itu Perundungan?" },
+    { id: "jenis", label: "Jenis-Jenis" },
+    { id: "dampak", label: "Dampak" },
+    { id: "warning-signs", label: "Warning Signs" },
+    { id: "cyberbullying", label: "Cyberbullying" },
+    { id: "bantuan", label: "Cara Mencari Bantuan" },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionElements = sections.map(s => document.getElementById(s.id));
+      const scrollPosition = window.scrollY + 200;
+
+      for (let i = sectionElements.length - 1; i >= 0; i--) {
+        const section = sectionElements[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="bg-[#F0F4F8] min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="bg-white min-h-screen text-nara-charcoal pb-24">
+      {/* HERO SECTION */}
+      <section className="pt-32 pb-20 px-4 w-full bg-gradient-to-b from-nara-blue-light to-white">
         <AnimatedSection>
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#2E5063] mb-3">
-              Pojok Edukasi
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="font-sans text-4xl md:text-5xl font-bold mb-6 text-nara-charcoal leading-tight">
+              Kenali Perundungan
             </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Tingkatkan literasi kesehatan mentalmu dengan artikel praktis dan
-              mudah dipahami.
+            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Pahami jenis, dampak, dan cara mengatasi perundungan.
             </p>
           </div>
         </AnimatedSection>
+      </section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articles.map((article, index) => (
-            <AnimatedSection key={index} delay={index * 0.1}>
-              <div
-                className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col group border border-slate-100 hover:-translate-y-1 cursor-pointer"
-                onClick={() => {
-                  setCurrentPage("article-detail");
-                  setSelectedArticleSlug(article.slug);
-                }}
-              >
-                {/* Image Section */}
-                <div className="relative w-full h-48 overflow-hidden">
-                  <Image
-                    src={article.image || "/placeholder.jpg"} // Fallback image
-                    alt={article.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#2E5063] text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">
-                      {article.category}
-                    </span>
-                  </div>
-                </div>
+      {/* MAIN CONTENT LAYOUT */}
+      <section className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12">
+        {/* SIDEBAR NAVIGATION (25%) */}
+        <div className="md:w-1/4 hidden md:block">
+          <div className="sticky top-28 bg-nara-paper p-6 rounded-xl border border-slate-100 shadow-sm">
+            <h3 className="font-bold text-nara-charcoal mb-4 uppercase text-xs tracking-wider">Daftar Isi</h3>
+            <ul className="space-y-2">
+              {sections.map((section) => (
+                <li key={section.id}>
+                  <button
+                    onClick={() => scrollTo(section.id)}
+                    className={`text-sm w-full text-left py-2 px-3 rounded-lg transition-colors duration-200 flex items-center justify-between group ${activeSection === section.id
+                        ? "bg-white text-nara-orange font-bold shadow-sm"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-nara-orange"
+                      }`}
+                  >
+                    {section.label}
+                    {activeSection === section.id && <ChevronRight className="w-4 h-4" />}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
-                <div className="p-6 flex-grow flex flex-col">
-                  <div className="flex-grow">
-                    <h3 className="text-xl font-bold text-[#2E5063] mb-3 leading-tight group-hover:text-[#C7913B] transition-colors">
-                      {article.title}
-                    </h3>
-                    <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-3">
-                      {article.summary}
-                    </p>
-                  </div>
+        {/* CONTENT AREA (75%) */}
+        <div className="md:w-3/4 space-y-20">
 
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-[#2E5063]">
-                    <span className="text-xs font-semibold flex items-center gap-1">
-                      <BookOpen className="w-3 h-3" />3 min read
-                    </span>
-                    <button className="text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                      Baca <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
+          {/* 1. Apa itu Perundungan */}
+          <div id="apa-itu" className="scroll-mt-28">
+            <h2 className="text-2xl font-bold text-nara-charcoal mb-4">Apa Itu Sebenarnya Perundungan?</h2>
+            <p className="text-slate-600 leading-[1.7] text-base mb-6">
+              Perundungan (Bullying) adalah perilaku agresif yang dilakukan secara sengaja dan berulang-ulang oleh seseorang atau sekelompok orang yang memiliki "kekuatan" lebih besar, dengan niat menyakiti korban yang merasa tidak berdaya.
+            </p>
+            <p className="text-slate-600 leading-[1.7] text-base">
+              Berbeda dengan konflik atau argumen biasa antar teman, perundungan memiliki karakteristik ketidakseimbangan kekuasaan (power imbalance) dan intensi untuk menyakiti secara terus-menerus.
+            </p>
+          </div>
+
+          {/* 2. Jenis-Jenis Perundungan */}
+          <div id="jenis" className="scroll-mt-28">
+            <h2 className="text-2xl font-bold text-nara-charcoal mb-6">Jenis-Jenis Perundungan</h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Card 1 */}
+              <div className="bg-rose-50 p-6 rounded-xl">
+                <ShieldAlert className="w-8 h-8 text-rose-500 mb-4" />
+                <h3 className="font-bold text-base mb-2 text-nara-charcoal">Fisik</h3>
+                <p className="text-sm text-slate-600 leading-[1.6]">
+                  Menyakiti tubuh atau merusak barang. Termasuk memukul, menendang, mendorong, atau menyandung sengaja.
+                </p>
+              </div>
+              {/* Card 2 */}
+              <div className="bg-teal-50 p-6 rounded-xl">
+                <MessageSquareOff className="w-8 h-8 text-teal-600 mb-4" />
+                <h3 className="font-bold text-base mb-2 text-nara-charcoal">Verbal</h3>
+                <p className="text-sm text-slate-600 leading-[1.6]">
+                  Mengejek, memanggil dengan sebutan buruk, atau melontarkan komentar rasis dan seksis yang merendahkan.
+                </p>
+              </div>
+              {/* Card 3 */}
+              <div className="bg-purple-50 p-6 rounded-xl">
+                <UserMinus className="w-8 h-8 text-purple-600 mb-4" />
+                <h3 className="font-bold text-base mb-2 text-nara-charcoal">Relasional</h3>
+                <p className="text-sm text-slate-600 leading-[1.6]">
+                  Merusak reputasi atau hubungan sosial. Seperti menyebarkan rumor, mengucilkan, atau mempermalukan.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. Dampak Perundungan */}
+          <div id="dampak" className="scroll-mt-28">
+            <h2 className="text-2xl font-bold text-nara-charcoal mb-4">Dampak Perundungan</h2>
+            <p className="text-slate-600 leading-[1.7] text-base mb-6">
+              Luka dari perundungan sering kali tidak berdarah, namun dapat membekas seumur hidup dan mempengaruhi berbagai aspek kehidupan penyintasnya.
+            </p>
+            <div className="bg-slate-50 p-6 rounded-xl border border-slate-100 flex flex-col md:flex-row gap-6">
+              <div className="flex-1">
+                <h3 className="font-bold text-lg text-nara-charcoal mb-3">Dampak Psikologis</h3>
+                <ul className="space-y-2 text-slate-600 text-sm">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-nara-orange"></div> Depresi kronis dan kecemasan ekstrim</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-nara-orange"></div> Penurunan drastis terhadap self-esteem</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-nara-orange"></div> Keinginan untuk melukai diri sendiri (Self-harm)</li>
+                </ul>
+              </div>
+              <div className="flex-1 bg-white p-6 rounded-lg shadow-sm border border-slate-100 text-center">
+                <span className="block text-4xl mb-2">📉</span>
+                <p className="font-bold text-nara-charcoal">Penurunan Performa Akademis</p>
+                <p className="text-xs text-slate-500 mt-2">Siswa / mahasiswa rentan bolos untuk menghindari pelaku, yang merusak fokus belajar.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 4. Warning Signs */}
+          <div id="warning-signs" className="scroll-mt-28">
+            <h2 className="text-2xl font-bold text-nara-charcoal mb-6">Warning Signs (Tanda Bahaya)</h2>
+            <p className="text-slate-600 leading-[1.7] text-base mb-6">
+              Apakah temanmu bertingkah berbeda akhir-akhir ini? Berikut tanda-tanda seseorang mungkin menjadi korban perundungan:
+            </p>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-4">
+                <div className="mt-1"><CheckCircle2 className="w-5 h-5 text-nara-orange" /></div>
+                <span className="text-base text-slate-700">Luka fisik, memar atau goresan yang tidak bisa dijelaskan asal usulnya.</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="mt-1"><CheckCircle2 className="w-5 h-5 text-nara-orange" /></div>
+                <span className="text-base text-slate-700">Kehilangan barang berharga, buku, uang, atau elektronik yang sering terjadi secara misterius.</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="mt-1"><CheckCircle2 className="w-5 h-5 text-nara-orange" /></div>
+                <span className="text-base text-slate-700">Perubahan kebiasaan makan ekstrim; tiba-tiba tidak mau makan atau justru makan berlebih (binge eating).</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="mt-1"><CheckCircle2 className="w-5 h-5 text-nara-orange" /></div>
+                <span className="text-base text-slate-700">Rasa takut tiba-tiba untuk pergi ke lingkungan sekolah, kampus, atau tempat spesifik lainnya.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* 5. Cyberbullying */}
+          <div id="cyberbullying" className="scroll-mt-28">
+            <h2 className="text-2xl font-bold text-nara-charcoal mb-4">Cyberbullying</h2>
+            <div className="grid md:grid-cols-2 gap-8 items-center bg-nara-blue-light/50 p-8 rounded-2xl">
+              <div>
+                <MonitorOff className="w-12 h-12 text-nara-charcoal mb-4" />
+                <p className="text-slate-600 leading-[1.7] text-base">
+                  Cyberbullying adalah perundungan menggunakan teknologi digital. Hal ini dapat terjadi di media sosial, platform pesan, platform game, atau ponsel.
+                </p>
+                <div className="mt-4 p-4 bg-white rounded-lg border border-slate-100 shadow-sm">
+                  <p className="text-sm font-bold text-nara-charcoal mb-2">Contoh Spesifik:</p>
+                  <p className="text-xs text-slate-500 italic">"Menyebarkan rumor memalukan via grup WA tertutup, membuat akun palsu untuk melecehkan identitas, doxxing (menyebar info privat)."</p>
                 </div>
               </div>
-            </AnimatedSection>
-          ))}
+              <div className="h-full min-h-[200px] bg-slate-200 rounded-xl relative overflow-hidden flex items-center justify-center">
+                {/* Abstract visual for cyberbullying */}
+                <div className="w-3/4 h-3/4 border-2 border-dashed border-slate-400 rounded-lg flex items-center justify-center text-slate-400 font-medium">Digital Footprint is Forever</div>
+              </div>
+            </div>
+          </div>
+
+          {/* 6. Cara Mencari Bantuan */}
+          <div id="bantuan" className="scroll-mt-28">
+            <h2 className="text-2xl font-bold text-nara-charcoal mb-6">Cara Mencari Bantuan</h2>
+            <div className="space-y-4">
+              <div className="flex gap-6 items-start bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 rounded-full bg-nara-orange text-white font-bold flex items-center justify-center shrink-0">1</div>
+                <div>
+                  <h4 className="font-bold text-lg mb-1 text-nara-charcoal">Dokumentasikan Bukti</h4>
+                  <p className="text-sm text-slate-600 leading-[1.6]">Simpan screenshot, rekam suara, cetak chat. Bukti ini vital jika eskalasi perundungan naik ke ranah penegakan kedisiplinan/hukum.</p>
+                </div>
+              </div>
+              <div className="flex gap-6 items-start bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 rounded-full bg-nara-orange text-white font-bold flex items-center justify-center shrink-0">2</div>
+                <div>
+                  <h4 className="font-bold text-lg mb-1 text-nara-charcoal">Jauhi Konfrontasi Langsung Secara Sendiri</h4>
+                  <p className="text-sm text-slate-600 leading-[1.6]">Jika kamu merasa fisikmu terancam, block pelaku di platform digital, pergi ke tempat ramai yang aman segera.</p>
+                </div>
+              </div>
+              <div className="flex gap-6 items-start bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 rounded-full bg-nara-orange text-white font-bold flex items-center justify-center shrink-0">3</div>
+                <div>
+                  <h4 className="font-bold text-lg mb-1 text-nara-charcoal">Berbicara Pada Pihak Otoritas / Relawan</h4>
+                  <p className="text-sm text-slate-600 leading-[1.6]">Jangan menyimpannya sendiri. Beritahu Dosen Wali, Orang Tua, atau layanan Peer Support seperti Lentera Jiwa.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
+      </section>
+
+      {/* CTA SECTION AT BOTTOM */}
+      <section className="max-w-4xl mx-auto px-4 mt-32">
+        <div className="bg-nara-paper rounded-2xl p-10 text-center border border-slate-200">
+          <HeartHandshake className="w-12 h-12 text-nara-orange mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-nara-charcoal mb-4">Butuh Bantuan Sekarang?</h2>
+          <p className="text-slate-600 mb-8 max-w-lg mx-auto">Relawan Lentera Jiwa siap mendengarkan ceritamu dengan privasi yang terjamin 100%. Jangan ragu untuk mencari dukungan.</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <button
+              onClick={() => setCurrentPage("cerita")}
+              className="h-[48px] px-8 bg-nara-orange text-white font-medium rounded-lg hover:bg-[#E08A44] transition-colors flex items-center justify-center gap-2"
+            >
+              Cerita ke Lentera
+            </button>
+            <button
+              onClick={() => setCurrentPage("faq")}
+              className="h-[48px] px-8 bg-transparent text-nara-charcoal border border-nara-charcoal font-medium rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center gap-2"
+            >
+              Hubungi Kami
+            </button>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
-};
-
-export default EducationPage;
+}

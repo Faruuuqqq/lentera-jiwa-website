@@ -14,8 +14,8 @@ const ArticleDetail = ({ selectedArticleSlug, setCurrentPage }: ArticleDetailPro
   if (!article) {
     return (
       <div className="text-center py-20">
-        <p>Artikel tidak ditemukan.</p>
-        <button onClick={() => setCurrentPage('education')} className="mt-4 text-[#2E5063] font-bold">
+        <p className="text-slate-600 mb-4">Artikel tidak ditemukan.</p>
+        <button onClick={() => setCurrentPage('artikel')} className="mt-4 text-[#2E5063] font-bold">
           Kembali ke Pojok Edukasi
         </button>
       </div>
@@ -27,8 +27,8 @@ const ArticleDetail = ({ selectedArticleSlug, setCurrentPage }: ArticleDetailPro
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <AnimatedSection>
           <button 
-            onClick={() => setCurrentPage('education')} 
-            className="flex items-center gap-2 text-[#2E5063] font-bold mb-8 hover:text-[#C7913B] transition"
+            onClick={() => setCurrentPage('artikel')} 
+            className="flex items-center gap-2 text-nara-charcoal font-bold mb-8 hover:text-nara-orange transition"
           >
             <ArrowLeft className="w-5 h-5" />
             Kembali ke Semua Artikel

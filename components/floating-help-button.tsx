@@ -3,7 +3,11 @@
 import { MessageCircle, X } from "lucide-react"
 import { useState } from "react"
 
-export default function FloatingHelpButton() {
+interface FloatingHelpProps {
+  setCurrentPage?: (page: string) => void;
+}
+
+export default function FloatingHelpButton({ setCurrentPage }: FloatingHelpProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -11,7 +15,7 @@ export default function FloatingHelpButton() {
       {/* Floating button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-r from-teal-500 to-peach-500 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center z-40"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-r from-[#F6C453] to-[#F2994A] text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center z-40"
         aria-label="Butuh bantuan"
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
@@ -19,27 +23,32 @@ export default function FloatingHelpButton() {
 
       {/* Popup menu */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 bg-white rounded-3xl shadow-2xl border border-teal-100 overflow-hidden w-80 z-40 animate-in fade-in slide-in-from-bottom-4">
-          <div className="bg-gradient-to-r from-teal-500 to-peach-500 text-white p-6 text-center">
+        <div className="fixed bottom-24 right-6 bg-white rounded-3xl shadow-2xl border border-[#FDF3E3] overflow-hidden w-80 z-40 animate-in fade-in slide-in-from-bottom-4">
+          <div className="bg-gradient-to-r from-[#F6C453] to-[#F2994A] text-white p-6 text-center">
             <h3 className="font-bold text-lg mb-2">Butuh Teman Cerita?</h3>
-            <p className="text-sm opacity-90">Kami siap mendengarkan kapan saja</p>
+            <p className="text-sm opacity-90">Kami ada untuk mendengarkan tanpa menghakimi.</p>
           </div>
 
-          <div className="p-6 space-y-3">
-            <button className="w-full py-3 px-4 bg-teal-50 text-teal-700 rounded-xl font-medium hover:bg-teal-100 transition-colors text-left">
-              💬 Chat dengan Peer Supporter
+          <div className="p-6 flex flex-col gap-3">
+            <button 
+              onClick={() => {
+                if (setCurrentPage) setCurrentPage("cerita");
+                setIsOpen(false);
+              }}
+              className="w-full py-4 px-4 bg-[#FFF8EC] text-[#F2994A] rounded-xl font-bold hover:bg-[#F2994A] hover:text-white transition-colors text-center shadow-sm"
+            >
+              Kotak Cerita ke Lentera
             </button>
-            <button className="w-full py-3 px-4 bg-peach-50 text-peach-700 rounded-xl font-medium hover:bg-peach-100 transition-colors text-left">
-              📞 Hubungi via WhatsApp
-            </button>
-            <button className="w-full py-3 px-4 bg-teal-100 text-teal-700 rounded-xl font-medium hover:bg-teal-200 transition-colors text-left">
-              📧 Kirim Email
-            </button>
-
-            <div className="pt-3 border-t border-teal-100">
-              <a href="#faq" className="text-sm text-teal-600 hover:text-teal-700 font-medium">
-                Lihat FAQ →
-              </a>
+            <div className="py-2 text-center border-t border-slate-100 mt-2">
+              <button 
+                onClick={() => {
+                  if (setCurrentPage) setCurrentPage("faq");
+                  setIsOpen(false);
+                }}
+                className="text-sm text-slate-500 hover:text-[#F2994A] font-medium transition"
+              >
+                Lihat FAQ
+              </button>
             </div>
           </div>
         </div>

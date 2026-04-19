@@ -1,98 +1,114 @@
-"use client"
+import React from "react";
+import { Ear, Heart, ShieldCheck, Users, Milestone, CalendarDays } from "lucide-react";
+import AnimatedSection from "@/components/ui/animated-section";
 
-import { useState } from 'react';
-import { Ear, Heart, AlertCircle, FileText, Users, Phone, X } from "lucide-react"
-import AnimatedSection from '@/components/ui/animated-section';
-
-const programs = [
+const timelinePrograms = [
+  {
+    icon: ShieldCheck,
+    title: "Deteksi Dini & Screening",
+    status: "Rutin Tiap Semester",
+    description: "Program asessment mandiri online untuk mengidentifikasi tingkat stres, kecemasan, atau tanda awal bullying di lingkungan sekolah atau kampus. Membantu intervensi sebelum masalah membesar.",
+    color: "bg-nara-yellow",
+    textColor: "text-amber-700"
+  },
   {
     icon: Ear,
-    title: "Active Listening",
-    shortDesc: "Layanan curhat di mana kamu didengarkan sepenuhnya tanpa dihakimi.",
-    longDesc: "Di sini, kamu bisa mencurahkan segala perasaan dan pikiranmu kepada seorang teman sebaya yang terlatih untuk mendengarkan secara aktif. Tujuannya adalah memberikan ruang aman bagimu untuk didengar dan divalidasi, bukan untuk dihakimi atau diberi solusi instan."
+    title: "Layanan Curhat Sebaya (Active Listening)",
+    status: "Tersedia 24/7",
+    description: "Konseling teman sebaya anonim atau terbuka. Kamu akan didengarkan sepenuhnya tanpa dihakimi oleh relawan terlatih Lentera Jiwa yang memiliki rentang usia yang sama agar lebih nyambung.",
+    color: "bg-nara-orange",
+    textColor: "text-orange-800"
+  },
+  {
+    icon: Users,
+    title: "Support Group Anti-Perundungan",
+    status: "Setiap Akhir Bulan",
+    description: "Pertemuan berkala (luring dan daring) yang aman dan tertutup bagi penyintas perundungan untuk saling berbagi, mendukung, dan memvalidasi perasaan satu sama lain.",
+    color: "bg-[#2E5063]",
+    textColor: "text-white"
   },
   {
     icon: Heart,
     title: "Psychological First Aid (PFA)",
-    shortDesc: "Pertolongan pertama untuk mendukung mahasiswa dalam situasi krisis emosional.",
-    longDesc: "PFA adalah serangkaian tindakan suportif yang diberikan kepada seseorang yang baru saja mengalami peristiwa stres yang signifikan. Ini bukan konseling, melainkan bantuan praktis untuk menenangkan, mengurangi tingkat stres, dan menghubungkan dengan bantuan lebih lanjut jika diperlukan."
-  },
-  {
-    icon: AlertCircle,
-    title: "Deteksi Dini",
-    shortDesc: "Mengidentifikasi tanda-tanda stres, cemas, atau burnout sejak awal.",
-    longDesc: "Melalui kuesioner mandiri dan edukasi, kami membantu mahasiswa untuk lebih peka terhadap perubahan kondisi mental mereka. Mengenali gejala lebih awal dapat mencegah masalah menjadi lebih serius dan mempercepat proses pemulihan."
-  },
-  {
-    icon: FileText,
-    title: "Pendampingan Holistik",
-    shortDesc: "Dukungan emosional menyeluruh yang disesuaikan dengan kebutuhan individual.",
-    longDesc: "Kami melihat setiap individu secara utuh, tidak hanya dari satu aspek masalah. Pendampingan ini mencakup dukungan emosional, bantuan dalam manajemen waktu, hingga diskusi tentang gaya hidup sehat yang semuanya berpengaruh pada kesehatan mental."
-  },
-  {
-    icon: Users,
-    title: "Peer Support Community",
-    shortDesc: "Membangun komunitas saling dukung antar mahasiswa yang inklusif.",
-    longDesc: "Lentera Jiwa secara aktif membangun sebuah komunitas di mana mahasiswa merasa memiliki, diterima, dan saling mendukung. Kami mengadakan kegiatan kelompok, diskusi, dan workshop untuk memperkuat ikatan sosial dan mengurangi rasa isolasi."
-  },
-  {
-    icon: Phone,
-    title: "Rujukan Profesional",
-    shortDesc: "Memfasilitasi koneksi dengan layanan konseling profesional P2K2 jika diperlukan.",
-    longDesc: "Jika relawan kami merasa bahwa kamu membutuhkan bantuan lebih dari yang bisa kami tawarkan, kami akan dengan hati-hati dan suportif membantumu terhubung dengan psikolog profesional di P2K2 Unpad untuk penanganan lebih lanjut."
-  },
-]
+    status: "Khusus Situasi Krisis",
+    description: "Pertolongan pertama psikologis cepat tanggap untuk mahasiswa atau siswa yang baru saja mengalami kejadian perundungan hebat atau kepanikan ekstrem di hari h kejadian.",
+    color: "bg-slate-800",
+    textColor: "text-slate-100"
+  }
+];
 
 export default function Programs() {
-  const [selectedProgram, setSelectedProgram] = useState<any>(null);
-
   return (
-    <>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="bg-nara-paper min-h-screen text-nara-charcoal pb-32">
+      {/* HEADER */}
+      <section className="pt-24 pb-16 px-4 max-w-4xl mx-auto text-center">
         <AnimatedSection>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#2E5063]">Program & Layanan</h2>
-            <p className="text-slate-500 mt-2">Pendekatan kami dalam menjaga kesehatan mentalmu.</p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-nara-orange/10 text-nara-orange text-sm font-medium mb-6">
+            <Milestone className="w-4 h-4" />
+            Langkah Nyata Lentera Jiwa
+          </div>
+          <h1 className="font-sans text-5xl md:text-6xl font-medium mb-6 leading-tight">
+            Program & <span className="text-nara-orange">Aktivitas Kami</span>
+          </h1>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Menghapus perundungan tidak bisa dilakukan dalam semalam. Berikut adalah program konkrit kami yang berfokus pada pencegahan, pendampingan, hingga pemulihan.
+          </p>
+        </AnimatedSection>
+      </section>
+
+      {/* TIMELINE SECTION */}
+      <section className="max-w-4xl mx-auto px-4">
+        <div className="relative border-l-4 border-nara-yellow/30 ml-6 md:ml-12 lg:ml-20 py-8 space-y-16">
+          
+          {timelinePrograms.map((program, idx) => {
+            const Icon = program.icon;
+            return (
+              <AnimatedSection key={idx} delay={idx * 0.15}>
+                <div className="relative pl-8 md:pl-12 group">
+                  {/* Timeline Node */}
+                  <div className={`absolute -left-[30px] md:-left-[38px] top-4 w-14 h-14 rounded-full ${program.color} flex items-center justify-center text-white shadow-lg border-4 border-nara-paper z-10 group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className="w-6 h-6" />
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="bg-white rounded-xl p-8 md:p-10 shadow-soft border border-slate-200 hover:border-nara-orange transition-all duration-300 relative overflow-hidden">
+                    {/* Decorative Background Icon */}
+                    <Icon className={`absolute -right-6 -bottom-6 w-40 h-40 opacity-[0.03] text-nara-charcoal pointer-events-none`} />
+
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-10">
+                      <h3 className="font-sans text-2xl md:text-3xl font-medium text-nara-charcoal">
+                        {program.title}
+                      </h3>
+                      <span className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium uppercase tracking-wide bg-slate-50 ${program.textColor} border border-slate-100`}>
+                        <CalendarDays className="w-3.5 h-3.5" />
+                        {program.status}
+                      </span>
+                    </div>
+                    <p className="text-slate-600 leading-[1.6] text-base relative z-10">
+                      {program.description}
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            );
+          })}
+
+        </div>
+      </section>
+
+      {/* CALL TO ACTION BOTTOM */}
+      <section className="max-w-4xl mx-auto px-4 mt-24">
+        <AnimatedSection delay={0.4}>
+          <div className="bg-white rounded-xl p-10 md:p-12 text-center border border-slate-200 shadow-soft">
+            <h3 className="font-sans text-2xl md:text-3xl font-medium mb-4 text-nara-charcoal">Ingin Menyelenggarakan Program Ini di Kampusmu?</h3>
+            <p className="text-slate-600 mb-8 max-w-xl mx-auto leading-[1.6]">Kami membuka kolaborasi support group dan screening untuk organisasi sekolah atau himpunan mahasiswa. Mari ciptakan zonamu sendiri yang bebas bully.</p>
+            <button className="h-[48px] px-8 bg-nara-orange text-white font-medium rounded-lg hover:bg-[#E08A44] transition-colors duration-300 shadow-sm mx-auto flex items-center justify-center">
+              Hubungi Kami untuk Kolaborasi
+            </button>
           </div>
         </AnimatedSection>
+      </section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {programs.map((program, idx) => {
-            const Icon = program.icon
-            return (
-              <AnimatedSection key={idx} delay={idx * 0.1}>
-                <button
-                  onClick={() => setSelectedProgram(program)}
-                  className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-[#C7913B]/50 transition group text-left h-full"
-                >
-                  <div className="w-14 h-14 bg-[#E6EFF2] rounded-xl flex items-center justify-center text-[#2E5063] mb-6 group-hover:bg-[#2E5063] group-hover:text-white transition">
-                    <Icon className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{program.title}</h3>
-                  <p className="text-slate-600">{program.shortDesc}</p>
-                </button>
-              </AnimatedSection>
-            )
-          })}
-        </div>
-      </div>
-
-      {selectedProgram && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <AnimatedSection>
-            <div className="bg-white rounded-2xl p-8 max-w-lg w-full relative">
-              <button onClick={() => setSelectedProgram(null)} className="absolute top-4 right-4 text-slate-500 hover:text-slate-800">
-                <X className="w-6 h-6" />
-              </button>
-              <div className="w-16 h-16 bg-[#2E5063] rounded-xl flex items-center justify-center text-white mb-6">
-                <selectedProgram.icon className="w-8 h-8" />
-              </div>
-              <h2 className="text-2xl font-bold text-[#2E5063] mb-4">{selectedProgram.title}</h2>
-              <p className="text-slate-600 leading-relaxed">{selectedProgram.longDesc}</p>
-            </div>
-          </AnimatedSection>
-        </div>
-      )}
-    </>
-  )
+    </div>
+  );
 }

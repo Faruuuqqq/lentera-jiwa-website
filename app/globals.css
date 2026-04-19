@@ -83,7 +83,8 @@
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
+  --font-sans: var(--font-outfit), "Geist", "Geist Fallback";
+  --font-serif: var(--font-lora), "Georgia", serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -109,10 +110,20 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 12px;
+  --radius-xl: 12px;
+  --color-nara-yellow: #FFD700;
+  --color-nara-orange: #F4A261;
+  --color-nara-charcoal: #1B4965;
+  --color-nara-paper: #F1EFE8;
+  --color-nara-blue-light: #E6F1FB;
+  --color-nara-dark-gray: #2C2C2A;
+  --color-nara-muted: #888780;
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-soft-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -128,7 +139,11 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-slate-50 text-foreground;
+    @apply bg-[#FFFDF9] text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: var(--font-serif);
+    font-weight: 500;
   }
 }
 
@@ -260,4 +275,87 @@
     transform: scale(1.2);
     opacity: 0.4;
   }
+}
+
+/* Shimmer Effect for Loading / Skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite linear;
+  background: linear-gradient(to right, #f6f7f8 4%, #edeef1 25%, #f6f7f8 36%);
+  background-size: 1000px 100%;
+}
+
+/* Global Transition Improvements */
+* {
+  transition-behavior: allow-discrete;
+}
+
+/* 
+ * Aesthetic Enhancements:
+ * Mesh Gradients & Staggered Elements
+ */
+
+.mesh-blob-1 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(246, 196, 83, 0.4) 0%, rgba(246, 196, 83, 0) 70%);
+  filter: blur(60px);
+  z-index: 0;
+  animation: float 20s ease-in-out infinite alternate;
+}
+
+.mesh-blob-2 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(242, 153, 74, 0.3) 0%, rgba(242, 153, 74, 0) 70%);
+  filter: blur(80px);
+  z-index: 0;
+  animation: float 15s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.stagger-1 { animation-delay: 100ms; }
+.stagger-2 { animation-delay: 200ms; }
+.stagger-3 { animation-delay: 300ms; }
+.stagger-4 { animation-delay: 400ms; }
+
+.animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility font-bold {
+  font-weight: 500;
+}
+
+@utility font-extrabold {
+  font-weight: 500;
+}
+
+@utility font-semibold {
+  font-weight: 500;
 }

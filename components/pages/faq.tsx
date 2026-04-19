@@ -1,4 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Mail, MessageCircle, MapPin, Phone } from "lucide-react"
+import AnimatedSection from "@/components/ui/animated-section"
 
 const faqs = [
   {
@@ -29,34 +31,101 @@ const faqs = [
   {
     question: "Bagaimana cara bergabung sebagai Relawan Lentera Jiwa?",
     answer:
-      "Buka halaman 'Join Program' atau hubungi P2K2 Unpad untuk mengetahui jadwal rekrutmen dan syarat-syarat yang diperlukan.",
+      "Pendaftaran relawan akan diinfokan di kalender P2K2 Unpad. Pastikan Anda memenuhi syarat yang mengutamakan tingkat empati emosional dan rekam jejak anti-perundungan.",
   },
 ]
 
 export default function FAQ() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-[#2E5063] mb-4">Pertanyaan Umum</h2>
-        <p className="text-slate-600">Jika pertanyaanmu tidak terjawab di sini, jangan ragu untuk hubungi kami!</p>
-      </div>
+    <div className="min-h-screen bg-nara-paper pb-32">
+      {/* HERO SECTION */}
+      <section className="relative pt-32 pb-16 px-4 overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-nara-orange/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+        <AnimatedSection>
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="font-serif text-5xl md:text-6xl font-medium mb-6 text-nara-charcoal leading-tight">
+              Pusat Bantuan & <br />
+              <span className="italic text-nara-orange font-light">Hubungi Kami.</span>
+            </h1>
+            <p className="font-sans text-lg text-slate-600 max-w-2xl mx-auto leading-[1.7]">
+              Kami selalu ada di sini untuk mendengarkan. Temukan jawaban dari pertanyaan umum atau segera jangkau kami secara langsung.
+            </p>
+          </div>
+        </AnimatedSection>
+      </section>
 
-      <Accordion type="single" collapsible className="space-y-3">
-        {faqs.map((faq, idx) => (
-          <AccordionItem
-            key={idx}
-            value={`item-${idx}`}
-            className="bg-white border border-slate-200 rounded-xl overflow-hidden data-[state=open]:border-[#2E5063] data-[state=open]:shadow-md transition"
-          >
-            <AccordionTrigger className="px-6 py-4 text-left font-bold text-[#2E5063] hover:text-[#C7913B] transition">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="px-6 py-4 text-slate-600 border-t border-slate-100">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      {/* CONTACT CARDS */}
+      <section className="max-w-5xl mx-auto px-4 mb-20">
+        <AnimatedSection delay={0.2}>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white p-8 rounded-xl shadow-soft border border-slate-200 text-center flex flex-col items-center hover:border-nara-orange hover:shadow-soft-lg transition-all">
+              <div className="w-14 h-14 bg-orange-50 rounded-lg flex items-center justify-center text-nara-orange mb-6">
+                <Mail className="w-6 h-6" />
+              </div>
+              <h3 className="font-medium text-lg text-nara-charcoal mb-2">Email Khusus</h3>
+              <p className="text-slate-500 text-sm mb-4">Untuk kemitraan & dukungan akademis.</p>
+              <a href="mailto:halo@lenterajiwa.com" className="font-bold text-nara-orange hover:text-orange-600 mt-auto">
+                halo@lenterajiwa.com
+              </a>
+            </div>
+
+            <div className="bg-nara-charcoal p-8 rounded-xl shadow-soft-lg border border-transparent text-center flex flex-col items-center relative overflow-hidden transform md:scale-[1.05] z-10 transition-transform">
+              {/* Glow */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-nara-orange/20 rounded-full blur-2xl"></div>
+              <div className="w-14 h-14 bg-white/10 rounded-lg flex items-center justify-center text-nara-orange mb-6 relative z-10">
+                <Phone className="w-6 h-6" />
+              </div>
+              <h3 className="font-medium text-lg text-white mb-2 relative z-10">Hotline P2K2 Unpad</h3>
+              <p className="text-slate-300 text-sm mb-6 relative z-10">Layanan Darurat Konseling Profesional (Psikolog).</p>
+              <a href="#" className="h-[48px] px-6 bg-nara-orange text-white font-medium rounded-lg hover:bg-orange-500 flex items-center justify-center w-full transition-colors relative z-10">
+                Hubungi P2K2
+              </a>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-soft border border-slate-200 text-center flex flex-col items-center hover:border-nara-orange hover:shadow-soft-lg transition-all">
+              <div className="w-14 h-14 bg-nara-blue-light rounded-lg flex items-center justify-center text-nara-charcoal mb-6">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <h3 className="font-medium text-lg text-nara-charcoal mb-2">Pusat Layanan</h3>
+              <p className="text-slate-500 text-sm mb-4">Gedung Pusat Kampus Universitas Padjadjaran.</p>
+              <span className="font-bold text-nara-charcoal mt-auto">
+                Senin - Jumat (09:00 - 15:00)
+              </span>
+            </div>
+          </div>
+        </AnimatedSection>
+      </section>
+
+      {/* FAQ ACCORDION */}
+      <section className="max-w-4xl mx-auto px-4">
+        <AnimatedSection delay={0.4}>
+          <div className="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-slate-200">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-nara-charcoal">
+                <MessageCircle className="w-5 h-5" />
+              </div>
+              <h2 className="font-serif text-3xl font-medium text-nara-charcoal">FAQ (Tanya Jawab)</h2>
+            </div>
+            
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, idx) => (
+                <AccordionItem
+                  key={idx}
+                  value={`item-${idx}`}
+                  className="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden data-[state=open]:border-nara-orange data-[state=open]:bg-white data-[state=open]:shadow-sm transition-all"
+                >
+                  <AccordionTrigger className="px-6 py-5 text-left font-medium text-nara-charcoal hover:text-nara-orange transition-colors">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 py-5 text-slate-600 leading-[1.7] border-t border-slate-100 bg-white">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </AnimatedSection>
+      </section>
     </div>
   )
 }
