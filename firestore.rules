@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- FUNGSI BANTUAN (HELPER FUNCTIONS) ---
+
+    // Cek apakah user sudah login (Anonim atau Email)
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Cek apakah user mengakses datanya sendiri
+    // (Membandingkan UID user yang login dengan field 'userId' di dokumen)
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // --- ATURAN KOLEKSI ---
+
+    // 1. JURNAL RASA (Sangat Privat)
+    match /journalEntries/{entryId} {
+      // Hanya boleh bikin kalau login & userId di data sesuai dengan UID login
+      allow create: if isAuthenticated() && isOwner(request.resource.data.userId);
+
+      // Hanya boleh baca/edit/hapus kalau itu data miliknya sendiri
+      allow read, update, delete: if isAuthenticated() && isOwner(resource.data.userId);
+    }
+
+    // 2. KOTAK CERITA (Tiket Curhat)
+    match /curhats/{ticketId} {
+      // User boleh kirim curhat
+      allow create: if isAuthenticated() && isOwner(request.resource.data.userId);
+
+      // User hanya boleh baca curhatnya sendiri (untuk cek balasan)
+      // Nanti kita tambahkan '|| isAdmin()' di sini saat bikin dashboard
+      allow read: if isAuthenticated() && isOwner(resource.data.userId);
+
+      // User TIDAK boleh mengedit curhat yang sudah dikirim (untuk integritas data)
+      allow update: if false;
+    }
+  }
+}

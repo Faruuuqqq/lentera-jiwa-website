@@ -1,0 +1,259 @@
+Oke, ini aku buatkan **PRD (Product Requirements Document)** yang sudah disusun dari semua diskusi kita: rebranding Narajiwa → Lentera Jiwa, fokus perundungan, fitur komunitas, dan biblioterapi. Ini versi yang **rapi, bisa langsung kamu pakai untuk proposal / tim dev / lomba / PKM**.
+
+---
+
+# 📄 PRODUCT REQUIREMENTS DOCUMENT (PRD)
+
+## Lentera Jiwa – Platform Edukasi dan Ruang Aman Anti-Perundungan
+
+---
+
+# 1. Latar Belakang
+
+Perundungan (bullying) masih menjadi permasalahan serius di lingkungan anak dan remaja, baik secara langsung maupun melalui media digital (cyberbullying). Dampak yang ditimbulkan tidak hanya bersifat psikologis, tetapi juga dapat mempengaruhi perkembangan sosial dan akademik individu.
+
+Transformasi dari Narajiwa menjadi **Lentera Jiwa** bertujuan untuk mempersempit fokus layanan dari kesehatan mental umum menjadi **pencegahan dan penanganan perundungan**, sehingga solusi yang diberikan menjadi lebih spesifik, terarah, dan berdampak.
+
+---
+
+# 2. Tujuan Produk
+
+Lentera Jiwa dikembangkan untuk:
+
+* Meningkatkan kesadaran masyarakat tentang perundungan
+* Menyediakan ruang aman untuk berbagi cerita
+* Memberikan edukasi yang mudah diakses
+* Menyediakan bahan refleksi melalui biblioterapi
+* Membangun kolaborasi dengan komunitas
+
+---
+
+# 3. Target Pengguna
+
+### Primary Users
+
+* Anak SD, SMP, SMA
+* Mahasiswa
+
+### Secondary Users
+
+* Orang tua
+* Guru
+* Komunitas pendidikan & sosial
+
+---
+
+# 4. Value Proposition
+
+Lentera Jiwa bukan hanya platform informasi, tetapi:
+
+* **Ruang aman untuk korban dan saksi perundungan**
+* **Platform edukasi anti-bullying berbasis literasi**
+* **Penghubung komunitas dan gerakan sosial**
+* **Penyedia biblioterapi lintas usia (SD – Mahasiswa)**
+
+---
+
+# 5. Fitur Utama
+
+## 5.1 Edukasi Anti-Perundungan
+
+Halaman utama edukasi berisi:
+
+* Pengertian perundungan
+* Jenis-jenis perundungan
+* Dampak perundungan
+* Cyberbullying
+* Cara mencari bantuan
+
+---
+
+## 5.2 Cerita ke Lentera (Ruang Aman)
+
+Fitur untuk pengguna:
+
+* Mengirim cerita secara anonim
+* Mendapat respon awal (non-profesional support)
+* Arahkan ke bantuan lebih lanjut jika diperlukan
+
+---
+
+## 5.3 Program Lentera
+
+Menampilkan kegiatan:
+
+* Edukasi sekolah
+* Webinar
+* Kampanye sosial
+* Workshop
+
+---
+
+## 5.4 Komunitas Bersama Lentera (FITUR BARU 🔥)
+
+Menampilkan kolaborasi dengan komunitas.
+
+### Isi:
+
+* Logo komunitas
+* Deskripsi singkat
+* Fokus kegiatan
+* Link media sosial
+
+### Kategori:
+
+* Komunitas kesehatan mental
+* Komunitas anak & remaja
+* Komunitas pendidikan
+* Komunitas literasi digital
+
+👉 Tujuan:
+
+* Meningkatkan kredibilitas
+* Menunjukkan jejaring kolaborasi
+* Transparansi kegiatan
+
+---
+
+## 5.5 Biblioterapi Lentera (FITUR UNGGULAN 🔥)
+
+Kumpulan bahan bacaan reflektif dan edukatif.
+
+### Kategori berdasarkan subjek:
+
+* Mengenal Perundungan
+* Menguatkan Diri
+* Menjadi Teman yang Peduli
+* Bijak Bermedia Sosial
+* Literasi Emosi
+* Panduan Orang Tua & Guru
+
+### Tambahan:
+
+* Label usia:
+
+  * SD
+  * SMP
+  * SMA
+  * Mahasiswa
+
+* Jenis konten:
+
+  * Buku
+  * Artikel
+  * Video
+  * Podcast
+
+👉 Tujuan:
+
+* Membantu healing melalui bacaan
+* Edukasi berbasis refleksi
+* Pendekatan yang lebih personal
+
+---
+
+## 5.6 Cerita Bersama Lentera
+
+Berisi:
+
+* Testimoni pengguna
+* Cerita dampak program
+* Pengalaman relawan
+
+---
+
+## 5.7 Hubungi Lentera
+
+Berisi:
+
+* Kontak
+* Form pertanyaan
+* Media sosial
+
+---
+
+# 6. Struktur Navigasi (Navbar)
+
+Beranda
+Tentang Lentera Jiwa
+Kenali Perundungan
+Cerita ke Lentera
+Program Lentera
+Komunitas Bersama Lentera
+Biblioterapi Lentera
+Artikel Edukasi
+Hubungi Lentera
+
+---
+
+# 7. User Flow (Sederhana)
+
+### Skenario 1: Korban Perundungan
+
+Beranda → Kenali Perundungan → Cerita ke Lentera → Mendapat bantuan
+
+### Skenario 2: Pelajar ingin belajar
+
+Beranda → Biblioterapi → Pilih kategori → Baca konten
+
+### Skenario 3: Audience umum
+
+Beranda → Komunitas → Lihat kolaborasi → Ikut kegiatan
+
+---
+
+# 8. Success Metrics
+
+* Jumlah pengguna aktif
+* Jumlah cerita masuk
+* Engagement artikel & biblioterapi
+* Jumlah komunitas mitra
+* Partisipasi program
+
+---
+
+# 9. Diferensiasi Produk
+
+Dibanding platform lain:
+
+* Fokus spesifik: **perundungan**
+* Ada fitur **biblioterapi terstruktur lintas usia**
+* Ada **halaman komunitas kolaborasi**
+* Pendekatan: edukatif + preventif + suportif
+
+---
+
+# 10. Pengembangan Kedepan (Future Scope)
+
+* AI chatbot pendamping
+* Forum diskusi aman
+* Sistem pelaporan perundungan
+* Mobile app
+* Dashboard komunitas
+
+---
+
+# 11. Risiko & Mitigasi
+
+### Risiko:
+
+* Penyalahgunaan fitur cerita
+* Konten sensitif
+* Validitas informasi
+
+### Mitigasi:
+
+* Moderasi konten
+* Disclaimer
+* Kurasi bahan bacaan
+* Kolaborasi dengan ahli
+
+---
+
+Kalau kamu mau, aku bisa bantu lanjut ke:
+
+* **wireframe UI/UX Lentera Jiwa**
+* atau **pitch deck (buat lomba / PKM / startup)**
+* atau bahkan **ERD & backend structure** kalau kamu mau implementasi langsung
+
+Tinggal bilang kamu mau lanjut ke bagian mana 👍

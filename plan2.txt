@@ -1,0 +1,353 @@
+Kamu di jalur yang tepat: reuse code dari Narajiwa itu efisien, tapi kalau cuma “copy–paste lalu ganti kata”, hasilnya biasanya terasa setengah jadi. Yang kamu butuhkan adalah **Design Guidelines** yang jelas supaya transisinya konsisten—baik dari sisi visual, UX, maupun tone konten.
+
+Di bawah ini aku buatkan **Design Guidelines Lentera Jiwa** yang memang disusun untuk kasus kamu: **rebranding + reuse codebase**.
+
+---
+
+# 🎨 DESIGN GUIDELINES
+
+## Lentera Jiwa – Anti-Perundungan Platform
+
+---
+
+# 1. Prinsip Desain (Design Principles)
+
+Ini fondasi—harus jadi acuan semua halaman.
+
+### 1. Aman (Safe)
+
+* UI tidak mengintimidasi
+* Warna lembut, tidak terlalu kontras keras
+* Bahasa tidak menghakimi
+
+### 2. Empatik (Empathetic)
+
+* Copywriting terasa “didengar”
+* Gunakan kata: *teman, ruang aman, cerita*
+
+### 3. Edukatif (Educational)
+
+* Informasi jelas, tidak terlalu panjang
+* Gunakan struktur kategori
+
+### 4. Terbuka & Kolaboratif
+
+* Tampilkan komunitas
+* Tampilkan kegiatan nyata
+
+---
+
+# 2. Rebranding Strategy (Narajiwa → Lentera Jiwa)
+
+Jangan ubah semuanya. Fokus ke 3 layer:
+
+### Layer 1: Visual Identity
+
+* warna
+* icon
+* ilustrasi
+
+### Layer 2: Copywriting
+
+* label menu
+* heading
+* CTA
+
+### Layer 3: Struktur Fitur
+
+* tambah komunitas
+* tambah biblioterapi kategori
+
+👉 Ini penting:
+**70% UI boleh sama, tapi 70% pesan harus berubah.**
+
+---
+
+# 3. Color System (Rekomendasi)
+
+Karena tema “lentera” → cahaya, harapan, hangat.
+
+### Primary Color
+
+* Soft Yellow / Warm Light
+  `#F6C453`
+
+### Secondary
+
+* Soft Orange
+  `#F2994A`
+
+### Neutral
+
+* Dark text: `#333333`
+* Light background: `#FAFAFA`
+
+### Support Colors
+
+* Biru lembut (kepercayaan): `#56CCF2`
+* Hijau lembut (tenang): `#6FCF97`
+
+---
+
+### ❗ Hindari:
+
+* Merah terlalu kuat (kesan bahaya/tekanan)
+* Hitam dominan (terlalu berat)
+
+---
+
+# 4. Typography
+
+Gunakan font yang ramah dan mudah dibaca:
+
+### Heading
+
+* Poppins / Inter (modern & friendly)
+
+### Body
+
+* Open Sans / Inter
+
+---
+
+### Style:
+
+* Judul: semi-bold
+* Isi: regular
+* Hindari ALL CAPS terlalu banyak
+
+---
+
+# 5. Komponen UI (yang bisa reuse dari Narajiwa)
+
+Karena kamu punya source code, ini yang cukup **re-skin saja**:
+
+### ✔ Card Component
+
+Dipakai untuk:
+
+* artikel
+* komunitas
+* biblioterapi
+
+Tambahkan:
+
+* label kategori
+* label usia
+
+---
+
+### ✔ Button
+
+Ubah CTA:
+
+Narajiwa:
+
+* Konsultasi
+
+Lentera:
+
+* Cerita ke Lentera
+
+---
+
+### ✔ Navbar
+
+Tinggal rename + tambah menu:
+
+* Komunitas
+* Biblioterapi
+
+---
+
+### ✔ Form
+
+Dipakai untuk:
+
+* cerita user
+
+Tambahkan:
+
+* opsi anonim
+* pilihan kategori cerita
+
+---
+
+# 6. UX Guidelines (penting banget)
+
+## 6.1 Tone UX
+
+Jangan terasa seperti:
+
+* portal berita
+* platform formal
+
+Harus terasa:
+
+* personal
+* hangat
+* ringan
+
+---
+
+## 6.2 CTA Style
+
+Gunakan kalimat empatik:
+
+❌ “Submit”
+✅ “Bagikan Ceritamu”
+
+❌ “Read More”
+✅ “Pelajari Lebih Lanjut”
+
+---
+
+## 6.3 Navigasi
+
+Pastikan user cepat ke:
+
+* bantuan (cerita)
+* edukasi (kenali perundungan)
+* bacaan (biblioterapi)
+
+---
+
+# 7. Layout Guidelines
+
+Gunakan struktur ini:
+
+### Hero Section
+
+* headline empatik
+* CTA: Cerita ke Lentera
+
+---
+
+### Section Edukasi
+
+* card kategori
+
+---
+
+### Section Biblioterapi
+
+* list bacaan
+
+---
+
+### Section Komunitas
+
+* logo + deskripsi
+
+---
+
+### Section Impact
+
+* cerita/testimoni
+
+---
+
+# 8. Design untuk Fitur Baru
+
+## 8.1 Komunitas Bersama Lentera
+
+### UI:
+
+Card grid:
+
+* Logo
+* Nama
+* Fokus
+* Link
+
+Tambahkan:
+
+* hover effect ringan
+
+---
+
+## 8.2 Biblioterapi Lentera
+
+### UI:
+
+Gunakan filter:
+
+* kategori (subjek)
+* usia
+
+---
+
+### Card isi:
+
+* judul
+* kategori
+* usia
+* jenis (buku/artikel/video)
+
+---
+
+# 9. Copywriting Guidelines
+
+Gunakan tone:
+
+### Friendly + Supportive
+
+Contoh:
+
+❌ “Platform konsultasi kesehatan mental”
+✅ “Ruang aman untuk berbagi dan memahami perundungan”
+
+---
+
+### Gunakan kata:
+
+* Teman
+* Cerita
+* Aman
+* Bersama
+* Lentera
+
+---
+
+# 10. Konsistensi Rebranding Checklist
+
+Sebelum launch, cek:
+
+* semua “Narajiwa” → “Lentera Jiwa”
+* semua “kesehatan mental umum” → “perundungan”
+* CTA sudah empatik
+* ada fitur komunitas
+* ada biblioterapi kategori
+
+---
+
+# 11. Strategi Implementasi (biar tidak chaos)
+
+Jangan langsung ubah semua.
+
+### Step 1
+
+Rename + copywriting
+
+### Step 2
+
+Tambah fitur:
+
+* komunitas
+* biblioterapi
+
+### Step 3
+
+Adjust UI (warna & tone)
+
+---
+
+Kalau kamu mau, langkah paling powerful selanjutnya:
+
+👉 aku bisa bantu kamu:
+
+* **mapping langsung dari struktur code Narajiwa → Lentera Jiwa**
+* atau bikin **UI wireframe (per halaman)**
+* atau bantu kamu **prioritas fitur kalau ini untuk lomba / PKM**
+
+Tinggal bilang mau lanjut ke mana.

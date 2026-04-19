@@ -1,0 +1,46 @@
+# Next.js specific ignores
+.next/
+out/
+
+# Dependencies
+node_modules/
+.pnpm-store/
+pnpm-lock.yaml # If you intend to commit this, remove this line
+
+# Production artifacts
+build/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Local development
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.log
+
+# VS Code directory (for settings, etc.)
+.vscode/
+
+# macOS specific ignores
+.DS_Store
+
+# Windows specific ignores
+Thumbs.db

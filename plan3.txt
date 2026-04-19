@@ -1,0 +1,403 @@
+Kalau kamu langsung copy–paste tanpa mapping yang jelas, kamu bakal ketemu masalah klasik: ada fitur lama yang nggak relevan, naming kacau, dan flow jadi nggak konsisten. Jadi kita bikin **mapping yang tegas: file → fungsi → perubahan**.
+
+Di bawah ini aku susun **mapping langsung dari struktur Narajiwa → Lentera Jiwa** dengan asumsi umum project web (React / Next / Node / atau sejenisnya). Kamu bisa adapt sesuai struktur aslinya.
+
+---
+
+# 🧩 1. Struktur Umum (Before vs After)
+
+### Narajiwa (umum)
+
+```
+/src
+  /components
+  /pages
+    home
+    about
+    consultation
+    articles
+    program
+    contact
+  /assets
+  /utils
+```
+
+### Lentera Jiwa (hasil mapping)
+
+```
+/src
+  /components
+  /pages
+    home
+    tentang
+    kenali-perundungan
+    cerita
+    program
+    komunitas        ← NEW
+    biblioterapi     ← NEW
+    artikel
+    kontak
+  /assets
+  /utils
+```
+
+---
+
+# 🔄 2. Mapping Halaman (Paling Penting)
+
+## 2.1 Home
+
+### Narajiwa:
+
+```
+/pages/home.jsx
+```
+
+### Lentera:
+
+Tetap dipakai, tapi ubah isi:
+
+**Yang diubah:**
+
+* hero text → anti perundungan
+* CTA → "Cerita ke Lentera"
+* tambah section:
+
+  * komunitas
+  * biblioterapi
+
+---
+
+## 2.2 About → Tentang Lentera Jiwa
+
+### Narajiwa:
+
+```
+/pages/about.jsx
+```
+
+### Lentera:
+
+```
+/pages/tentang.jsx
+```
+
+**Action:**
+
+* rename file
+* ubah:
+
+  * deskripsi → perundungan
+  * visi misi → yang tadi kita buat
+
+---
+
+## 2.3 Consultation → Cerita ke Lentera
+
+### Narajiwa:
+
+```
+/pages/consultation.jsx
+/components/ConsultationForm.jsx
+```
+
+### Lentera:
+
+```
+/pages/cerita.jsx
+/components/CeritaForm.jsx
+```
+
+**Mapping:**
+
+| Narajiwa     | Lentera           |
+| ------------ | ----------------- |
+| Consultation | Cerita ke Lentera |
+| Konsultasi   | Cerita            |
+| Submit       | Bagikan Cerita    |
+
+**Tambahan:**
+
+* field anonim (checkbox)
+* kategori cerita (bullying fisik/verbal/dll)
+
+---
+
+## 2.4 Articles → Edukasi Anti-Perundungan
+
+### Narajiwa:
+
+```
+/pages/articles.jsx
+/components/ArticleCard.jsx
+```
+
+### Lentera:
+
+```
+/pages/artikel.jsx
+/components/ArticleCard.jsx (reuse)
+```
+
+**Perubahan:**
+
+* kategori artikel:
+
+  * perundungan
+  * cyberbullying
+  * empati
+* ubah konten saja, bukan struktur
+
+---
+
+## 2.5 Program
+
+### Narajiwa:
+
+```
+/pages/program.jsx
+```
+
+### Lentera:
+
+```
+/pages/program.jsx
+```
+
+**Action:**
+
+* tetap dipakai
+* rename label:
+
+  * Program Lentera
+* ubah isi:
+
+  * kampanye anti perundungan
+
+---
+
+## 2.6 Contact → Hubungi Lentera
+
+### Narajiwa:
+
+```
+/pages/contact.jsx
+```
+
+### Lentera:
+
+```
+/pages/kontak.jsx
+```
+
+---
+
+# 🆕 3. Fitur Baru (Harus Ditambahkan)
+
+## 3.1 Komunitas Bersama Lentera
+
+```
+/pages/komunitas.jsx
+/components/CommunityCard.jsx
+```
+
+### Struktur data:
+
+```
+{
+  name: "Komunitas A",
+  logo: "...",
+  focus: "Edukasi remaja",
+  link: "instagram.com/..."
+}
+```
+
+---
+
+## 3.2 Biblioterapi Lentera
+
+```
+/pages/biblioterapi.jsx
+/components/BiblioCard.jsx
+```
+
+### Struktur data:
+
+```
+{
+  title: "Aku Berani Bicara",
+  category: "Menguatkan Diri",
+  age: "SMP",
+  type: "Artikel"
+}
+```
+
+---
+
+# 🧱 4. Mapping Components
+
+## Reusable tanpa banyak ubah:
+
+```
+Navbar.jsx
+Footer.jsx
+Card.jsx
+Button.jsx
+```
+
+---
+
+## Perlu rename:
+
+```
+ConsultationForm → CeritaForm
+UserInput → CeritaInput
+```
+
+---
+
+## Perlu extend:
+
+```
+ArticleCard → tambah label kategori
+Card → tambah badge usia (biblioterapi)
+```
+
+---
+
+# 🧭 5. Mapping Routing
+
+### Narajiwa:
+
+```
+/consultation
+/articles
+/about
+```
+
+### Lentera:
+
+```
+/cerita
+/artikel
+/tentang
+/komunitas
+/biblioterapi
+```
+
+---
+
+# 🎯 6. Navbar Mapping
+
+### Narajiwa:
+
+* Home
+* About
+* Consultation
+* Articles
+* Program
+* Contact
+
+### Lentera:
+
+* Beranda
+* Tentang Lentera Jiwa
+* Kenali Perundungan
+* Cerita ke Lentera
+* Program Lentera
+* Komunitas
+* Biblioterapi
+* Artikel
+* Hubungi
+
+---
+
+# ⚠️ 7. Bagian yang HARUS kamu audit
+
+Ini sering dilupakan:
+
+### 7.1 Hardcoded Text
+
+Cari:
+
+```
+Narajiwa
+mental health
+kesehatan mental
+```
+
+Ganti semua.
+
+---
+
+### 7.2 API / Backend (kalau ada)
+
+Kalau sebelumnya:
+
+```
+/api/consultation
+```
+
+ubah:
+
+```
+/api/cerita
+```
+
+---
+
+### 7.3 Database field
+
+Kalau ada:
+
+```
+consultation_message → cerita_message
+```
+
+---
+
+# 🚀 8. Strategi Implementasi (biar cepat & rapi)
+
+### Phase 1 (Cepat)
+
+* rename halaman
+* ganti text
+
+### Phase 2
+
+* tambah komunitas
+* tambah biblioterapi
+
+### Phase 3
+
+* refine UX + UI
+
+---
+
+# 🔥 Insight penting (biar kamu nggak salah arah)
+
+Kalau kamu cuma:
+
+> “ubah Narajiwa jadi Lentera Jiwa”
+
+hasilnya:
+👉 platform mental health generik
+
+Tapi kalau kamu:
+
+* tambah komunitas
+* tambah biblioterapi
+* ubah flow cerita
+
+hasilnya:
+👉 platform anti-perundungan yang punya identitas kuat
+
+---
+
+Kalau kamu mau next step yang lebih teknis, aku bisa:
+
+* breakdown **struktur folder sesuai framework kamu (Next.js / React / Express)**
+* bantu bikin **schema database**
+* atau mapping langsung ke **kode (function/component level)**
+
+Tinggal kirim struktur project kamu sekarang 👍
