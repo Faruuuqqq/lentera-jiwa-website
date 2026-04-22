@@ -8,9 +8,9 @@ const lora = Lora({ subsets: ["latin"], variable: "--font-lora" })
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" })
 
 export const metadata: Metadata = {
-  title: "Lentera Jiwa - Ruang Aman Anti-Perundungan",
+  title: "Youth Anti-Bullying Indonesia - Ruang Aman Anti-Perundungan",
   description:
-    "Ruang aman untuk edukasi, pencegahan, dan penanganan perundungan (anti-bullying) dari Lentera Jiwa.",
+    "Menerangi Pikiran, Menguatkan Perasaan melalui Bacaan. Ruang aman untuk edukasi, pencegahan, dan penanganan perundungan (anti-bullying) dari Youth Anti-Bullying Indonesia.",
   generator: 'v0.app'
 }
 

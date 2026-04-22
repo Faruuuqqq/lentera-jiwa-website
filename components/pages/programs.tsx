@@ -15,7 +15,7 @@ const timelinePrograms = [
     icon: Ear,
     title: "Layanan Curhat Sebaya (Active Listening)",
     status: "Tersedia 24/7",
-    description: "Konseling teman sebaya anonim atau terbuka. Kamu akan didengarkan sepenuhnya tanpa dihakimi oleh relawan terlatih Lentera Jiwa yang memiliki rentang usia yang sama agar lebih nyambung.",
+    description: "Konseling teman sebaya anonim atau terbuka. Kamu akan didengarkan sepenuhnya tanpa dihakimi oleh relawan terlatih Youth Anti-Bullying Indonesia yang memiliki rentang usia yang sama agar lebih nyambung.",
     color: "bg-nara-orange",
     textColor: "text-orange-800"
   },
@@ -45,7 +45,7 @@ export default function Programs() {
         <AnimatedSection>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-nara-orange/10 text-nara-orange text-sm font-medium mb-6">
             <Milestone className="w-4 h-4" />
-            Langkah Nyata Lentera Jiwa
+            Langkah Nyata Youth Anti-Bullying Indonesia
           </div>
           <h1 className="font-sans text-5xl md:text-6xl font-medium mb-6 leading-tight">
             Program & <span className="text-nara-orange">Aktivitas Kami</span>

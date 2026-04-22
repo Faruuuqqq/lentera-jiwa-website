@@ -26,7 +26,7 @@ export default function ProgramOverview() {
     <section id="program" className="px-4 py-20 sm:px-6 lg:px-8 bg-white">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-sage-900 sm:text-4xl">Apa Itu Lentera Jiwa?</h2>
+          <h2 className="mb-4 text-3xl font-bold text-sage-900 sm:text-4xl">Apa Itu Youth Anti-Bullying Indonesia?</h2>
           <p className="text-lg text-sage-600 max-w-2xl mx-auto">
             Program pelatihan teman sebaya yang memberdayakan mahasiswa untuk memberikan dukungan emosional dasar dan
             menjadi pendengar pertama.
@@ -47,7 +47,7 @@ export default function ProgramOverview() {
         </div>
 
         <div className="mt-16 rounded-2xl bg-gradient-to-r from-sage-500 to-sage-600 p-8 text-white sm:p-12">
-          <h3 className="mb-4 text-2xl font-bold">Mengapa Lentera Jiwa Penting?</h3>
+          <h3 className="mb-4 text-2xl font-bold">Mengapa Youth Anti-Bullying Indonesia Penting?</h3>
           <ul className="space-y-3">
             <li className="flex gap-3">
               <span>✓</span>

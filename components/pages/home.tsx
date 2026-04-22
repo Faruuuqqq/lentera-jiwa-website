@@ -37,7 +37,8 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
 
               <div className="animate-fade-up stagger-3">
                 <p className="font-sans text-lg md:text-xl text-slate-600 mb-10 max-w-xl leading-[1.7]">
-                  Lentera Jiwa adalah ruang aman untuk berbagi cerita, memahami perundungan, dan menemukan dukungan bersama.
+                  Youth Anti-Bullying Indonesia adalah ruang aman untuk berbagi cerita, memahami perundungan, dan menemukan dukungan bersama.
+                  Menerangi Pikiran, Menguatkan Perasaan melalui Bacaan.
                 </p>
               </div>
 
@@ -47,7 +48,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                   className="h-[48px] px-8 bg-nara-orange text-white font-bold rounded-xl hover:bg-[#D47125] transition-all transform hover:-translate-y-0.5 shadow-[0_8px_20px_rgba(242,153,74,0.3)] flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   <MessageCircle className="w-5 h-5" />
-                  Cerita ke Lentera
+                  Cerita ke Kami
                 </button>
                 <button
                   onClick={() => setCurrentPage('kenali-perundungan')}
@@ -75,14 +76,17 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                   </div>
                 </div>
 
-                <div className="relative w-full h-full bg-nara-charcoal rounded-[2.5rem] p-10 overflow-hidden z-10 border border-slate-800 shadow-2xl flex flex-col justify-end">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-nara-blue-light/10 rounded-full blur-2xl"></div>
-                  <div className="absolute -left-10 bottom-20 w-40 h-40 bg-nara-orange/20 rounded-full blur-3xl"></div>
+                <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden z-10 border border-slate-800 shadow-2xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" 
+                    alt="Teman saling mendukung"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-nara-charcoal/80 via-nara-charcoal/20 to-transparent"></div>
                   
-                  <div className="space-y-4 mb-4 relative z-10">
-                     <div className="h-3 w-1/3 bg-white/20 rounded-full"></div>
-                     <div className="h-3 w-2/3 bg-white/20 rounded-full"></div>
-                     <div className="h-3 w-1/2 bg-white/20 rounded-full"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <p className="font-serif text-lg italic mb-2">"Kamu tidak sendiri"</p>
+                    <p className="text-sm text-white/80">Bersama kita lebih kuat</p>
                   </div>
                 </div>
 
@@ -111,25 +115,25 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
             <div className="absolute top-0 right-0 w-64 h-64 bg-nara-orange/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
 
             <div className="text-center mb-10">
-              <h2 className="font-serif text-3xl md:text-4xl font-medium text-white mb-3">Tahukah Kamu?</h2>
+              <h2 className="font-serif text-3xl md:text-4xl font-medium text-white mb-3">Fakta yang Perlu Kamu Tahu</h2>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-white/10 relative z-10">
               <div className="px-2">
-                <p className="text-4xl lg:text-5xl font-bold text-nara-orange mb-2">28%</p>
-                <p className="text-sm text-slate-300">Anak mengalami perundungan</p>
+                <p className="text-4xl lg:text-5xl font-bold text-nara-orange mb-2">1 dari 3</p>
+                <p className="text-sm text-slate-300">Remaja pernah mengalami perundungan</p>
               </div>
               <div className="px-2">
                 <p className="text-4xl lg:text-5xl font-bold text-nara-orange mb-2">40%</p>
-                <p className="text-sm text-slate-300">Yang berani melapor</p>
+                <p className="text-sm text-slate-300">Korban tidak pernah bercerita</p>
               </div>
               <div className="px-2">
                 <p className="text-4xl lg:text-5xl font-bold text-nara-orange mb-2">30%</p>
-                <p className="text-sm text-slate-300">Pernah terlibat (pelaku)</p>
+                <p className="text-sm text-slate-300">Pernah menjadi pelaku tanpa sadar</p>
               </div>
               <div className="px-2">
                 <p className="text-4xl lg:text-5xl font-bold text-nara-orange mb-2">70%</p>
-                <p className="text-sm text-slate-300">Pernah menyaksikan perundungan</p>
+                <p className="text-sm text-slate-300">Pernah menyaksikan tapi tidak tahu harus apa</p>
               </div>
             </div>
 
@@ -145,7 +149,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
         <div className="max-w-6xl mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-16">
-              <h2 className="font-serif text-4xl font-medium text-nara-charcoal mb-4">Kamu di Posisi Mana?</h2>
+              <h2 className="font-serif text-4xl font-medium text-nara-charcoal mb-4">Kenali Posisi Kamu</h2>
               <p className="text-slate-500 max-w-xl mx-auto">Kami mengerti tidak semua orang berada di posisi yang sama. Pilih opsi yang paling menggambarkan kondisimu saat ini.</p>
             </div>
           </AnimatedSection>
@@ -198,6 +202,65 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
             <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-[1.7]">
               Perundungan tidak selalu terlihat jelas. Terkadang berupa ejekan, pengucilan, atau serangan di dunia maya. Memahaminya adalah langkah pertama untuk menghentikannya.
             </p>
+            
+            {/* Ilustrasi Bentuk Perundungan */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12 max-w-6xl mx-auto">
+              <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                <img 
+                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" 
+                  alt="Perundungan Fisik" 
+                  className="w-full h-32 object-cover"
+                />
+                <div className="p-3">
+                  <p className="font-bold text-nara-charcoal text-sm">Fisik</p>
+                  <p className="text-xs text-slate-500">Pukul, tendang, dorong</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                <img 
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80" 
+                  alt="Perundungan Verbal" 
+                  className="w-full h-32 object-cover"
+                />
+                <div className="p-3">
+                  <p className="font-bold text-nara-charcoal text-sm">Verbal</p>
+                  <p className="text-xs text-slate-500">Ejekan, hinaan, julukan</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                <img 
+                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=400&q=80" 
+                  alt="Perundungan Relasional" 
+                  className="w-full h-32 object-cover"
+                />
+                <div className="p-3">
+                  <p className="font-bold text-nara-charcoal text-sm">Relasional</p>
+                  <p className="text-xs text-slate-500">Diabaikan, dikucilkan</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                <img 
+                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80" 
+                  alt="Cyberbullying" 
+                  className="w-full h-32 object-cover"
+                />
+                <div className="p-3">
+                  <p className="font-bold text-nara-charcoal text-sm">Cyber</p>
+                  <p className="text-xs text-slate-500">Online, medsos, chat</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                <img 
+                  src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=400&q=80" 
+                  alt="Perusakan Barang" 
+                  className="w-full h-32 object-cover"
+                />
+                <div className="p-3">
+                  <p className="font-bold text-nara-charcoal text-sm">Perusakan</p>
+                  <p className="text-xs text-slate-500">Barang dirusak, dicuri</p>
+                </div>
+              </div>
+            </div>
             <button
               onClick={() => setCurrentPage("kenali-perundungan")}
               className="h-[48px] px-8 bg-white text-nara-charcoal border border-slate-200 font-medium rounded-xl hover:bg-slate-50 hover:border-nara-charcoal transition-all inline-flex items-center justify-center gap-2"
@@ -245,9 +308,9 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                 Kami bekerja sama dengan berbagai entitas dan komunitas untuk menciptakan lingkungan yang lebih inklusif dan aman bagi semua. Upaya melawan perundungan adalah tugas kolektif.
               </p>
               <div className="flex flex-wrap gap-3 mb-8">
-                <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm font-medium text-slate-600">P2K2 Unpad</div>
-                <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm font-medium text-slate-600">BEM Kema</div>
-                <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm font-medium text-slate-600">Komunitas Peer Konselor</div>
+                <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm font-medium text-slate-600">Komunitas Anak</div>
+                <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm font-medium text-slate-600">Komunitas Baca</div>
+                <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-full text-sm font-medium text-slate-600">Youth Support Group</div>
               </div>
               <button onClick={() => setCurrentPage("komunitas")} className="text-nara-charcoal font-bold hover:text-nara-orange flex items-center gap-1">Lihat mitra kami <ChevronRight className="w-4 h-4" /></button>
             </div>
@@ -261,7 +324,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <AnimatedSection>
             <Quote className="w-12 h-12 text-nara-orange/50 mx-auto mb-6" />
-            <h2 className="font-serif text-3xl font-medium mb-10">Cerita Bersama Lentera</h2>
+            <h2 className="font-serif text-3xl font-medium mb-10">Cerita Bersama Youth Anti-Bullying Indonesia</h2>
             <p className="font-serif text-2xl md:text-3xl leading-[1.6] text-slate-200 mb-8 italic">
               “Aku merasa sangat takut untuk bercerita pada awalnya, namun setelah mengakses ruang aman ini, aku merasa jauh lebih lega. Ternyata aku nggak sendiri.”
             </p>
@@ -277,7 +340,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
             <h2 className="font-serif text-4xl md:text-5xl font-medium text-nara-charcoal mb-4">
               Ceritakan Pengalamanmu
             </h2>
-            <h3 className="font-serif text-2xl text-slate-500 mb-8 italic">Bersama Lentera Jiwa.</h3>
+            <h3 className="font-serif text-2xl text-slate-500 mb-8 italic">Bersama Youth Anti-Bullying Indonesia.</h3>
 
             <p className="text-slate-600 mb-10 max-w-lg mx-auto">Kami siap mendengarkan tanpa menghakimi. Jaga anonimitasmu atau temui Konselor kami. Kamu berhak atas kedamaian batin.</p>
 
@@ -286,7 +349,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
               className="h-[56px] px-10 bg-nara-orange text-white font-medium rounded-xl hover:bg-[#D47125] transition-all transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(242,153,74,0.3)] flex items-center justify-center gap-2 text-lg"
             >
               <MessageCircle className="w-6 h-6" />
-              Cerita ke Lentera
+              Cerita ke Kami
             </button>
           </div>
         </AnimatedSection>

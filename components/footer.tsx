@@ -22,19 +22,19 @@ export default function Footer({ setCurrentPage }: FooterProps) {
           <div>
             <div className="mb-4 flex items-center gap-3">
               <Image
-                src="/Lentera Jiwa-logo.png"
-                alt="Lentera Jiwa Logo"
-                width={80}
-                height={40}
+                src="/icon-without-title.png"
+                alt="Youth Anti-Bullying Indonesia Logo"
+                width={64}
+                height={64}
+                className="object-contain"
               />
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-[#2E5063]">Lentera Jiwa</span>
-                <span className="text-xs text-slate-500">Lenterasi Teman Sebaya</span>
+                <span className="text-lg font-bold text-[#2E5063]">Youth Anti-Bullying</span>
+                <span className="text-xs text-slate-500">Indonesia</span>
               </div>
             </div>
             <p className="text-sm text-slate-600">
-              Menghubungkan cerita, menguatkan jiwa melalui dukungan teman
-              sebaya.
+              Menerangi Pikiran, Menguatkan Perasaan melalui Bacaan.
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
                   onClick={() => setCurrentPage("cerita")}
                   className="hover:text-[#F2994A] transition-colors"
                 >
-                  Cerita ke Lentera
+                  Cerita ke Kami
                 </button>
               </li>
             </ul>
@@ -159,7 +159,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
         </div>
 
         <div className="border-t border-slate-100 pt-8 text-center text-sm text-slate-500">
-          <p>&copy; 2025 Lentera Jiwa &mdash; Ruang Aman Anti-Perundungan. Dibuat dengan 🧡 untuk Mahasiswa Unpad.</p>
+          <p>&copy; 2025 Youth Anti-Bullying Indonesia &mdash; Ruang Aman Anti-Perundungan. Dibuat dengan 🧡 untuk Generasi Muda Indonesia.</p>
         </div>
       </div>
     </footer>

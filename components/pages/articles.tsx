@@ -23,14 +23,14 @@ export default function ArticlesPage({ setCurrentPage, setSelectedArticleSlug }:
           <AnimatedSection>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-slate-200 shadow-sm text-nara-charcoal text-sm font-medium mb-6">
               <Sparkles className="w-4 h-4 text-nara-orange" />
-              Pojok Edukasi Lentera
+              Pojok Edukasi YABI
             </div>
             <h1 className="font-serif text-5xl md:text-6xl font-medium mb-6 text-nara-charcoal leading-tight">
-              Artikel Edukasi <br />
-              <span className="italic text-slate-400 font-light">& Panduan Psikologis.</span>
+              Edukasi Anti-Bullying <br />
+              <span className="italic text-slate-400 font-light">& Panduan Perlindungan Diri.</span>
             </h1>
             <p className="font-sans text-lg text-slate-600 max-w-2xl mx-auto leading-[1.7]">
-              Kumpulan wawasan, panduan, dan tips kesehatan mental berbasis empati untuk membantumu memahami diri sendiri dan orang lain.
+              Pelajari cara mengenali, menghadapi, dan mencegah perundungan. Wawasan praktis untuk melindungi dirimu dan mendukung teman-temanmu.
             </p>
           </AnimatedSection>
         </div>

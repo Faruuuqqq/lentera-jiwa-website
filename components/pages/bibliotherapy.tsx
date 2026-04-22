@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BookOpen, Search, Info, Quote, Filter, X, ArrowUpRight } from "lucide-react";
+import { BookOpen, Search, Info, Quote, Filter, X, ArrowUpRight, Users, Baby, GraduationCap, Heart } from "lucide-react";
 import AnimatedSection from "@/components/ui/animated-section";
 import Image from "next/image";
 
@@ -21,27 +21,207 @@ interface BookData {
 
 const bookCategories = [
   {
-    mood: "Cemas",
+    category: "SD/MI",
+    icon: Baby,
+    description: "Buku untuk anak usia 7-12 tahun tentang persahabatan, keberanian, dan menghadapi bullying",
     books: [
-      { title: "Filosofi Teras", author: "Henry Manampiring", cover: "/books/cover-filosofi-teras.jpg", summary: "Pengantar filsafat Stoa yang relevan untuk mengatasi emosi negatif dan letih pikiran.", tags: ["Self-Improvement", "Filsafat"], ageGroup: "Mahasiswa" },
-      { title: "The Things You Can See Only When You Slow Down", author: "Haemin Sunim", cover: "/books/cover_The_Things_You_Can_See_Only_When_You_Slow_Down.jpg", summary: "Ajakan untuk berhenti sejenak dan menemukan ketenangan di dunia yang serba cepat.", tags: ["Mindfulness"], ageGroup: "SMA" },
-      { title: "Atomic Habits", author: "James Clear", cover: "/books/cover-atomic-habits.jpg", summary: "Membangun kebiasaan kecil yang berdampak besar bagi ketenangan jiwa.", tags: ["Produktivitas"], ageGroup: "SMP" },
-      { title: "Mindset", author: "Carol S. Dweck", cover: "/books/cover-mindset.jpg", summary: "Mengubah pola pikir untuk menghadapi tantangan dengan lebih positif dan tabah.", tags: ["Psikologi"], ageGroup: "SD" },
+      { 
+        title: "Aku Berani Bicara", 
+        author: "Michelle Markel", 
+        cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80", 
+        summary: "Kisah inspiratif tentang membangun keberanian untuk berbicara melawan ketidakadilan dan bullying di sekolah.", 
+        tags: ["Keberanian", "Self-Esteem"], 
+        ageGroup: "SD" 
+      },
+      { 
+        title: "Sahabatku Bukan Musuhku", 
+        author: "Trudy Ludwig", 
+        cover: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80", 
+        summary: "Memahami makna persahabatan sejati dan cara membedakan teman yang baik dari yang menyakiti.", 
+        tags: ["Persahabatan", "Sosial"], 
+        ageGroup: "SD" 
+      },
+      { 
+        title: "Stop! Jangan Ganggu Aku", 
+        author: "Cristina Kim", 
+        cover: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80", 
+        summary: "Panduan praktis untuk anak-anak belajar menolak dan melawan perilaku bullying dengan cara yang positif.", 
+        tags: ["Anti-Bullying", "Asertivitas"], 
+        ageGroup: "SD" 
+      },
+      { 
+        title: "Kata-Kata Itu Bisa Menyakiti", 
+        author: "Jennifer O'Connell", 
+        cover: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=400&q=80", 
+        summary: "Mengajarkan empati dan dampak kata-kata pada perasaan orang lain, serta cara berkomunikasi dengan baik.", 
+        tags: ["Empati", "Komunikasi"], 
+        ageGroup: "SD" 
+      },
     ],
   },
   {
-    mood: "Sedih",
+    category: "SMP/MTs",
+    icon: Users,
+    description: "Buku untuk remaja usia 12-15 tahun tentang tekanan teman sebaya dan menghadapi ejekan",
     books: [
-      { title: "Alasan untuk Tetap Hidup", author: "Matt Haig", cover: "/books/cover-alasan.jpg", summary: "Memoar jujur tentang depresi dan bagaimana menemukan kembali harapan.", tags: ["Memoar", "Healing"], ageGroup: "Mahasiswa" },
-      { title: "I Want to Die but I Want to Eat Tteokbokki", author: "Baek Sehee", cover: "/books/cover-tteokbokki.jpg", summary: "Dialog jujur dengan psikiater tentang dysthymia (depresi ringan berkepanjangan).", tags: ["Healing"], ageGroup: "SMA" },
-    ]
-  }
+      { 
+        title: "Cara Menghadapi Ejekan", 
+        author: "Trevor Romain", 
+        cover: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80", 
+        summary: "Strategi praktis menghadapi verbal bullying dan ejekan dari teman sebaya tanpa kehilangan percaya diri.", 
+        tags: ["Resiliensi", "Verbal Bullying"], 
+        ageGroup: "SMP" 
+      },
+      { 
+        title: "Kuat Mental di Sekolah", 
+        author: "Amy Morin", 
+        cover: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=400&q=80", 
+        summary: "Membangun ketahanan mental dan kekuatan batin untuk menghadapi tantangan sosial di sekolah.", 
+        tags: ["Mental Health", "Resiliensi"], 
+        ageGroup: "SMP" 
+      },
+      { 
+        title: "Bukan Jahat, Tapi Bingung", 
+        author: "Carrie Goldman", 
+        cover: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80", 
+        summary: "Memahami mengapa seseorang menjadi pelaku bullying dan cara membantu mereka berubah menjadi lebih baik.", 
+        tags: ["Empati", "Perilaku"], 
+        ageGroup: "SMP" 
+      },
+      { 
+        title: "Wonder", 
+        author: "R.J. Palacio", 
+        cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80", 
+        summary: "Kisah inspiratif tentang penerimaan diri dan kebaikan, belajar menghargai perbedaan setiap individu.", 
+        tags: ["Penerimaan Diri", "Empati"], 
+        ageGroup: "SMP" 
+      },
+      { 
+        title: "Teman atau Lawan?", 
+        author: "Dorothy Espelage", 
+        cover: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80", 
+        summary: "Memahami dinamika pertemanan dan cara membangun hubungan yang sehat dan saling mendukung.", 
+        tags: ["Relasi Sosial", "Pertemanan"], 
+        ageGroup: "SMP" 
+      },
+    ],
+  },
+  {
+    category: "SMA/SMK/MA",
+    icon: GraduationCap,
+    description: "Buku untuk remaja usia 15-18 tahun tentang tekanan sosial dan kesehatan mental",
+    books: [
+      { 
+        title: "Mengelola Tekanan Sosial", 
+        author: "Lisa Schab", 
+        cover: "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?auto=format&fit=crop&w=400&q=80", 
+        summary: "Panduan lengkap menghadapi peer pressure dan tetap menjadi diri sendiri di tengah gengsi sosial.", 
+        tags: ["Peer Pressure", "Identitas"], 
+        ageGroup: "SMA" 
+      },
+      { 
+        title: "Ketika Teman Menyakiti", 
+        author: "Rosalind Wiseman", 
+        cover: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80", 
+        summary: "Mengatasi relational bullying dan manipulasi dalam pertemanan remaja yang beracun.", 
+        tags: ["Toxic Friends", "Relasional"], 
+        ageGroup: "SMA" 
+      },
+      { 
+        title: "Self-Love untuk Remaja", 
+        author: "Sharon Martin", 
+        cover: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=400&q=80", 
+        summary: "Membangun self-esteem dan mencintai diri sendiri sebagai fondasi melawan bullying dan negativitas.", 
+        tags: ["Self-Love", "Self-Esteem"], 
+        ageGroup: "SMA" 
+      },
+      { 
+        title: "Speak", 
+        author: "Laurie Halse Anderson", 
+        cover: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=400&q=80", 
+        summary: "Kisah kuat tentang menemukan suara setelah mengalami trauma dan pentingnya berbicara.", 
+        tags: ["Trauma", "Healing"], 
+        ageGroup: "SMA" 
+      },
+      { 
+        title: "The Perks of Being a Wallflower", 
+        author: "Stephen Chbosky", 
+        cover: "https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=400&q=80", 
+        summary: "Perjalanan remaja menghadapi anxiety sosial dan menemukan tempatnya di dunia.", 
+        tags: ["Anxiety", "Coming of Age"], 
+        ageGroup: "SMA" 
+      },
+      { 
+        title: "It's Kind of a Funny Story", 
+        author: "Ned Vizzini", 
+        cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80", 
+        summary: "Kisah autentik tentang depresi remaja dan perjalanan menuju kesehatan mental yang lebih baik.", 
+        tags: ["Mental Health", "Depresi"], 
+        ageGroup: "SMA" 
+      },
+    ],
+  },
+  {
+    category: "Orang Tua",
+    icon: Heart,
+    description: "Buku untuk orang tua memahami bullying dan mendukung anak dengan tepat",
+    books: [
+      { 
+        title: "Memahami Bullying dari Sudut Pandang Anak", 
+        author: "Dr. T. Berry Brazelton", 
+        cover: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=400&q=80", 
+        summary: "Panduan komprehensif bagi orang tua untuk memahami psikologi anak yang mengalami atau melakukan bullying.", 
+        tags: ["Parenting", "Psikologi Anak"], 
+        ageGroup: "Orang Tua" 
+      },
+      { 
+        title: "The Bully, the Bullied, and the Bystander", 
+        author: "Barbara Coloroso", 
+        cover: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=400&q=80", 
+        summary: "Memahami tiga peran dalam bullying dan strategi tepat untuk membantu anak di setiap posisi.", 
+        tags: ["Strategi", "Intervensi"], 
+        ageGroup: "Orang Tua" 
+      },
+      { 
+        title: "Cara Mendukung Anak Korban Bullying", 
+        author: "Allan Beane", 
+        cover: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?auto=format&fit=crop&w=400&q=80", 
+        summary: "Langkah-langkah praktis yang bisa dilakukan orang tua saat mengetahui anaknya menjadi korban bullying.", 
+        tags: ["Dukungan", "Tindakan"], 
+        ageGroup: "Orang Tua" 
+      },
+      { 
+        title: "Queen Bees and Wannabes", 
+        author: "Rosalind Wiseman", 
+        cover: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80", 
+        summary: "Memahami dinamika social bullying di kalangan perempuan remaja dan cara membantu putri Anda.", 
+        tags: ["Girl Bullying", "Relasional"], 
+        ageGroup: "Orang Tua" 
+      },
+      { 
+        title: "Tanda-Tanda Anak Dibully", 
+        author: "Dr. Joel Haber", 
+        cover: "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?auto=format&fit=crop&w=400&q=80", 
+        summary: "Mengenali warning signs anak yang menjadi korban bullying sejak dini agar bisa ditangani lebih cepat.", 
+        tags: ["Warning Signs", "Identifikasi"], 
+        ageGroup: "Orang Tua" 
+      },
+      { 
+        title: "Cyber-Safe Kids", 
+        author: "Liz Repa", 
+        cover: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80", 
+        summary: "Panduan menjaga anak dari cyberbullying dan mengajarkan digital citizenship yang bertanggung jawab.", 
+        tags: ["Cyberbullying", "Digital Parenting"], 
+        ageGroup: "Orang Tua" 
+      },
+    ],
+  },
 ];
 
 export default function BibliotherapyPage() {
   const [randomQuote, setRandomQuote] = useState(quotes[0]);
   const [ageFilter, setAgeFilter] = useState<string>("Semua Usia");
-  const ageCategories = ["Semua Usia", "SD", "SMP", "SMA", "Mahasiswa"];
+  const ageCategories = ["Semua Usia", "SD", "SMP", "SMA", "Orang Tua"];
 
   useEffect(() => {
     setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)]);
@@ -65,10 +245,13 @@ export default function BibliotherapyPage() {
               </div>
               <h1 className="font-serif text-5xl md:text-6xl font-medium mb-6 text-nara-charcoal leading-tight">
                 Biblioterapi <br />
-                <span className="text-slate-400 italic">Lentera Jiwa.</span>
+                <span className="text-slate-400 italic">Youth Anti-Bullying.</span>
               </h1>
-              <p className="text-lg text-slate-600 max-w-xl leading-relaxed mb-8">
+              <p className="text-lg text-slate-600 max-w-xl leading-relaxed mb-4">
                 Kadang, penyembuhan berawal dari lembaran kertas. Temukan kurasi bacaan yang dirancang untuk menenangkan pikiran, memvalidasi perasaan, dan memelukmu dalam kata.
+              </p>
+              <p className="text-sm text-nara-orange font-semibold">
+                Menerangi Pikiran, Menguatkan Perasaan melalui Bacaan
               </p>
             </AnimatedSection>
           </div>
@@ -126,17 +309,25 @@ export default function BibliotherapyPage() {
 
           if (filteredBooks.length === 0) return null;
 
+          const IconComponent = category.icon;
+
           return (
             <div key={catIdx} className="mb-20">
               <AnimatedSection>
                 <div className="mb-10">
-                  <h2 className="font-serif text-4xl font-bold text-nara-charcoal mb-2 flex items-center gap-3">
-                    Saat Merasa <span className="text-nara-orange border-b-4 border-nara-yellow">{category.mood}</span>
-                  </h2>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-nara-orange/10 rounded-xl flex items-center justify-center text-nara-orange">
+                      <IconComponent className="w-6 h-6" />
+                    </div>
+                    <h2 className="font-serif text-4xl font-bold text-nara-charcoal">
+                      {category.category}
+                    </h2>
+                  </div>
+                  <p className="text-slate-600 ml-15 pl-15">{category.description}</p>
                 </div>
               </AnimatedSection>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredBooks.map((book, idx) => (
                   <AnimatedSection key={idx} delay={idx * 0.1}>
                     <div className="bg-white rounded-[2rem] p-6 shadow-sm hover:shadow-soft-lg transition-all duration-500 border border-slate-100 group flex flex-col h-full cursor-pointer" onClick={() => handleSearchBook(book.title, book.author)}>
@@ -182,6 +373,22 @@ export default function BibliotherapyPage() {
             </div>
           );
         })}
+      </section>
+
+      {/* CTA Section */}
+      <section className="max-w-4xl mx-auto px-4 mt-20">
+        <AnimatedSection>
+          <div className="bg-nara-charcoal rounded-2xl p-10 md:p-12 text-center text-white">
+            <BookOpen className="w-12 h-12 text-nara-orange mx-auto mb-6" />
+            <h2 className="font-serif text-3xl font-medium mb-4">Punya Rekomendasi Buku?</h2>
+            <p className="text-slate-300 mb-8 max-w-lg mx-auto">
+              Jika kamu punya buku yang ingin direkomendasikan untuk biblioterapi kami, silakan hubungi tim Youth Anti-Bullying Indonesia.
+            </p>
+            <button className="px-8 py-3 bg-nara-orange text-white font-bold rounded-xl hover:bg-[#D47125] transition-all">
+              Hubungi Kami
+            </button>
+          </div>
+        </AnimatedSection>
       </section>
     </div>
   );

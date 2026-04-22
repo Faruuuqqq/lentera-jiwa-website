@@ -12,8 +12,8 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-sage-200 bg-white/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
-          <Image src="/logo-Lentera Jiwa.png" alt="Lentera Jiwa Logo" width={32} height={32} />
-          <span className="text-xl font-bold text-sage-900">Lentera Jiwa</span>
+          <Image src="/icon-without-title.png" alt="Youth Anti-Bullying Logo" width={40} height={40} className="object-contain" />
+          <span className="text-xl font-bold text-sage-900">Youth Anti-Bullying</span>
         </div>
 
         <div className="hidden items-center gap-8 md:flex">

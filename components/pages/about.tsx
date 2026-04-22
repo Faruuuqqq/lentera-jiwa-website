@@ -20,16 +20,16 @@ export default function About() {
         <AnimatedSection>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-slate-200 shadow-sm text-nara-charcoal text-sm font-medium mb-8">
             <Sparkles className="w-4 h-4 text-nara-orange" />
-            Tentang Lentera Jiwa
+            Tentang Youth Anti-Bullying Indonesia
           </div>
           
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium mb-8 tracking-tight max-w-4xl mx-auto leading-[1.1]">
-            Mendobrak Kesunyian, <br />
-            <span className="italic text-nara-orange font-light">Menyalakan Harapan.</span>
+            Menerangi Pikiran, <br />
+            <span className="italic text-nara-orange font-light">Menguatkan Perasaan melalui Bacaan.</span>
           </h1>
           
           <p className="font-sans text-lg md:text-xl text-nara-muted leading-[1.7] max-w-2xl mx-auto">
-            Lentera Jiwa bukan sekadar platform digital. Kami adalah gerakan perlawanan terhadap perundungan, di mana suara korban tidak lagi dibungkam, melainkan didengar, dirangkul, dan divalidasi.
+            Youth Anti-Bullying Indonesia bukan sekadar platform digital. Kami adalah gerakan perlawanan terhadap perundungan, di mana suara korban tidak lagi dibungkam, melainkan didengar, dirangkul, dan divalidasi.
           </p>
         </AnimatedSection>
       </section>
@@ -50,7 +50,7 @@ export default function About() {
                 Mahasiswa seringkali terjebak dalam tekanan sosial dan hirarki kampus yang beracun. Ketika perundungan terjadi, penyintas kerap ragu melapor karena takut dihakimi atau proses birokrasi yang rumit.
               </p>
               <p className="text-lg text-slate-600 leading-[1.8]">
-                Kami hadir sebagai <strong>"Ruang Antara"</strong>—sebuah jembatan peer-support di mana kamu bisa melepas beban dengan sesama mahasiswa sebelum akhirnya siap, jika diperlukan, melangkah ke bantuan profesional.
+                Kami hadir sebagai <strong>"Ruang Aman"</strong>—sebuah jembatan peer-support di mana kamu bisa melepas beban dengan sesama remaja sebelum akhirnya siap, jika diperlukan, melangkah ke bantuan profesional.
               </p>
             </AnimatedSection>
             
@@ -149,9 +149,9 @@ export default function About() {
                     <Shield className="w-6 h-6 text-nara-orange" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-medium mb-2">Ahli & Psikolog (P2K2)</h3>
+                    <h3 className="text-xl font-medium mb-2">Ahli & Psikolog</h3>
                     <p className="text-slate-300 leading-relaxed">
-                      Lentera Jiwa beroperasi di bawah payung pengawasan psikolog kampus. Setiap krisis perundungan yang membutuhkan eskalasi akan ditangani secara profesional oleh institusi.
+                      Youth Anti-Bullying Indonesia beroperasi di bawah payung pengawasan profesional. Setiap krisis perundungan yang membutuhkan eskalasi akan ditangani secara profesional oleh lembaga yang berwenang.
                     </p>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function About() {
                 </blockquote>
                 <div className="mt-8 flex items-center gap-4">
                   <div className="h-px bg-nara-orange w-12"></div>
-                  <span className="text-sm tracking-widest uppercase font-medium text-slate-400">Prinsip Lentera</span>
+                  <span className="text-sm tracking-widest uppercase font-medium text-slate-400">Prinsip Youth Anti-Bullying Indonesia</span>
                 </div>
               </div>
             </div>
@@ -177,15 +177,15 @@ export default function About() {
           <div className="bg-white border border-slate-200 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-8 shadow-sm hover:shadow-soft transition-shadow">
             <div>
               <h3 className="font-serif text-2xl font-medium mb-2 text-nara-charcoal">Butuh Rujukan Medis dan Psikologis Langsung?</h3>
-              <p className="text-slate-500">Pusat Pengembangan Karakter dan Kesejahteraan (P2K2) Unpad selalu bersama kami.</p>
+              <p className="text-slate-500">Kami bekerja sama dengan lembaga-lembaga profesional untuk memberikan dukungan terbaik.</p>
             </div>
             <a
-              href="https://psikologi.unpad.ac.id/mengenal-pusat-penguatan-karakter-dan-konseling-p2k2-pusat-optimalisasi-potensi-diri-dan-kesehatan-fisik-serta-mental-civitas-unpad/"
+              href="https://www.kpai.go.id"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 h-[48px] px-8 bg-slate-50 text-nara-charcoal border border-slate-300 rounded-lg hover:bg-slate-100 hover:text-nara-orange transition-colors font-medium whitespace-nowrap flex-shrink-0"
             >
-              Kenali P2K2 <ArrowRight className="w-4 h-4" />
+              Kenali KPAI <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </AnimatedSection>

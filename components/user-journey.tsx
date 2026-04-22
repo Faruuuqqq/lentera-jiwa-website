@@ -13,7 +13,7 @@ export default function UserJourney() {
     },
     {
       title: "Bertemu Teman Sebaya",
-      description: "Menemukan Lentera Jiwa terlatih yang siap mendengarkan dengan penuh empati",
+      description: "Menemukan Youth Anti-Bullying Indonesia terlatih yang siap mendengarkan dengan penuh empati",
       icon: "🤗",
     },
     {
@@ -37,7 +37,7 @@ export default function UserJourney() {
     <section id="journey" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-sage-50">
       <div className="mx-auto max-w-5xl">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-sage-900 sm:text-4xl">Perjalanan Mahasiswa dengan Lentera Jiwa</h2>
+          <h2 className="mb-4 text-3xl font-bold text-sage-900 sm:text-4xl">Perjalanan Mahasiswa dengan Youth Anti-Bullying Indonesia</h2>
           <p className="text-lg text-sage-600 max-w-2xl mx-auto">
             Bagaimana teman sebaya kami mengubah kisah dari kekhawatiran menjadi pemberdayaan
           </p>

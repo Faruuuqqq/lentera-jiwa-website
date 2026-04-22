@@ -24,18 +24,18 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
   ];
 
   const tentangDropdown = [
-    { id: "tentang", label: "Tentang Lentera" },
-    { id: "program", label: "Program Lentera" },
+    { id: "tentang", label: "Tentang Kami" },
+    { id: "program", label: "Program Kami" },
   ];
 
   const dukunganDropdown = [
     { id: "action-guide", label: "Apa yang Harus Dilakukan?" },
-    { id: "faq", label: "Hubungi Lentera" },
+    { id: "faq", label: "Hubungi Kami" },
   ];
 
   const edukasiDropdown = [
     { id: "artikel", label: "Artikel Edukasi" },
-    { id: "bibliotherapy", label: "Biblioterapi Lentera" },
+    { id: "bibliotherapy", label: "Biblioterapi" },
   ];
   
   const profileDropdown = [
@@ -53,18 +53,18 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
             className="flex items-center gap-3 group"
           >
             <Image
-              src="/lentera-jiwa-logo.png"
-              alt="Lentera Jiwa Logo"
-              width={60}
-              height={25}
-              className="group-hover:scale-105 transition"
+              src="/icon-without-title.png"
+              alt="Youth Anti-Bullying Indonesia Logo"
+              width={48}
+              height={48}
+              className="group-hover:scale-105 transition object-contain"
             />
             <div className="flex flex-col text-left">
-              <span className="text-lg font-bold text-nara-orange leading-tight">
-                LENTERA JIWA
+              <span className="text-sm font-bold text-nara-orange leading-tight">
+                YOUTH ANTI-BULLYING
               </span>
-              <span className="text-[10px] sm:text-xs text-slate-500 font-semibold tracking-wider uppercase">
-                Ruang Aman Bersama
+              <span className="text-[9px] sm:text-[10px] text-slate-500 font-semibold tracking-wider uppercase">
+                Indonesia
               </span>
             </div>
           </button>
@@ -208,7 +208,7 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
               className="px-6 py-2.5 text-sm font-bold text-white bg-nara-orange rounded-full hover:bg-[#D47125] shadow-soft transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
             >
               <MessageCircle className="w-4 h-4 opacity-100" />
-              Cerita ke Lentera
+              Cerita ke Kami
             </button>
           </div>
 
@@ -285,12 +285,12 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
 
             <div className="pt-2">
               <button
-                onClick={() => handleNavClick("cerita")}
-                className="block w-full px-4 py-4 rounded-xl bg-nara-orange text-white font-bold text-center shadow-soft hover:bg-[#D47125] transition-all flex items-center justify-center gap-2"
-              >
-                <MessageCircle className="w-5 h-5 opacity-100" />
-                Cerita ke Lentera
-              </button>
+onClick={() => handleNavClick("cerita")}
+              className="block w-full px-4 py-4 rounded-xl bg-nara-orange text-white font-bold text-center shadow-soft hover:bg-[#D47125] transition-all flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5 opacity-100" />
+              Cerita ke Kami
+            </button>
             </div>
           </div>
         </>

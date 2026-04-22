@@ -8,34 +8,34 @@ export default function FAQ() {
 
   const faqs = [
     {
-      question: "Apa perbedaan Lentera Jiwa dengan psikolog profesional?",
+      question: "Apa perbedaan Youth Anti-Bullying Indonesia dengan psikolog profesional?",
       answer:
-        "Lentera Jiwa bukan pengganti psikolog, melainkan jembatan pertama. Teman sebaya kami memberikan mendengarkan aktif, dukungan emosional dasar, dan Psychological First Aid. Jika diperlukan bantuan profesional lebih lanjut, kami akan merujuk ke P2K2 Unpad. Kehadiran teman sebaya menciptakan ruang yang lebih akrab dan mengurangi hambatan untuk mencari bantuan.",
+        "Youth Anti-Bullying Indonesia bukan pengganti psikolog, melainkan jembatan pertama. Teman sebaya kami memberikan mendengarkan aktif, dukungan emosional dasar, dan Psychological First Aid. Jika diperlukan bantuan profesional lebih lanjut, kami akan merujuk ke P2K2 Unpad. Kehadiran teman sebaya menciptakan ruang yang lebih akrab dan mengurangi hambatan untuk mencari bantuan.",
     },
     {
       question: "Apakah informasi yang saya bagikan akan dijaga kerahasiaannya?",
       answer:
-        "Ya, kerahasiaan adalah prinsip utama kami. Semua Lentera Jiwa terlatih tentang etika pendampingan dan pentingnya menjaga privasi. Cerita dan informasi pribadi Anda tidak akan dibagikan tanpa izin, kecuali ada risiko keselamatan yang serius yang memerlukan intervensi profesional.",
+        "Ya, kerahasiaan adalah prinsip utama kami. Semua Youth Anti-Bullying Indonesia terlatih tentang etika pendampingan dan pentingnya menjaga privasi. Cerita dan informasi pribadi Anda tidak akan dibagikan tanpa izin, kecuali ada risiko keselamatan yang serius yang memerlukan intervensi profesional.",
     },
     {
-      question: "Bagaimana cara menjadi bagian dari Lentera Jiwa?",
+      question: "Bagaimana cara menjadi bagian dari Youth Anti-Bullying Indonesia?",
       answer:
         "Anda bisa mendaftar melalui formulir di website ini atau menghubungi P2K2 Unpad. Calon anggota akan melalui proses seleksi berbasis empati, kemampuan komunikasi, dan komitmen menjaga kerahasiaan. Jika diterima, Anda akan mengikuti pelatihan profesional terstruktur selama beberapa minggu.",
     },
     {
-      question: "Di mana saya bisa menemukan Lentera Jiwa di kampus saya?",
+      question: "Di mana saya bisa menemukan Youth Anti-Bullying Indonesia di kampus saya?",
       answer:
-        "Lentera Jiwa ada di setiap fakultas di Unpad. Anda bisa menghubungi koordinator Lentera Jiwa di fakultas Anda, atau datang ke kantor P2K2 untuk dirujuk ke teman sebaya terdekat yang bisa membantu.",
+        "Youth Anti-Bullying Indonesia ada di setiap fakultas di Unpad. Anda bisa menghubungi koordinator Youth Anti-Bullying Indonesia di fakultas Anda, atau datang ke kantor P2K2 untuk dirujuk ke teman sebaya terdekat yang bisa membantu.",
     },
     {
-      question: "Apakah ada biaya untuk mendapatkan dukungan dari Lentera Jiwa?",
+      question: "Apakah ada biaya untuk mendapatkan dukungan dari Youth Anti-Bullying Indonesia?",
       answer:
-        "Tidak ada biaya. Program Lentera Jiwa adalah inisiatif dari mahasiswa untuk mahasiswa, didukung oleh P2K2 Unpad. Layanan dukungan teman sebaya ini gratis dan dapat diakses oleh semua mahasiswa Unpad.",
+        "Tidak ada biaya. Program Youth Anti-Bullying Indonesia adalah inisiatif dari mahasiswa untuk mahasiswa, didukung oleh P2K2 Unpad. Layanan dukungan teman sebaya ini gratis dan dapat diakses oleh semua mahasiswa Unpad.",
     },
     {
       question: "Bagaimana jika saya tidak nyaman berbagi cerita di awal?",
       answer:
-        "Itu sangat normal! Tidak ada tekanan untuk berbagi lebih dari yang Anda nyaman. Lentera Jiwa akan membantu Anda membangun kepercayaan secara bertahap. Anda bisa memulai dengan percakapan ringan atau sekadar mendengarkan kisah orang lain terlebih dahulu.",
+        "Itu sangat normal! Tidak ada tekanan untuk berbagi lebih dari yang Anda nyaman. Youth Anti-Bullying Indonesia akan membantu Anda membangun kepercayaan secara bertahap. Anda bisa memulai dengan percakapan ringan atau sekadar mendengarkan kisah orang lain terlebih dahulu.",
     },
   ]
 
@@ -44,7 +44,7 @@ export default function FAQ() {
       <div className="mx-auto max-w-3xl">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-sage-900 sm:text-4xl">Pertanyaan yang Sering Diajukan</h2>
-          <p className="text-lg text-sage-600">Temukan jawaban atas pertanyaan umum tentang program Lentera Jiwa</p>
+          <p className="text-lg text-sage-600">Temukan jawaban atas pertanyaan umum tentang program Youth Anti-Bullying Indonesia</p>
         </div>
 
         <div className="space-y-4">

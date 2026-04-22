@@ -74,6 +74,7 @@ export default function Curhat() {
     return () => unsubscribe();
   }, []);
 
+  // Fungsi Generate ID Manusiawi (YABI-XXXX)
   // Fungsi Generate ID Manusiawi (LJ-XXXX)
   const generateTicketId = () => {
     const randomNum = Math.floor(1000 + Math.random() * 9000);
@@ -149,7 +150,7 @@ export default function Curhat() {
       <AnimatedSection>
         <div className="max-w-2xl mx-auto text-center mb-10">
           <h2 className="text-4xl font-medium text-nara-charcoal mb-4">
-            Cerita ke Lentera
+            Cerita ke Kami
           </h2>
           <p className="text-nara-charcoal text-lg font-medium mb-2">
             Ruang Aman Untuk Menceritakan Pengalamanmu
@@ -249,6 +250,35 @@ export default function Curhat() {
                             </span>
                           </label>
                         ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-nara-charcoal mb-2">
+                        Apa yang Kamu Alami?
+                      </label>
+                      <textarea
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        rows={6}
+                        className="w-full p-3 rounded-lg bg-white border border-slate-200 focus:border-nara-orange focus:ring-1 focus:ring-nara-orange outline-none transition text-nara-charcoal resize-none placeholder:text-slate-400 text-base"
+                        placeholder="Ceritakan pengalamanmu... (minimal 50 kata)"
+                      ></textarea>
+                      <div className="flex flex-col gap-3 mt-4">
+                        <label className="flex items-center gap-2 text-sm text-slate-600 font-medium cursor-pointer">
+                          <input type="checkbox" checked={isAnonymous} onChange={(e) => setIsAnonymous(e.target.checked)} className="w-4 h-4 text-[#F2994A] rounded border-slate-300 focus:ring-[#F2994A]" />
+                          Kirim tanpa mengidentifikasi profil (Anonim)
+                        </label>
+
+                        <div className="bg-[#FFF8EC] p-4 rounded-xl border border-[#F6C453]/30">
+                          <label className="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" checked={isUrgent} onChange={(e) => setIsUrgent(e.target.checked)} className="w-5 h-5 mt-0.5 text-red-500 rounded border-slate-300 focus:ring-red-500" />
+                            <div>
+                               <span className="block text-sm font-bold text-red-600">SEVERITY CHECK: Ini adalah Situasi Darurat!</span>
+                               <span className="block text-xs text-slate-500 mt-1">Gunakan opsi ini hanya jika kamu/temanmu berada dalam ancaman fisik atau dalam keadaan kritis. Tim Youth Anti-Bullying Indonesia akan memprioritaskan tiketmu dan jika diperlukan mengarahkanmu ke Crisis Line.</span>
+                            </div>
+                          </label>
+                        </div>
                       </div>
                     </div>
 
@@ -439,7 +469,7 @@ export default function Curhat() {
                               LJ
                             </div>
                             <span className="text-xs font-bold text-[#F2994A]">
-                              Relawan Lentera
+                              Relawan Youth Anti-Bullying Indonesia
                             </span>
                           </div>
                           <div className="bg-gradient-to-br from-[#2E5063] to-[#1D3442] text-white p-6 rounded-2xl rounded-tl-none shadow-lg max-w-[95%]">

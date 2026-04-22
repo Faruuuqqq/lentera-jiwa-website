@@ -405,7 +405,7 @@ export default function Journal({ setCurrentPage }: JournalProps) {
                 <div className="relative z-10">
                   <h3 className="font-serif text-3xl font-medium mb-6 flex items-center gap-3">
                     <Sparkles className="w-6 h-6 text-nara-orange" />
-                    Bincang Batin Lentera
+                    Bincang Batin YABI
                   </h3>
 
                   {insights ? (

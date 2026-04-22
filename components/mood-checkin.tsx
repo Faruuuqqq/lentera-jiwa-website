@@ -21,7 +21,7 @@ export default function MoodCheckIn() {
     "😌": "Bagus, pertahankan ketenangan ini. Kamu melakukan dengan baik ✨",
     "😕": "Merasa bingung? Teman kami siap mendengarkan dan membantu klarifikasi. Hubungi mereka kapan saja 💭",
     "😢": "Sedih memang bagian dari hidup. Yang penting kamu tidak sendirian. Mari cerita bersama kami 💙",
-    "😰": "Kecemasan adalah tanda bahwa kamu peduli. Tapi jangan biarkan sendirian. Hubungi Lentera Jiwa sekarang 🤝",
+    "😰": "Kecemasan adalah tanda bahwa kamu peduli. Tapi jangan biarkan sendirian. Hubungi Youth Anti-Bullying Indonesia sekarang 🤝",
     "😴": "Lelah? Istirahat adalah bagian dari perawatan diri. Cukupkan waktu tidurmu, dan hubungi kami kapan butuh 😴",
   }
 

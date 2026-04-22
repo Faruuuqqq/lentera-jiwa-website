@@ -4,19 +4,19 @@ import AnimatedSection from "@/components/ui/animated-section"
 
 const faqs = [
   {
-    question: "Apa itu Lentera Jiwa?",
+    question: "Apa itu Youth Anti-Bullying Indonesia?",
     answer:
-      "Lentera Jiwa adalah program pelatihan teman sebaya (peer support) yang fokus pada penguatan kemampuan mahasiswa dalam memberikan dukungan emosional dasar bagi sesama. Kami bukan pengganti psikolog, tapi hadir sebagai penutur awal, pendengar pertama, dan penjaga ruang aman.",
+      "Youth Anti-Bullying Indonesia adalah platform peer support yang fokus pada penguatan kemampuan remaja dalam memberikan dukungan emosional dasar bagi sesama. Kami bukan pengganti psikolog, tapi hadir sebagai penutur awal, pendengar pertama, dan penjaga ruang aman.",
   },
   {
-    question: "Apakah layanan Lentera Jiwa gratis?",
+    question: "Apakah layanan Youth Anti-Bullying Indonesia gratis?",
     answer:
-      "Ya, layanan Lentera Jiwa sepenuhnya gratis untuk semua mahasiswa Universitas Padjadjaran. Kami didukung oleh P2K2 Unpad.",
+      "Ya, layanan Youth Anti-Bullying Indonesia sepenuhnya gratis untuk semua remaja dan anak di Indonesia.",
   },
   {
     question: "Bagaimana cara menggunakan Kotak Cerita?",
     answer:
-      "Kamu bisa menulis pesan di fitur 'Kotak Cerita' dengan memilih topik dan menuliskan cerita atau keluhan kamu. Relawan Lentera Jiwa akan membaca dan memberikan respon dalam waktu 1-2 hari kerja.",
+      "Kamu bisa menulis pesan di fitur 'Kotak Cerita' dengan memilih topik dan menuliskan cerita atau keluhan kamu. Relawan Youth Anti-Bullying Indonesia akan membaca dan memberikan respon dalam waktu 1-2 hari kerja.",
   },
   {
     question: "Apakah data saya aman dan privat?",
@@ -26,12 +26,12 @@ const faqs = [
   {
     question: "Kapan saya bisa bertemu langsung dengan Relawan?",
     answer:
-      "Relawan Lentera Jiwa tersebar di berbagai fakultas. Kamu bisa mencari tahu kontak mereka melalui website atau bertanya langsung ke P2K2 Unpad.",
+      "Relawan Youth Anti-Bullying Indonesia tersebar di berbagai wilayah. Kamu bisa mencari tahu kontak mereka melalui website atau menghubungi kami langsung.",
   },
   {
-    question: "Bagaimana cara bergabung sebagai Relawan Lentera Jiwa?",
+    question: "Bagaimana cara bergabung sebagai Relawan Youth Anti-Bullying Indonesia?",
     answer:
-      "Pendaftaran relawan akan diinfokan di kalender P2K2 Unpad. Pastikan Anda memenuhi syarat yang mengutamakan tingkat empati emosional dan rekam jejak anti-perundungan.",
+      "Pendaftaran relawan akan diinfokan di website kami. Pastikan Anda memenuhi syarat yang mengutamakan tingkat empati emosional dan rekam jejak anti-perundungan.",
   },
 ]
 
@@ -63,9 +63,9 @@ export default function FAQ() {
                 <Mail className="w-6 h-6" />
               </div>
               <h3 className="font-medium text-lg text-nara-charcoal mb-2">Email Khusus</h3>
-              <p className="text-slate-500 text-sm mb-4">Untuk kemitraan & dukungan akademis.</p>
-              <a href="mailto:halo@lenterajiwa.com" className="font-bold text-nara-orange hover:text-orange-600 mt-auto">
-                halo@lenterajiwa.com
+              <p className="text-slate-500 text-sm mb-4">Untuk kemitraan & dukungan.</p>
+              <a href="mailto:halo@youthantibullying.id" className="font-bold text-nara-orange hover:text-orange-600 mt-auto">
+                halo@youthantibullying.id
               </a>
             </div>
 
@@ -75,10 +75,10 @@ export default function FAQ() {
               <div className="w-14 h-14 bg-white/10 rounded-lg flex items-center justify-center text-nara-orange mb-6 relative z-10">
                 <Phone className="w-6 h-6" />
               </div>
-              <h3 className="font-medium text-lg text-white mb-2 relative z-10">Hotline P2K2 Unpad</h3>
-              <p className="text-slate-300 text-sm mb-6 relative z-10">Layanan Darurat Konseling Profesional (Psikolog).</p>
-              <a href="#" className="h-[48px] px-6 bg-nara-orange text-white font-medium rounded-lg hover:bg-orange-500 flex items-center justify-center w-full transition-colors relative z-10">
-                Hubungi P2K2
+              <h3 className="font-medium text-lg text-white mb-2 relative z-10">Hotline Darurat</h3>
+              <p className="text-slate-300 text-sm mb-6 relative z-10">Layanan Darurat Konseling Profesional (KPAI).</p>
+              <a href="tel:02131901556" className="h-[48px] px-6 bg-nara-orange text-white font-medium rounded-lg hover:bg-orange-500 flex items-center justify-center w-full transition-colors relative z-10">
+                Hubungi KPAI
               </a>
             </div>
 
@@ -86,10 +86,10 @@ export default function FAQ() {
               <div className="w-14 h-14 bg-nara-blue-light rounded-lg flex items-center justify-center text-nara-charcoal mb-6">
                 <MapPin className="w-6 h-6" />
               </div>
-              <h3 className="font-medium text-lg text-nara-charcoal mb-2">Pusat Layanan</h3>
-              <p className="text-slate-500 text-sm mb-4">Gedung Pusat Kampus Universitas Padjadjaran.</p>
+              <h3 className="font-medium text-lg text-nara-charcoal mb-2">Layanan Online</h3>
+              <p className="text-slate-500 text-sm mb-4">Layanan tersedia secara digital 24/7.</p>
               <span className="font-bold text-nara-charcoal mt-auto">
-                Senin - Jumat (09:00 - 15:00)
+                Setiap Hari (24 Jam)
               </span>
             </div>
           </div>

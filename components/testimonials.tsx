@@ -6,25 +6,25 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 export default function Testimonials() {
   const testimonials = [
     {
-      name: "Rina, Mahasiswa Psikologi",
-      role: "Lentera Jiwa Peer Supporter",
+      name: "Rina, Siswa SMA",
+      role: "Relawan Youth Anti-Bullying",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
       quote:
-        "Melalui Lentera Jiwa, saya belajar bahwa mendengarkan adalah bentuk terbesar dari kepedulian. Setiap percakapan membuat saya tumbuh dan membuat teman saya merasa tidak sendiri.",
+        "Melalui Youth Anti-Bullying Indonesia, saya belajar bahwa mendengarkan adalah bentuk terbesar dari kepedulian. Setiap percakapan membuat saya tumbuh dan membuat teman saya merasa tidak sendiri.",
     },
     {
-      name: "Arjun, Mahasiswa Teknik",
-      role: "Mahasiswa yang Mendapat Dukungan",
+      name: "Arjun, Siswa SMP",
+      role: "Siswa yang Mendapat Dukungan",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
       quote:
-        "Saat stress dengan banyak tugas, saya mendapat support dari Lentera Jiwa. Mereka tidak menghakimi, hanya mendengarkan dengan tulus. Itu membuat perbedaan besar.",
+        "Saat stress dengan banyak tugas, saya mendapat support dari Youth Anti-Bullying Indonesia. Mereka tidak menghakimi, hanya mendengarkan dengan tulus. Itu membuat perbedaan besar.",
     },
     {
-      name: "Siti, Mahasiswa Hukum",
-      role: "Lentera Jiwa Peer Supporter",
+      name: "Siti, Siswa SMA",
+      role: "Relawan Youth Anti-Bullying",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
       quote:
-        "Jadi bagian dari Lentera Jiwa mengajarkan saya bahwa kesehatan mental bukan hal tabu. Bersama-sama kita ciptakan ruang aman untuk saling berbagi dan tumbuh.",
+        "Jadi bagian dari Youth Anti-Bullying Indonesia mengajarkan saya bahwa kesehatan mental bukan hal tabu. Bersama-sama kita ciptakan ruang aman untuk saling berbagi dan tumbuh.",
     },
   ]
 
@@ -34,7 +34,7 @@ export default function Testimonials() {
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-sage-900 sm:text-4xl">Kisah Nyata dari Komunitas Kami</h2>
           <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-            Dengarkan bagaimana Lentera Jiwa mengubah kehidupan mahasiswa melalui dukungan teman sebaya yang penuh empati.
+            Dengarkan bagaimana Youth Anti-Bullying Indonesia mengubah kehidupan remaja melalui dukungan teman sebaya yang penuh empati.
           </p>
         </div>
 

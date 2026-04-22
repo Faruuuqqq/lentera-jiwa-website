@@ -112,30 +112,60 @@ export default function EducationPage({ setCurrentPage }: EducationPageProps) {
           {/* 2. Jenis-Jenis Perundungan */}
           <div id="jenis" className="scroll-mt-28">
             <h2 className="text-2xl font-bold text-nara-charcoal mb-6">Jenis-Jenis Perundungan</h2>
+            <p className="text-slate-600 leading-[1.7] text-base mb-6">
+              Perundungan bisa terjadi dalam berbagai bentuk. Kenali setiap jenisnya agar kamu bisa melindungi diri sendiri dan orang di sekitarmu.
+            </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {/* Card 1 */}
-              <div className="bg-rose-50 p-6 rounded-xl">
-                <ShieldAlert className="w-8 h-8 text-rose-500 mb-4" />
-                <h3 className="font-bold text-base mb-2 text-nara-charcoal">Fisik</h3>
-                <p className="text-sm text-slate-600 leading-[1.6]">
-                  Menyakiti tubuh atau merusak barang. Termasuk memukul, menendang, mendorong, atau menyandung sengaja.
-                </p>
+              {/* Card 1 - Fisik */}
+              <div className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <img 
+                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" 
+                  alt="Perundungan Fisik" 
+                  className="w-full h-40 object-cover"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <ShieldAlert className="w-5 h-5 text-rose-500" />
+                    <h3 className="font-bold text-base text-nara-charcoal">Fisik</h3>
+                  </div>
+                  <p className="text-sm text-slate-600 leading-[1.6]">
+                    Menyakiti tubuh atau merusak barang. Termasuk memukul, menendang, mendorong, atau menyandung sengaja.
+                  </p>
+                </div>
               </div>
-              {/* Card 2 */}
-              <div className="bg-teal-50 p-6 rounded-xl">
-                <MessageSquareOff className="w-8 h-8 text-teal-600 mb-4" />
-                <h3 className="font-bold text-base mb-2 text-nara-charcoal">Verbal</h3>
-                <p className="text-sm text-slate-600 leading-[1.6]">
-                  Mengejek, memanggil dengan sebutan buruk, atau melontarkan komentar rasis dan seksis yang merendahkan.
-                </p>
+              {/* Card 2 - Verbal */}
+              <div className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <img 
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80" 
+                  alt="Perundungan Verbal" 
+                  className="w-full h-40 object-cover"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <MessageSquareOff className="w-5 h-5 text-teal-600" />
+                    <h3 className="font-bold text-base text-nara-charcoal">Verbal</h3>
+                  </div>
+                  <p className="text-sm text-slate-600 leading-[1.6]">
+                    Mengejek, memanggil dengan sebutan buruk, atau melontarkan komentar rasis dan seksis yang merendahkan.
+                  </p>
+                </div>
               </div>
-              {/* Card 3 */}
-              <div className="bg-purple-50 p-6 rounded-xl">
-                <UserMinus className="w-8 h-8 text-purple-600 mb-4" />
-                <h3 className="font-bold text-base mb-2 text-nara-charcoal">Relasional</h3>
-                <p className="text-sm text-slate-600 leading-[1.6]">
-                  Merusak reputasi atau hubungan sosial. Seperti menyebarkan rumor, mengucilkan, atau mempermalukan.
-                </p>
+              {/* Card 3 - Relasional */}
+              <div className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <img 
+                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=400&q=80" 
+                  alt="Perundungan Relasional" 
+                  className="w-full h-40 object-cover"
+                />
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <UserMinus className="w-5 h-5 text-purple-600" />
+                    <h3 className="font-bold text-base text-nara-charcoal">Relasional</h3>
+                  </div>
+                  <p className="text-sm text-slate-600 leading-[1.6]">
+                    Merusak reputasi atau hubungan sosial. Seperti menyebarkan rumor, mengucilkan, atau mempermalukan.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -203,9 +233,15 @@ export default function EducationPage({ setCurrentPage }: EducationPageProps) {
                   <p className="text-xs text-slate-500 italic">"Menyebarkan rumor memalukan via grup WA tertutup, membuat akun palsu untuk melecehkan identitas, doxxing (menyebar info privat)."</p>
                 </div>
               </div>
-              <div className="h-full min-h-[200px] bg-slate-200 rounded-xl relative overflow-hidden flex items-center justify-center">
-                {/* Abstract visual for cyberbullying */}
-                <div className="w-3/4 h-3/4 border-2 border-dashed border-slate-400 rounded-lg flex items-center justify-center text-slate-400 font-medium">Digital Footprint is Forever</div>
+              <div className="h-full min-h-[200px] rounded-xl relative overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" 
+                  alt="Cyberbullying" 
+                  className="w-full h-full object-cover rounded-xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl flex items-end p-4">
+                  <p className="text-white text-sm font-medium">Digital Footprint is Forever</p>
+                </div>
               </div>
             </div>
           </div>
@@ -232,7 +268,7 @@ export default function EducationPage({ setCurrentPage }: EducationPageProps) {
                 <div className="w-10 h-10 rounded-full bg-nara-orange text-white font-bold flex items-center justify-center shrink-0">3</div>
                 <div>
                   <h4 className="font-bold text-lg mb-1 text-nara-charcoal">Berbicara Pada Pihak Otoritas / Relawan</h4>
-                  <p className="text-sm text-slate-600 leading-[1.6]">Jangan menyimpannya sendiri. Beritahu Dosen Wali, Orang Tua, atau layanan Peer Support seperti Lentera Jiwa.</p>
+                  <p className="text-sm text-slate-600 leading-[1.6]">Jangan menyimpannya sendiri. Beritahu Dosen Wali, Orang Tua, atau layanan Peer Support seperti Youth Anti-Bullying Indonesia.</p>
                 </div>
               </div>
             </div>
@@ -246,13 +282,13 @@ export default function EducationPage({ setCurrentPage }: EducationPageProps) {
         <div className="bg-nara-paper rounded-2xl p-10 text-center border border-slate-200">
           <HeartHandshake className="w-12 h-12 text-nara-orange mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-nara-charcoal mb-4">Butuh Bantuan Sekarang?</h2>
-          <p className="text-slate-600 mb-8 max-w-lg mx-auto">Relawan Lentera Jiwa siap mendengarkan ceritamu dengan privasi yang terjamin 100%. Jangan ragu untuk mencari dukungan.</p>
+          <p className="text-slate-600 mb-8 max-w-lg mx-auto">Relawan Youth Anti-Bullying Indonesia siap mendengarkan ceritamu dengan privasi yang terjamin 100%. Jangan ragu untuk mencari dukungan.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button
               onClick={() => setCurrentPage("cerita")}
               className="h-[48px] px-8 bg-nara-orange text-white font-medium rounded-lg hover:bg-[#E08A44] transition-colors flex items-center justify-center gap-2"
             >
-              Cerita ke Lentera
+              Cerita ke Kami
             </button>
             <button
               onClick={() => setCurrentPage("faq")}

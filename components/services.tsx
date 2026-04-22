@@ -43,7 +43,7 @@ export default function Services() {
     <section className="px-4 py-20 sm:px-6 lg:px-8 bg-white">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-sage-900 sm:text-4xl">Layanan Lentera Jiwa</h2>
+          <h2 className="mb-4 text-3xl font-bold text-sage-900 sm:text-4xl">Layanan Youth Anti-Bullying Indonesia</h2>
           <p className="text-lg text-sage-600 max-w-2xl mx-auto">
             Kami menyediakan berbagai bentuk dukungan yang dirancang khusus untuk kesejahteraan mental mahasiswa.
           </p>
@@ -68,7 +68,7 @@ export default function Services() {
             <div>
               <h3 className="mb-3 text-xl font-bold text-blue-900">Bukan Pengganti Profesional</h3>
               <p className="text-blue-800 leading-relaxed">
-                Lentera Jiwa adalah jembatan pertama menuju dukungan profesional. Kami tidak menggantikan peran psikolog,
+                Youth Anti-Bullying Indonesia adalah jembatan pertama menuju dukungan profesional. Kami tidak menggantikan peran psikolog,
                 tetapi membantu menciptakan jaringan dukungan yang lebih kuat di komunitas mahasiswa. Untuk masalah
                 kesehatan mental yang kompleks, kami akan merujuk ke P2K2 atau psikolog profesional.
               </p>

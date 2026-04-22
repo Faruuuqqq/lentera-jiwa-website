@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 export default function GetHelp() {
   const contacts = [
     {
-      title: "Chat dengan Lentera Jiwa",
+      title: "Chat dengan Youth Anti-Bullying Indonesia",
       description: "Terhubung dengan peer supporter kami yang siap mendengarkan cerita Anda.",
       action: "Hubungi Kami",
       color: "from-sage-500 to-sage-600",
@@ -65,7 +65,7 @@ export default function GetHelp() {
             </div>
             <div>
               <p className="text-sm font-semibold text-sage-600 mb-2">EMAIL</p>
-              <p className="text-lg font-bold text-sage-900">Lentera.jiwa@unpad.ac.id</p>
+              <p className="text-lg font-bold text-sage-900">halo@youthantibullying.id</p>
               <p className="text-sm text-sage-600">Respons dalam 24 jam</p>
             </div>
             <div>

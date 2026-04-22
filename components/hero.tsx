@@ -12,7 +12,7 @@ export default function Hero() {
         </h1>
 
         <p className="mb-8 text-lg text-teal-700 leading-relaxed max-w-2xl mx-auto text-balance">
-          Cerita kamu penting. Beban yang kamu rasakan layak didengar. Lentera Jiwa adalah ruang aman di mana teman
+          Cerita kamu penting. Beban yang kamu rasakan layak didengar. Youth Anti-Bullying Indonesia adalah ruang aman di mana teman
           sebayamu siap mendengarkan dengan hati yang tulus.
         </p>
 

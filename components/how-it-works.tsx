@@ -15,9 +15,9 @@ export default function HowItWorks() {
     },
     {
       number: "02",
-      title: "Datang ke Lentera",
+      title: "Datang ke YABI",
       description:
-        "Hubungi kami via form 'Cerita ke Lentera' atau chat langsung dengan volunteer kami yang telah terlatih untuk kasus perundungan.",
+        "Hubungi kami via form 'Cerita ke Kami' atau chat langsung dengan volunteer kami yang telah terlatih untuk kasus perundungan.",
       icon: "💌",
       color: "from-nara-orange/30 to-nara-orange/5",
       textColor: "text-orange-900",

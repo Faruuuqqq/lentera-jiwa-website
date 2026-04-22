@@ -30,7 +30,7 @@ export default function Values() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-teal-900 mb-4 text-balance">Nilai Inti Lentera Jiwa</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-teal-900 mb-4 text-balance">Nilai Inti Youth Anti-Bullying Indonesia</h2>
           <p className="text-lg text-teal-700 max-w-2xl mx-auto text-balance">
             Fondasi program kami dibangun atas nilai-nilai yang menekankan kemanusiaan, kepercayaan, dan pertumbuhan
             bersama.

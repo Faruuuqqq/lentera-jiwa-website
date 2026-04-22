@@ -4,7 +4,7 @@ export default function CTA() {
       <div className="mx-auto max-w-3xl text-center text-white">
         <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Siap Memulai Perjalanan Anda?</h2>
         <p className="mb-8 text-lg text-sage-100 leading-relaxed">
-          Bergabunglah dengan komunitas Lentera Jiwa dan rasakan kekuatan dukungan teman sebaya. Setiap cerita berharga,
+          Bergabunglah dengan komunitas Youth Anti-Bullying Indonesia dan rasakan kekuatan dukungan teman sebaya. Setiap cerita berharga,
           setiap suara penting.
         </p>
 
@@ -13,7 +13,7 @@ export default function CTA() {
             Hubungi P2K2 Unpad
           </button>
           <button className="rounded-full border-2 border-white px-8 py-3 font-medium text-white hover:bg-white/10 transition-colors">
-            Cari Lentera Jiwa di Fakultasku
+            Cari Youth Anti-Bullying Indonesia di Fakultasku
           </button>
         </div>
       </div>

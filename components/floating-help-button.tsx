@@ -37,7 +37,7 @@ export default function FloatingHelpButton({ setCurrentPage }: FloatingHelpProps
               }}
               className="w-full py-4 px-4 bg-[#FFF8EC] text-[#F2994A] rounded-xl font-bold hover:bg-[#F2994A] hover:text-white transition-colors text-center shadow-sm"
             >
-              Kotak Cerita ke Lentera
+              Kotak Cerita ke Kami
             </button>
             <div className="py-2 text-center border-t border-slate-100 mt-2">
               <button 

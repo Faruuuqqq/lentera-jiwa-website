@@ -1,5 +1,5 @@
 import React from "react";
-import { Shield, Eye, Heart, ArrowRight } from "lucide-react";
+import { Shield, Eye, Heart, ArrowRight, Phone, Building2, Stethoscope, Users } from "lucide-react";
 import AnimatedSection from "@/components/ui/animated-section";
 
 interface ActionGuideProps {
@@ -48,7 +48,7 @@ export default function ActionGuidePage({ setCurrentPage }: ActionGuideProps) {
                 <li className="flex gap-4">
                   <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-nara-charcoal shrink-0 mt-0.5">2</div>
                   <p className="text-slate-600 leading-[1.7]">
-                    <strong>Bicara ke Orang Terpercaya.</strong> Jangan simpan sendiri. Beri tahu dosen, orang tua, teman tepercaya, atau Relawan Lentera.
+                    <strong>Bicara ke Orang Terpercaya.</strong> Jangan simpan sendiri. Beri tahu dosen, orang tua, teman tepercaya, atau Relawan Youth Anti-Bullying Indonesia.
                   </p>
                 </li>
                 <li className="flex gap-4">
@@ -94,7 +94,7 @@ export default function ActionGuidePage({ setCurrentPage }: ActionGuideProps) {
                 <li className="flex gap-4">
                   <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-nara-charcoal shrink-0 mt-0.5">3</div>
                   <p className="text-slate-600 leading-[1.7]">
-                    <strong>Laporkan Secara Aman.</strong> Jika kamu takut campur tangan langsung, laporkan ke otoritas kampus atau sampaikan secara anonim via Lentera.
+                    <strong>Laporkan Secara Aman.</strong> Jika kamu takut campur tangan langsung, laporkan ke otoritas kampus atau sampaikan secara anonim via Youth Anti-Bullying Indonesia.
                   </p>
                 </li>
               </ul>
@@ -141,6 +141,145 @@ export default function ActionGuidePage({ setCurrentPage }: ActionGuideProps) {
               >
                 Refleksi di Ruang Tenang <ArrowRight className="w-4 h-4" />
               </button>
+            </div>
+          </div>
+        </AnimatedSection>
+      </section>
+
+      {/* LEMBAGA & KONTAK PENTING */}
+      <section className="max-w-5xl mx-auto px-4 mt-16">
+        <AnimatedSection delay={0.4}>
+          <div className="bg-nara-charcoal rounded-2xl p-8 md:p-12 text-white">
+            <h2 className="font-serif text-3xl font-medium mb-2">Lembaga & Kontak Penting</h2>
+            <p className="text-slate-300 mb-8">Jika kamu membutuhkan bantuan profesional, hubungi lembaga-lembaga berikut:</p>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* KPAI */}
+              <div className="bg-white/10 backdrop-blur rounded-xl p-6 border border-white/20">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-nara-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Building2 className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-bold text-lg mb-1">KPAI</h3>
+                    <p className="text-sm text-slate-300 mb-3">Komisi Perlindungan Anak Indonesia</p>
+                    <div className="space-y-1 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Phone className="w-4 h-4 text-nara-orange" />
+                        <span>(021) 31901556</span>
+                      </div>
+                      <p className="text-slate-400">pengaduan@kpai.go.id</p>
+                    </div>
+                    <a 
+                      href="https://www.kpai.go.id" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 text-nara-orange text-sm mt-3 hover:underline"
+                    >
+                      www.kpai.go.id <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* KemenPPPA */}
+              <div className="bg-white/10 backdrop-blur rounded-xl p-6 border border-white/20">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-nara-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-bold text-lg mb-1">KemenPPPA</h3>
+                    <p className="text-sm text-slate-300 mb-3">Kementerian Pemberdayaan Perempuan dan Perlindungan Anak</p>
+                    <div className="space-y-1 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Phone className="w-4 h-4 text-nara-orange" />
+                        <span>SAPA 129: 08111-129-129</span>
+                      </div>
+                      <p className="text-slate-400">humas@kemenpppa.go.id</p>
+                    </div>
+                    <a 
+                      href="https://kemenpppa.go.id" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 text-nara-orange text-sm mt-3 hover:underline"
+                    >
+                      kemenpppa.go.id <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Save the Children */}
+              <div className="bg-white/10 backdrop-blur rounded-xl p-6 border border-white/20">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-nara-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-bold text-lg mb-1">Save the Children Indonesia</h3>
+                    <p className="text-sm text-slate-300 mb-3">NGO perlindungan anak & anti-bullying</p>
+                    <div className="space-y-1 text-sm">
+                      <p className="text-slate-400">Komunitas Pahlawan Anak: 20,000+ anggota</p>
+                    </div>
+                    <a 
+                      href="https://www.savethechildren.or.id" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 text-nara-orange text-sm mt-3 hover:underline"
+                    >
+                      savethechildren.or.id <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Halodoc */}
+              <div className="bg-white/10 backdrop-blur rounded-xl p-6 border border-white/20">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-nara-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Stethoscope className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-bold text-lg mb-1">Halodoc</h3>
+                    <p className="text-sm text-slate-300 mb-3">Konsultasi kesehatan mental online</p>
+                    <div className="space-y-1 text-sm">
+                      <p className="text-slate-400">Akses psikolog & psikiater 24/7</p>
+                      <p className="text-slate-400">Tersedia via aplikasi mobile</p>
+                    </div>
+                    <a 
+                      href="https://www.halodoc.com" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 text-nara-orange text-sm mt-3 hover:underline"
+                    >
+                      halodoc.com <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Emergency Contacts */}
+            <div className="mt-8 p-6 bg-red-500/20 border border-red-500/30 rounded-xl">
+              <h4 className="font-bold text-red-300 mb-2 flex items-center gap-2">
+                <Phone className="w-5 h-5" />
+                Kontak Darurat
+              </h4>
+              <div className="grid sm:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <p className="text-red-200 font-semibold">Polisi</p>
+                  <p className="text-white text-lg font-bold">110</p>
+                </div>
+                <div>
+                  <p className="text-red-200 font-semibold">KPAI</p>
+                  <p className="text-white text-lg font-bold">(021) 31901556</p>
+                </div>
+                <div>
+                  <p className="text-red-200 font-semibold">SAPA 129 (KemenPPPA)</p>
+                  <p className="text-white text-lg font-bold">08111-129-129</p>
+                </div>
+              </div>
             </div>
           </div>
         </AnimatedSection>
