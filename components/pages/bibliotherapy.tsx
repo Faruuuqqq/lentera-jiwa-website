@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BookOpen, Search, Info, Quote, Filter, X, ArrowUpRight, Users, Baby, GraduationCap, Heart } from "lucide-react";
 import AnimatedSection from "@/components/ui/animated-section";
-import Image from "next/image";
 
 const quotes = [
   { text: "The only journey is the one within.", author: "Rainer Maria Rilke" },
@@ -221,6 +220,8 @@ const bookCategories = [
 export default function BibliotherapyPage() {
   const [randomQuote, setRandomQuote] = useState(quotes[0]);
   const [ageFilter, setAgeFilter] = useState<string>("Semua Usia");
+  const [selectedBook, setSelectedBook] = useState<BookData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const ageCategories = ["Semua Usia", "SD", "SMP", "SMA", "Orang Tua"];
 
   useEffect(() => {
@@ -229,6 +230,16 @@ export default function BibliotherapyPage() {
 
   const handleSearchBook = (title: string, author: string) => {
     window.open(`https://www.google.com/search?q=${encodeURIComponent(`Buku ${title} karya ${author}`)}`, "_blank");
+  };
+
+  const openBookModal = (book: BookData) => {
+    setSelectedBook(book);
+    setIsModalOpen(true);
+  };
+
+  const closeBookModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedBook(null), 300);
   };
 
   return (
@@ -330,11 +341,15 @@ export default function BibliotherapyPage() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredBooks.map((book, idx) => (
                   <AnimatedSection key={idx} delay={idx * 0.1}>
-                    <div className="bg-white rounded-[2rem] p-6 shadow-sm hover:shadow-soft-lg transition-all duration-500 border border-slate-100 group flex flex-col h-full cursor-pointer" onClick={() => handleSearchBook(book.title, book.author)}>
+                    <div className="bg-white rounded-[2rem] p-6 shadow-sm hover:shadow-soft-lg transition-all duration-500 border border-slate-100 group flex flex-col h-full cursor-pointer" onClick={() => openBookModal(book)}>
 
-                      {/* Image Thumbnail Placeholder / Mockup */}
-                      <div className="w-full aspect-[3/4] bg-nara-blue-light rounded-xl mb-6 relative overflow-hidden flex items-center justify-center">
-                        <BookOpen className="w-16 h-16 text-nara-charcoal/10" />
+                      {/* Book Cover Image */}
+                      <div className="w-full aspect-[3/4] rounded-xl mb-6 relative overflow-hidden">
+                        <img 
+                          src={book.cover} 
+                          alt={`Cover ${book.title}`}
+                          className="w-full h-full object-cover"
+                        />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-lg shadow-sm text-xs font-bold text-nara-orange z-10">
                           {book.ageGroup}
@@ -390,6 +405,94 @@ export default function BibliotherapyPage() {
           </div>
         </AnimatedSection>
       </section>
+
+      {/* BOOK DETAIL MODAL */}
+      {isModalOpen && selectedBook && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          onClick={closeBookModal}
+        >
+          <div 
+            className="bg-white rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in fade-in zoom-in duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="relative">
+              <button 
+                onClick={closeBookModal}
+                className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-600 hover:text-nara-orange hover:bg-white transition-all z-10 shadow-sm"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              {/* Cover Image */}
+              <div className="aspect-[16/9] relative overflow-hidden rounded-t-[2rem]">
+                <img 
+                  src={selectedBook.cover} 
+                  alt={`Cover ${selectedBook.title}`}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-4 left-6 text-white">
+                  <span className="inline-block px-3 py-1 bg-nara-orange text-xs font-bold rounded-full mb-2">
+                    {selectedBook.ageGroup}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-8">
+              {/* Title & Author */}
+              <h2 className="font-serif text-3xl font-bold text-nara-charcoal mb-2">
+                {selectedBook.title}
+              </h2>
+              <p className="text-lg text-nara-yellow font-semibold mb-4">
+                oleh {selectedBook.author}
+              </p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {selectedBook.tags.map((tag, i) => (
+                  <span 
+                    key={i} 
+                    className="px-3 py-1 bg-nara-blue-light text-nara-charcoal text-xs font-bold uppercase tracking-wider rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Summary */}
+              <div className="mb-8">
+                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">
+                  Sinopsis
+                </h3>
+                <p className="text-slate-600 leading-relaxed text-base">
+                  {selectedBook.summary}
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => handleSearchBook(selectedBook.title, selectedBook.author)}
+                  className="flex-1 py-3 px-6 bg-nara-orange text-white font-bold rounded-xl hover:bg-[#D47125] transition-all flex items-center justify-center gap-2"
+                >
+                  <Search className="w-4 h-4" />
+                  Cari di Google
+                </button>
+                <button
+                  onClick={closeBookModal}
+                  className="flex-1 py-3 px-6 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-all"
+                >
+                  Tutup
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

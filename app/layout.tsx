@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: "Youth Anti-Bullying Indonesia - Ruang Aman Anti-Perundungan",
   description:
     "Menerangi Pikiran, Menguatkan Perasaan melalui Bacaan. Ruang aman untuk edukasi, pencegahan, dan penanganan perundungan (anti-bullying) dari Youth Anti-Bullying Indonesia.",
+  icons: {
+    icon: "/icon-circle-center.png",
+    shortcut: "/icon-circle-center.png",
+    apple: "/icon-circle-center.png",
+  },
   generator: 'v0.app'
 }
 

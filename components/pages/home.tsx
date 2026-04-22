@@ -11,7 +11,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
     <div className="bg-white text-nara-charcoal w-full pb-20">
 
       {/* --- HERO SECTION (Aesthetic Edition) --- */}
-      <section className="relative py-24 lg:py-32 overflow-hidden min-h-[95vh] flex items-center bg-gradient-to-br from-nara-paper via-white to-orange-50">
+      <section className="relative pt-16 pb-32 lg:pt-20 lg:pb-40 overflow-hidden min-h-[95vh] flex items-center bg-gradient-to-br from-nara-paper via-white to-orange-50">
         {/* Organic Paper Texture Base (via Body) + Mesh Blobs */}
         <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-nara-blue-light/50 rounded-full blur-[120px] pointer-events-none mesh-blob-1 hidden md:block"></div>
         <div className="absolute bottom-10 left-10 w-72 h-72 bg-nara-orange/10 rounded-full blur-[100px] pointer-events-none mesh-blob-2 hidden md:block" style={{ right: '10%', top: '40%' }}></div>
