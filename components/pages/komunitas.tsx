@@ -1,100 +1,60 @@
 import React, { useState } from "react";
-import { Users, Heart, BookOpen, Mail, Link as LinkIcon, Instagram, MessageCircle } from "lucide-react";
+import { Users, Heart, BookOpen, Mail, Link as LinkIcon, MapPin, MessageCircle } from "lucide-react";
 import AnimatedSection from "@/components/ui/animated-section";
 
 const filterCategories = ["Semua", "Komunitas Anak", "Komunitas Baca"];
 
-// Data placeholder - nanti akan diisi dengan data dari tim
+// Data komunitas mitra Lentera Jiwa
 const communitiesData = [
-  // Komunitas Anak
+  // Komunitas Anak 👧📚
   {
     id: "anak_1",
-    name: "Youth Support Group",
+    name: "TK Darul Hikam",
     category: "Komunitas Anak",
-    type: "Support Group",
-    description: "Komunitas dukungan untuk remaja yang mengalami atau menyaksikan perundungan. Ruang aman berbagi cerita dan pengalaman.",
-    members: "150+ anggota",
-    activities: "Weekly sharing session, mentoring",
-    contact: "@youthsupport_id",
-    status: "placeholder",
+    type: "Pendidikan Islam Usia Dini",
+    since: "2000",
+    description: "Taman Kanak-kanak dengan pendekatan pendidikan Islam usia dini. Mendekatkan anak dengan nilai-nilai keislaman sejak dini melalui metode pembelajaran yang menyenangkan.",
+    focus: "Pendidikan anak usia dini dengan dasar Islam",
+    activities: "Pembelajaran agama, keterampilan sosial, pembiasaan ibadah",
+    contact: "TK Darul Hikam",
+    status: "active",
   },
   {
     id: "anak_2",
-    name: "Circle of Friends",
+    name: "TBM Riang Cendikia",
     category: "Komunitas Anak",
-    type: "Peer Support",
-    description: "Komunitas pertemanan positif yang fokus pada empati, keberanian, dan saling mendukung antar remaja.",
-    members: "200+ anggota",
-    activities: "Team building, workshop anti-bullying",
-    contact: "@circleoffriends_id",
-    status: "placeholder",
+    type: "Sudut Baca Madrasah",
+    since: "2024",
+    description: "Taman Bacaan yang fokus pada pengembangan sudut baca di lingkungan madrasah. Menciptakan ruang membaca yang nyaman untuk menumbuhkan minat literasi anak-anak.",
+    focus: "Pengembangan sudut baca madrasah dan minat literasi anak",
+    activities: "Pembacaan bersama, storytelling, lomba membaca",
+    contact: "TBM Riang Cendikia",
+    status: "active",
   },
-  {
-    id: "anak_3",
-    name: "Youth Voice Indonesia",
-    category: "Komunitas Anak",
-    type: "Advocacy",
-    description: "Platform remaja untuk bersuara melawan perundungan dan menjadi agen perubahan di lingkungan masing-masing.",
-    members: "300+ anggota",
-    activities: "Campaign, public speaking training",
-    contact: "@youthvoice_id",
-    status: "placeholder",
-  },
-  {
-    id: "anak_4",
-    name: "Warrior Teens",
-    category: "Komunitas Anak",
-    type: "Empowerment",
-    description: "Komunitas empowerment remaja untuk membangun ketahanan mental dan percaya diri menghadapi bullying.",
-    members: "180+ anggota",
-    activities: "Self-defense workshop, confidence building",
-    contact: "@warriorteens_id",
-    status: "placeholder",
-  },
-  // Komunitas Baca
+  // Komunitas Baca 📖✨
   {
     id: "baca_1",
-    name: "Book Club Anti-Bullying",
+    name: "TBM Panti Baca Ceria",
     category: "Komunitas Baca",
-    type: "Reading Club",
-    description: "Klub baca yang fokus pada literatur tentang anti-bullying, kesehatan mental, dan pengembangan diri remaja.",
-    members: "100+ anggota",
-    activities: "Monthly book discussion, book review",
-    contact: "@bookclubantibullying",
-    status: "placeholder",
+    type: "Literasi Masyarakat",
+    since: "2016",
+    description: "Taman Bacaan yang lahir dari keprihatinan akan minimnya literasi di masyarakat. Berkomitmen meningkatkan minat membaca melalui akses buku yang terbuka untuk semua kalangan.",
+    focus: "Peningkatan literasi masyarakat umum",
+    activities: "Peminjaman buku gratis, diskusi literasi, workshop menulis",
+    contact: "TBM Panti Baca Ceria",
+    status: "active",
   },
   {
     id: "baca_2",
-    name: "Reading Circle SD",
+    name: "Perpus Jalanan Pendopo",
     category: "Komunitas Baca",
-    type: "Children Reading",
-    description: "Komunitas membaca untuk anak SD dengan fokus buku-buku tentang persahabatan, keberanian, dan anti-bullying.",
-    members: "80+ anggota",
-    activities: "Storytelling session, reading challenge",
-    contact: "@readingcirclesd",
-    status: "placeholder",
-  },
-  {
-    id: "baca_3",
-    name: "Literasi Mental Health",
-    category: "Komunitas Baca",
-    type: "Mental Health Literacy",
-    description: "Komunitas yang membahas buku-buku tentang kesehatan mental, emosi, dan cara menghadapi stres sosial.",
-    members: "120+ anggota",
-    activities: "Book therapy session, mental health talk",
-    contact: "@literasimentalhealth",
-    status: "placeholder",
-  },
-  {
-    id: "baca_4",
-    name: "Baca Bersama YABI",
-    category: "Komunitas Baca",
-    type: "Community Reading",
-    description: "Program membaca bersama dari Youth Anti-Bullying Indonesia untuk mempromosikan literasi dan empati.",
-    members: "250+ anggota",
-    activities: "Weekly reading, discussion forum",
-    contact: "@bacabersamayabi",
-    status: "placeholder",
+    type: "Akses Buku Terbatas",
+    since: "2025",
+    description: "Perpustakaan jalanan yang hadir untuk mengatasi keterbatasan akses buku di masyarakat. Membawa literasi ke ruang-ruang publik agar semua orang bisa menikmati buku.",
+    focus: "Meningkatkan akses buku bagi masyarakat dengan keterbatasan",
+    activities: "Perpustakaan keliling, baca bareng di ruang publik, donasi buku",
+    contact: "Perpus Jalanan Pendopo",
+    status: "active",
   },
 ];
 
@@ -118,11 +78,11 @@ export default function Komunitas() {
             <Heart className="w-4 h-4 text-nara-orange" />
             Komunitas Kami
           </div>
-          <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-medium mb-6 text-nara-charcoal leading-tight">
-            Komunitas <span className="text-nara-orange">Bersama YABI</span>
+            <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-medium mb-6 text-nara-charcoal leading-tight">
+            Komunitas <span className="text-nara-orange">Bersama Lentera Jiwa</span>
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Bergabunglah dengan komunitas yang mendukung pertumbuhan positif dan saling menguatkan dalam perjalanan melawan perundungan.
+            Bergabunglah dengan komunitas yang mendukung pertumbuhan positif dan saling menguatkan dalam perjalanan literasi dan pendidikan.
           </p>
         </AnimatedSection>
       </section>
@@ -150,7 +110,7 @@ export default function Komunitas() {
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-center gap-3">
             <MessageCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
             <p className="text-sm text-blue-800">
-              <strong>Info:</strong> Data komunitas ini merupakan placeholder. Informasi lengkap akan diupdate oleh tim Youth Anti-Bullying Indonesia.
+              <strong>Info:</strong> Data komunitas mitra Lentera Jiwa. Hubungi komunitas langsung untuk informasi lebih lanjut.
             </p>
           </div>
         </AnimatedSection>
@@ -199,7 +159,7 @@ export default function Komunitas() {
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center gap-2 text-xs text-slate-500">
                         <Users className="w-3.5 h-3.5" />
-                        <span>{com.members}</span>
+                        <span>Berdiri sejak {com.since}</span>
                       </div>
                       <div className="flex items-center gap-2 text-xs text-slate-500">
                         <Heart className="w-3.5 h-3.5" />
@@ -208,11 +168,11 @@ export default function Komunitas() {
                     </div>
                   </div>
 
-                  {/* Contact Info */}
+                  {/* Focus Area */}
                   <div className="pt-4 border-t border-slate-100">
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Instagram className="w-4 h-4 text-slate-400" />
-                      <span className="font-medium">{com.contact}</span>
+                    <div className="flex items-start gap-2 text-sm text-slate-600">
+                      <span className="text-xs font-semibold text-nara-orange bg-nara-orange/10 px-2 py-1 rounded">Fokus:</span>
+                      <span className="text-xs text-slate-500 leading-relaxed">{com.focus}</span>
                     </div>
                   </div>
                   
@@ -236,7 +196,7 @@ export default function Komunitas() {
              
              <Mail className="w-12 h-12 text-nara-orange mx-auto mb-6" />
              <h3 className="font-sans text-2xl md:text-3xl font-medium mb-4 text-nara-charcoal">Komunitas Anda ingin bergabung?</h3>
-             <p className="text-slate-600 mb-8 max-w-lg mx-auto leading-[1.6]">Kami mengundung komunitas-komunitas positif di seluruh Indonesia untuk masuk ke dalam direktori Youth Anti-Bullying Indonesia. Mari saling menguatkan.</p>
+              <p className="text-slate-600 mb-8 max-w-lg mx-auto leading-[1.6]">Kami mengundang komunitas-komunitas positif di seluruh Indonesia untuk masuk ke dalam direktori Lentera Jiwa. Mari saling menguatkan dalam literasi dan pendidikan.</p>
              
              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
                <button className="px-8 h-[48px] flex items-center justify-center bg-nara-charcoal text-white font-medium rounded-lg hover:bg-[#2c3e50] transition-colors duration-300 w-full sm:w-auto">
