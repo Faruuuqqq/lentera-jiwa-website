@@ -4,19 +4,19 @@ import AnimatedSection from "@/components/ui/animated-section"
 
 const faqs = [
   {
-    question: "Apa itu Youth Anti-Bullying Indonesia?",
+    question: "Apa itu Lentera Jiwa?",
     answer:
-      "Youth Anti-Bullying Indonesia adalah platform peer support yang fokus pada penguatan kemampuan remaja dalam memberikan dukungan emosional dasar bagi sesama. Kami bukan pengganti psikolog, tapi hadir sebagai penutur awal, pendengar pertama, dan penjaga ruang aman.",
+      "Lentera Jiwa adalah platform peer support yang fokus pada penguatan kemampuan remaja dalam memberikan dukungan emosional dasar bagi sesama. Kami bukan pengganti psikolog, tapi hadir sebagai penutur awal, pendengar pertama, dan penjaga ruang aman.",
   },
   {
-    question: "Apakah layanan Youth Anti-Bullying Indonesia gratis?",
+    question: "Apakah layanan Lentera Jiwa gratis?",
     answer:
-      "Ya, layanan Youth Anti-Bullying Indonesia sepenuhnya gratis untuk semua remaja dan anak di Indonesia.",
+      "Ya, layanan Lentera Jiwa sepenuhnya gratis untuk semua remaja dan anak di Indonesia.",
   },
   {
     question: "Bagaimana cara menggunakan Kotak Cerita?",
     answer:
-      "Kamu bisa menulis pesan di fitur 'Kotak Cerita' dengan memilih topik dan menuliskan cerita atau keluhan kamu. Relawan Youth Anti-Bullying Indonesia akan membaca dan memberikan respon dalam waktu 1-2 hari kerja.",
+      "Kamu bisa menulis pesan di fitur 'Kotak Cerita' dengan memilih topik dan menuliskan cerita atau keluhan kamu. Relawan Lentera Jiwa akan membaca dan memberikan respon dalam waktu 1-2 hari kerja.",
   },
   {
     question: "Apakah data saya aman dan privat?",
@@ -26,10 +26,10 @@ const faqs = [
   {
     question: "Kapan saya bisa bertemu langsung dengan Relawan?",
     answer:
-      "Relawan Youth Anti-Bullying Indonesia tersebar di berbagai wilayah. Kamu bisa mencari tahu kontak mereka melalui website atau menghubungi kami langsung.",
+      "Relawan Lentera Jiwa tersebar di berbagai wilayah. Kamu bisa mencari tahu kontak mereka melalui website atau menghubungi kami langsung.",
   },
   {
-    question: "Bagaimana cara bergabung sebagai Relawan Youth Anti-Bullying Indonesia?",
+    question: "Bagaimana cara bergabung sebagai Relawan Lentera Jiwa?",
     answer:
       "Pendaftaran relawan akan diinfokan di website kami. Pastikan Anda memenuhi syarat yang mengutamakan tingkat empati emosional dan rekam jejak anti-perundungan.",
   },
@@ -64,8 +64,8 @@ export default function FAQ() {
               </div>
               <h3 className="font-medium text-lg text-nara-charcoal mb-2">Email Khusus</h3>
               <p className="text-slate-500 text-sm mb-4">Untuk kemitraan & dukungan.</p>
-              <a href="mailto:halo@youthantibullying.id" className="font-bold text-nara-orange hover:text-orange-600 mt-auto">
-                halo@youthantibullying.id
+              <a href="mailto:halo@lenterajiwa.id" className="font-bold text-nara-orange hover:text-orange-600 mt-auto">
+                halo@lenterajiwa.id
               </a>
             </div>
 

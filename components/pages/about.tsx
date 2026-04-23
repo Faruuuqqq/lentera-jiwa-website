@@ -20,7 +20,7 @@ export default function About() {
         <AnimatedSection>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-slate-200 shadow-sm text-nara-charcoal text-sm font-medium mb-8">
             <Sparkles className="w-4 h-4 text-nara-orange" />
-            Tentang Youth Anti-Bullying Indonesia
+            Tentang Lentera Jiwa
           </div>
           
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium mb-8 tracking-tight max-w-4xl mx-auto leading-[1.1]">
@@ -29,7 +29,7 @@ export default function About() {
           </h1>
           
           <p className="font-sans text-lg md:text-xl text-nara-muted leading-[1.7] max-w-2xl mx-auto">
-            Youth Anti-Bullying Indonesia bukan sekadar platform digital. Kami adalah gerakan perlawanan terhadap perundungan, di mana suara korban tidak lagi dibungkam, melainkan didengar, dirangkul, dan divalidasi.
+            Lentera Jiwa bukan sekadar platform digital. Kami adalah gerakan perlawanan terhadap perundungan, di mana suara korban tidak lagi dibungkam, melainkan didengar, dirangkul, dan divalidasi.
           </p>
         </AnimatedSection>
       </section>
@@ -151,7 +151,7 @@ export default function About() {
                   <div>
                     <h3 className="text-xl font-medium mb-2">Ahli & Psikolog</h3>
                     <p className="text-slate-300 leading-relaxed">
-                      Youth Anti-Bullying Indonesia beroperasi di bawah payung pengawasan profesional. Setiap krisis perundungan yang membutuhkan eskalasi akan ditangani secara profesional oleh lembaga yang berwenang.
+                      Lentera Jiwa beroperasi di bawah payung pengawasan profesional. Setiap krisis perundungan yang membutuhkan eskalasi akan ditangani secara profesional oleh lembaga yang berwenang.
                     </p>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function About() {
                 </blockquote>
                 <div className="mt-8 flex items-center gap-4">
                   <div className="h-px bg-nara-orange w-12"></div>
-                  <span className="text-sm tracking-widest uppercase font-medium text-slate-400">Prinsip Youth Anti-Bullying Indonesia</span>
+                  <span className="text-sm tracking-widest uppercase font-medium text-slate-400">Prinsip Lentera Jiwa</span>
                 </div>
               </div>
             </div>

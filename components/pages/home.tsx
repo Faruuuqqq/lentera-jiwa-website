@@ -37,7 +37,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
 
               <div className="animate-fade-up stagger-3">
                 <p className="font-sans text-lg md:text-xl text-slate-600 mb-10 max-w-xl leading-[1.7]">
-                  Youth Anti-Bullying Indonesia adalah ruang aman untuk berbagi cerita, memahami perundungan, dan menemukan dukungan bersama.
+                  Lentera Jiwa Indonesia adalah ruang aman untuk berbagi cerita, memahami perundungan, dan menemukan dukungan bersama.
                   Menerangi Pikiran, Menguatkan Perasaan melalui Bacaan.
                 </p>
               </div>
@@ -63,7 +63,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
             <div className="lg:col-span-5 relative hidden lg:block animate-fade-up stagger-5">
               <div className="relative w-full aspect-square max-w-[400px] mx-auto">
                 <div className="absolute inset-0 bg-nara-orange/20 rounded-full blur-3xl animate-pulse"></div>
-                
+
                 <div className="absolute top-10 -left-12 bg-white/90 backdrop-blur-md border border-slate-100 p-4 rounded-2xl shadow-soft-lg transform -rotate-6 z-20 hover:rotate-0 transition-transform cursor-default">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-nara-orange">
@@ -77,13 +77,13 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                 </div>
 
                 <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden z-10 border border-slate-800 shadow-2xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
                     alt="Teman saling mendukung"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-nara-charcoal/80 via-nara-charcoal/20 to-transparent"></div>
-                  
+
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                     <p className="font-serif text-lg italic mb-2">"Kamu tidak sendiri"</p>
                     <p className="text-sm text-white/80">Bersama kita lebih kuat</p>
@@ -202,13 +202,13 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
             <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-[1.7]">
               Perundungan tidak selalu terlihat jelas. Terkadang berupa ejekan, pengucilan, atau serangan di dunia maya. Memahaminya adalah langkah pertama untuk menghentikannya.
             </p>
-            
+
             {/* Ilustrasi Bentuk Perundungan */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12 max-w-6xl mx-auto">
               <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
-                <img 
-                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" 
-                  alt="Perundungan Fisik" 
+                <img
+                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80"
+                  alt="Perundungan Fisik"
                   className="w-full h-32 object-cover"
                 />
                 <div className="p-3">
@@ -217,9 +217,9 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                 </div>
               </div>
               <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
-                <img 
-                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80" 
-                  alt="Perundungan Verbal" 
+                <img
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80"
+                  alt="Perundungan Verbal"
                   className="w-full h-32 object-cover"
                 />
                 <div className="p-3">
@@ -228,9 +228,9 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                 </div>
               </div>
               <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
-                <img 
-                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=400&q=80" 
-                  alt="Perundungan Relasional" 
+                <img
+                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=400&q=80"
+                  alt="Perundungan Relasional"
                   className="w-full h-32 object-cover"
                 />
                 <div className="p-3">
@@ -239,9 +239,9 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                 </div>
               </div>
               <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
-                <img 
-                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80" 
-                  alt="Cyberbullying" 
+                <img
+                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80"
+                  alt="Cyberbullying"
                   className="w-full h-32 object-cover"
                 />
                 <div className="p-3">
@@ -250,9 +250,9 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                 </div>
               </div>
               <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
-                <img 
-                  src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=400&q=80" 
-                  alt="Perusakan Barang" 
+                <img
+                  src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=400&q=80"
+                  alt="Perusakan Barang"
                   className="w-full h-32 object-cover"
                 />
                 <div className="p-3">
