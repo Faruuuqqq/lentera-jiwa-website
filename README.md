@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🧠 Nara Jiwa: Narasi Teman Sebaya
+# 🕯️ Lentera Jiwa: Narasi Teman Sebaya
 
-### "Dari Asa Menjadi Makna."
+### "Menerangi Pikiran, Menguatkan Perasaan melalui Bacaan."
 
 <p>
   <img src="https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js" alt="Next.js" />
@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/Status-Active-success?style=flat-square" alt="Status" />
 </p>
 
-<p>Platform dukungan kesehatan mental berbasis komunitas teman sebaya (peer support) yang terintegrasi dengan teknologi web, dirancang khusus untuk mahasiswa Universitas Padjadjaran.</p>
+<p>Platform dukungan kesehatan mental berbasis komunitas teman sebaya (peer support) yang terintegrasi dengan teknologi web dan biblioterapi, dirancang khusus untuk remaja dan mahasiswa Indonesia.</p>
 
 </div>
 
@@ -31,13 +31,13 @@
 
 ## 📖 Tentang Proyek
 
-**Nara Jiwa** adalah aplikasi web progresif (PWA) yang berfungsi sebagai **"Ruang Antara"**—sebuah jembatan bagi mahasiswa yang membutuhkan dukungan emosional namun belum siap atau ragu untuk mengakses bantuan profesional klinis secara langsung.
+**Lentera Jiwa** adalah aplikasi web yang berfungsi sebagai **"Ruang Aman"**—sebuah jembatan bagi remaja dan mahasiswa yang membutuhkan dukungan emosional namun belum siap atau ragu untuk mengakses bantuan profesional klinis secara langsung.
 
 Proyek ini bekerja di bawah supervisi **P2K2 Unpad** (Pusat Pengembangan Karakter dan Kesejahteraan Mahasiswa), mengedepankan prinsip kerahasiaan, inklusivitas, dan kemudahan akses.
 
 ## 🚩 Latar Belakang Masalah
 
-Nara Jiwa hadir sebagai *First Aid* (Pertolongan Pertama) psikologis digital untuk mengatasi masalah berikut:
+Lentera Jiwa hadir sebagai *First Aid* (Pertolongan Pertama) psikologis digital untuk mengatasi masalah berikut:
 
 * **Stigma:** Banyak mahasiswa takut dinilai lemah jika pergi ke psikolog.
 * **Keterbatasan Akses:** Antrean layanan profesional seringkali panjang.
@@ -48,7 +48,7 @@ Nara Jiwa hadir sebagai *First Aid* (Pertolongan Pertama) psikologis digital unt
 
 ### 1. 💌 Kotak Cerita (*Anonymous Ticketing System*)
 Layanan curhat teks 100% anonim.
-* **Mekanisme:** Pengguna mengirim cerita &rarr; Mendapatkan Kode Tiket Unik (misal: `#NJ-8821`) &rarr; Cek balasan menggunakan kode tersebut.
+* **Mekanisme:** Pengguna mengirim cerita &rarr; Mendapatkan Kode Tiket Unik &rarr; Cek balasan menggunakan kode tersebut.
 * **Keamanan:** Tanpa login email kampus, menjaga privasi mutlak pengguna.
 * **Tujuan:** Mendapatkan respon/saran dari Relawan Teman Sebaya.
 
@@ -81,19 +81,19 @@ Proyek ini dibangun menggunakan *Modern Web Stack* yang ringan dan cepat:
 | **Storage** | LocalStorage | Browser API untuk penyimpanan data *Jurnal Rasa* (Privat). |
 
 ### 🎨 Identitas Visual (Skema Warna)
-* 🔵 **Primary (Nara Teal):** `#2E5063` — Ketenangan, Profesionalisme.
-* 🟡 **Accent (Nara Gold):** `#C7913B` — Harapan, Kehangatan.
-* ⚪ **Background:** `#E6EFF2` — Kenyamanan Visual.
+* 🟠 **Primary (Lentera Orange):** `#C7913B` — Harapan, Kehangatan, Cahaya.
+* 🔵 **Secondary (Lentera Charcoal):** `#2c3e50` — Ketenangan, Profesionalisme.
+* ⚪ **Background:** `#FFFDF9` — Kertas, Kenyamanan Visual.
 
 ## 🚀 Instalasi & Menjalankan
 
 Pastikan Anda telah menginstal **Node.js** (versi 18.x atau lebih tinggi).
 
 1.  **Clone Repository**
-    ```bash
-    git clone [https://github.com/username/nara-jiwa.git](https://github.com/username/nara-jiwa.git)
-    cd nara-jiwa
-    ```
+```bash
+git clone https://github.com/username/lentera-jiwa.git
+cd lentera-jiwa
+```
 
 2.  **Install Dependencies**
     ```bash
@@ -124,7 +124,7 @@ Pastikan Anda telah menginstal **Node.js** (versi 18.x atau lebih tinggi).
 ## 📂 Struktur Folder
 
 ```text
-nara-jiwa/
+lentera-jiwa/
 ├── app/                  # Root layout, pages, and global styles
 │   ├── globals.css       # Global CSS styles
 │   ├── layout.tsx        # Root layout component
