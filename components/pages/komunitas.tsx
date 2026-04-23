@@ -1,62 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
+import Link from "next/link";
 import { Users, Heart, BookOpen, Mail, Link as LinkIcon, MapPin, MessageCircle } from "lucide-react";
+import { communitiesData } from "@/lib/communities-data";
 import AnimatedSection from "@/components/ui/animated-section";
 
 const filterCategories = ["Semua", "Komunitas Anak", "Komunitas Baca"];
-
-// Data komunitas mitra Lentera Jiwa
-const communitiesData = [
-  // Komunitas Anak 👧📚
-  {
-    id: "anak_1",
-    name: "TK Darul Hikam",
-    category: "Komunitas Anak",
-    type: "Pendidikan Islam Usia Dini",
-    since: "2000",
-    description: "Taman Kanak-kanak dengan pendekatan pendidikan Islam usia dini. Mendekatkan anak dengan nilai-nilai keislaman sejak dini melalui metode pembelajaran yang menyenangkan.",
-    focus: "Pendidikan anak usia dini dengan dasar Islam",
-    activities: "Pembelajaran agama, keterampilan sosial, pembiasaan ibadah",
-    contact: "TK Darul Hikam",
-    status: "active",
-  },
-  {
-    id: "anak_2",
-    name: "TBM Riang Cendikia",
-    category: "Komunitas Anak",
-    type: "Sudut Baca Madrasah",
-    since: "2024",
-    description: "Taman Bacaan yang fokus pada pengembangan sudut baca di lingkungan madrasah. Menciptakan ruang membaca yang nyaman untuk menumbuhkan minat literasi anak-anak.",
-    focus: "Pengembangan sudut baca madrasah dan minat literasi anak",
-    activities: "Pembacaan bersama, storytelling, lomba membaca",
-    contact: "TBM Riang Cendikia",
-    status: "active",
-  },
-  // Komunitas Baca 📖✨
-  {
-    id: "baca_1",
-    name: "TBM Panti Baca Ceria",
-    category: "Komunitas Baca",
-    type: "Literasi Masyarakat",
-    since: "2016",
-    description: "Taman Bacaan yang lahir dari keprihatinan akan minimnya literasi di masyarakat. Berkomitmen meningkatkan minat membaca melalui akses buku yang terbuka untuk semua kalangan.",
-    focus: "Peningkatan literasi masyarakat umum",
-    activities: "Peminjaman buku gratis, diskusi literasi, workshop menulis",
-    contact: "TBM Panti Baca Ceria",
-    status: "active",
-  },
-  {
-    id: "baca_2",
-    name: "Perpus Jalanan Pendopo",
-    category: "Komunitas Baca",
-    type: "Akses Buku Terbatas",
-    since: "2025",
-    description: "Perpustakaan jalanan yang hadir untuk mengatasi keterbatasan akses buku di masyarakat. Membawa literasi ke ruang-ruang publik agar semua orang bisa menikmati buku.",
-    focus: "Meningkatkan akses buku bagi masyarakat dengan keterbatasan",
-    activities: "Perpustakaan keliling, baca bareng di ruang publik, donasi buku",
-    contact: "Perpus Jalanan Pendopo",
-    status: "active",
-  },
-];
 
 export default function Komunitas() {
   const [activeFilter, setActiveFilter] = useState("Semua");
@@ -110,7 +60,7 @@ export default function Komunitas() {
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-center gap-3">
             <MessageCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
             <p className="text-sm text-blue-800">
-              <strong>Info:</strong> Data komunitas mitra Lentera Jiwa. Hubungi komunitas langsung untuk informasi lebih lanjut.
+              <strong>Info:</strong> Data komunitas mitra Lentera Jiwa. Klik kartu untuk melihat detail lengkap.
             </p>
           </div>
         </AnimatedSection>
@@ -127,7 +77,10 @@ export default function Komunitas() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCommunities.map((com, idx) => (
               <AnimatedSection key={com.id} delay={0.1 + idx * 0.1}>
-                <div className="bg-white rounded-xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300 border border-slate-200 flex flex-col h-full group">
+                <Link 
+                  href={`/komunitas/${com.slug}`}
+                  className="block bg-white rounded-xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300 border border-slate-200 flex flex-col h-full group cursor-pointer"
+                >
                   
                   {/* Top Section: Icon & Category */}
                   <div className="flex items-start justify-between mb-6">
@@ -176,11 +129,11 @@ export default function Komunitas() {
                     </div>
                   </div>
                   
-                  <button className="w-full mt-4 h-[44px] bg-slate-50 hover:bg-nara-orange hover:text-white text-nara-charcoal font-medium rounded-lg transition-colors duration-300 flex items-center justify-center gap-2">
+                  <div className="w-full mt-4 h-[44px] bg-slate-50 group-hover:bg-nara-orange group-hover:text-white text-nara-charcoal font-medium rounded-lg transition-colors duration-300 flex items-center justify-center gap-2">
                     <LinkIcon className="w-4 h-4" /> Lihat Detail
-                  </button>
+                  </div>
 
-                </div>
+                </Link>
               </AnimatedSection>
             ))}
           </div>
