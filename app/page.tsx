@@ -33,11 +33,13 @@ const Education = dynamic(() => import("@/components/pages/education"), { loadin
 const Articles = dynamic(() => import("@/components/pages/articles"), { loading: () => <PageSkeleton /> })
 const ArticleDetail = dynamic(() => import("@/components/pages/article-detail"), { loading: () => <PageSkeleton /> })
 const Komunitas = dynamic(() => import("@/components/pages/komunitas"), { loading: () => <PageSkeleton /> })
+const CommunityDetail = dynamic(() => import("@/components/pages/community-detail"), { loading: () => <PageSkeleton /> })
 const ActionGuide = dynamic(() => import("@/components/pages/action-guide"), { loading: () => <PageSkeleton /> })
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useState("home")
   const [selectedArticleSlug, setSelectedArticleSlug] = useState<string>("")
+  const [selectedCommunitySlug, setSelectedCommunitySlug] = useState<string>("")
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -54,7 +56,9 @@ export default function Page() {
       case "program":
         return <Programs />;
       case "komunitas":
-        return <Komunitas />;
+        return <Komunitas setCurrentPage={setCurrentPage} setSelectedCommunitySlug={setSelectedCommunitySlug} />;
+      case "community-detail":
+        return <CommunityDetail slug={selectedCommunitySlug} onBack={() => setCurrentPage("komunitas")} />;
       case "bibliotherapy":
         return <Bibliotherapy />;
       case "kenali-perundungan":

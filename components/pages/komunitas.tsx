@@ -1,14 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import { Users, Heart, BookOpen, Mail, Link as LinkIcon, MapPin, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { Users, Heart, BookOpen, Mail, Link as LinkIcon, MessageCircle } from "lucide-react";
 import { communitiesData } from "@/lib/communities-data";
 import AnimatedSection from "@/components/ui/animated-section";
 
 const filterCategories = ["Semua", "Komunitas Anak", "Komunitas Baca"];
 
-export default function Komunitas() {
+interface KomunitasProps {
+  setCurrentPage: (page: string) => void;
+  setSelectedCommunitySlug: (slug: string) => void;
+}
+
+export default function Komunitas({ setCurrentPage, setSelectedCommunitySlug }: KomunitasProps) {
   const [activeFilter, setActiveFilter] = useState("Semua");
 
   const filteredCommunities = communitiesData.filter(c => activeFilter === "Semua" || c.category === activeFilter);
@@ -17,6 +22,11 @@ export default function Komunitas() {
     if (category === "Komunitas Anak") return <Users className="w-5 h-5" />;
     if (category === "Komunitas Baca") return <BookOpen className="w-5 h-5" />;
     return <Heart className="w-5 h-5" />;
+  };
+
+  const handleCommunityClick = (slug: string) => {
+    setSelectedCommunitySlug(slug);
+    setCurrentPage("community-detail");
   };
 
   return (
@@ -66,28 +76,38 @@ export default function Komunitas() {
         </AnimatedSection>
       </section>
 
-      {/* COMMUNITY GRID */}
-      <section className="max-w-6xl mx-auto px-4 mb-24">
+      {/* COMMUNITY GRID - 2 COLUMNS */}
+      <section className="max-w-5xl mx-auto px-4 mb-24">
         {filteredCommunities.length === 0 ? (
            <div className="text-center py-20 bg-white rounded-3xl border border-slate-100 shadow-sm">
              <Users className="w-16 h-16 text-slate-300 mx-auto mb-4" />
              <p className="text-slate-500 font-medium">Belum ada komunitas terdaftar di kategori ini.</p>
            </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {filteredCommunities.map((com, idx) => (
               <AnimatedSection key={com.id} delay={0.1 + idx * 0.1}>
-                <Link 
-                  href={`/komunitas/${com.slug}`}
-                  className="block bg-white rounded-xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300 border border-slate-200 flex flex-col h-full group cursor-pointer"
+                <button 
+                  onClick={() => handleCommunityClick(com.slug)}
+                  className="w-full text-left bg-white rounded-xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300 border border-slate-200 flex flex-col h-full group cursor-pointer"
                 >
                   
-                  {/* Top Section: Icon & Category */}
+                  {/* Top Section: Logo & Category */}
                   <div className="flex items-start justify-between mb-6">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm ${
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm overflow-hidden ${
                       com.category === "Komunitas Anak" ? "bg-orange-100 text-orange-600" : "bg-teal-100 text-teal-600"
                     }`}>
-                      {getCategoryIcon(com.category)}
+                      {com.logo ? (
+                        <Image
+                          src={com.logo}
+                          alt={`Logo ${com.name}`}
+                          width={56}
+                          height={56}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        getCategoryIcon(com.category)
+                      )}
                     </div>
                     <div className="flex flex-col items-end gap-2">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100">
@@ -133,7 +153,7 @@ export default function Komunitas() {
                     <LinkIcon className="w-4 h-4" /> Lihat Detail
                   </div>
 
-                </Link>
+                </button>
               </AnimatedSection>
             ))}
           </div>

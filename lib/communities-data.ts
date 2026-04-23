@@ -22,6 +22,7 @@ export const communitiesData = [
     managers: "±39 anggota relawan",
     focus: "Peningkatan literasi masyarakat umum",
     activities: "Peminjaman buku gratis, diskusi literasi, workshop menulis",
+    logo: "/logo-Panti-Baca-Ceria.png",
     contact: {
       whatsapp: "",
       email: "",
@@ -53,6 +54,7 @@ export const communitiesData = [
     managers: "4 guru + staf",
     focus: "Pendidikan anak usia dini dengan dasar Islam",
     activities: "Pembelajaran agama, keterampilan sosial, pembiasaan ibadah",
+    logo: "/logo-al-muslimin.png",
     contact: {
       whatsapp: "",
       email: "",
@@ -84,6 +86,7 @@ export const communitiesData = [
     managers: "5 relawan aktif",
     focus: "Meningkatkan akses buku bagi masyarakat dengan keterbatasan",
     activities: "Perpustakaan keliling, baca bareng di ruang publik, donasi buku",
+    logo: "/logo-perpustakaan-jalanan-pendopo.png",
     contact: {
       whatsapp: "",
       email: "",
@@ -115,6 +118,7 @@ export const communitiesData = [
     managers: "2 pengelola utama + relawan",
     focus: "Pengembangan sudut baca madrasah dan minat literasi anak",
     activities: "Pembacaan bersama, storytelling, lomba membaca",
+    logo: "/logo-riang-cendikia.png",
     contact: {
       whatsapp: "",
       email: "",

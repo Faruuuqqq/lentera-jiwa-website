@@ -1,12 +1,12 @@
-import { notFound } from "next/navigation";
-import { Metadata } from "next";
+"use client";
+
+import React from "react";
+import Image from "next/image";
 import { 
   Users, 
   BookOpen, 
   MapPin, 
   Phone, 
-  Mail, 
-  Instagram, 
   ArrowLeft,
   Calendar,
   Target,
@@ -17,31 +17,12 @@ import {
   Users2,
   Wallet
 } from "lucide-react";
-import { getCommunityBySlug, communitiesData } from "@/lib/communities-data";
+import { getCommunityBySlug } from "@/lib/communities-data";
 import AnimatedSection from "@/components/ui/animated-section";
-import Link from "next/link";
 
-// Generate metadata for SEO
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const community = getCommunityBySlug(params.id);
-  
-  if (!community) {
-    return {
-      title: "Komunitas Tidak Ditemukan - Lentera Jiwa",
-    };
-  }
-  
-  return {
-    title: `${community.name} - Komunitas ${community.category} | Lentera Jiwa`,
-    description: community.description,
-  };
-}
-
-// Generate static params for all communities
-export async function generateStaticParams() {
-  return communitiesData.map((community) => ({
-    id: community.slug,
-  }));
+interface CommunityDetailProps {
+  slug: string;
+  onBack: () => void;
 }
 
 // Helper function to get category icon
@@ -80,11 +61,23 @@ const DetailSection = ({ icon, title, children }: DetailSectionProps) => (
   </AnimatedSection>
 );
 
-export default function CommunityDetailPage({ params }: { params: { id: string } }) {
-  const community = getCommunityBySlug(params.id);
+export default function CommunityDetail({ slug, onBack }: CommunityDetailProps) {
+  const community = getCommunityBySlug(slug);
   
   if (!community) {
-    notFound();
+    return (
+      <div className="bg-nara-paper min-h-screen text-nara-charcoal pb-24 pt-24 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-2xl font-bold mb-4">Komunitas Tidak Ditemukan</h1>
+          <button 
+            onClick={onBack}
+            className="px-6 py-2 bg-nara-charcoal text-white rounded-lg"
+          >
+            Kembali
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -96,21 +89,31 @@ export default function CommunityDetailPage({ params }: { params: { id: string }
         <div className="max-w-4xl mx-auto relative z-10">
           {/* Back Button */}
           <AnimatedSection>
-            <Link 
-              href="/?page=komunitas"
+            <button 
+              onClick={onBack}
               className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Kembali ke Daftar Komunitas</span>
-            </Link>
+            </button>
           </AnimatedSection>
 
           {/* Header Content */}
           <AnimatedSection delay={0.1}>
             <div className="flex flex-col md:flex-row md:items-start gap-6 mb-8">
-              {/* Icon */}
-              <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg ${getCategoryColor(community.category)}`}>
-                {getCategoryIcon(community.category)}
+              {/* Logo */}
+              <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden ${getCategoryColor(community.category)}`}>
+                {community.logo ? (
+                  <Image
+                    src={community.logo}
+                    alt={`Logo ${community.name}`}
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  getCategoryIcon(community.category)
+                )}
               </div>
               
               {/* Title & Meta */}
